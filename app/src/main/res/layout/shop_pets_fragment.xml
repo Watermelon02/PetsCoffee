@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shop_pets_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/shop_cat_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/shop_cat_image"
+            android:layout_width="0dp"
+            android:layout_height="128dp"
+            android:layout_weight="1"
+            android:src="@drawable/cat" />
+
+        <TextView
+            android:id="@+id/shop_cat_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="得到一只新猫猫，更多猫猫，更多钱钱！\n价格：2000" />
+
+        <Button
+            android:id="@+id/shop_cat_buy"
+            android:layout_width="0dp"
+            android:layout_height="128dp"
+            android:layout_weight="0.5"
+            android:text="购买！"
+            android:textSize="26dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shop_dog_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/shop_dog_image"
+            android:layout_width="0dp"
+            android:layout_height="128dp"
+            android:layout_weight="1"
+            android:src="@drawable/dog" />
+
+        <TextView
+            android:id="@+id/shop_dog_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="得到一只新狗狗，更多狗狗，更多钱钱！\n价格：2000" />
+
+        <Button
+            android:id="@+id/shop_dog_buy"
+            android:layout_width="0dp"
+            android:layout_height="128dp"
+            android:layout_weight="0.5"
+            android:text="购买！"
+            android:textSize="26dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

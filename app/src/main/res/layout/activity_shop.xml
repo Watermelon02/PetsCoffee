@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.ShopActivity">
+
+    <LinearLayout
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/shop_choose_goods"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="道具"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            android:id="@+id/shop_choose_pets"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="宠物"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/shop_goods_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:name="com.example.petscoffee.fragment.Shop_goods_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/shop_activity_goods_fragment" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/shop_pets_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <fragment
+                android:name="com.example.petscoffee.fragment.Shop_pets_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/shop_activity_pets_fragment"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

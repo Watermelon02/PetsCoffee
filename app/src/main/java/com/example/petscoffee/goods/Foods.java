@@ -2,7 +2,9 @@ package com.example.petscoffee.goods;
 
 import com.example.petscoffee.R;
 
-public class Foods implements Goods {
+import java.io.Serializable;
+
+public class Foods implements Goods, Serializable {
     private String name;
     private float price;
     private int number;

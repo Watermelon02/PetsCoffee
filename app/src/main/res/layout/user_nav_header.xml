@@ -2,15 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="180dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/purple_500">
-    <ImageView
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:id="@+id/user_nav_header_image"
-        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="64dp"
+        >
+        <ImageView
+            android:id="@+id/user_nav_header_image"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@color/purple_200"
+            />
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="用户"
-        android:textSize="20dp"/>
+        android:text="user"
+        android:textSize="40dp" />
 </LinearLayout>

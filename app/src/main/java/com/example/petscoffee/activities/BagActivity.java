@@ -11,7 +11,7 @@ import com.example.petscoffee.R;
 import com.example.petscoffee.adapters.GoodsAdapter;
 import com.example.petscoffee.bag.Bag;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.file.Archive;
+import com.example.petscoffee.database.Archive;
 
 public class BagActivity extends AppCompatActivity {
     private static Bag bag = null;

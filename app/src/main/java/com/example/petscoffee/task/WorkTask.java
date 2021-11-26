@@ -1,11 +1,11 @@
-package com.example.petscoffee.task;
+/*package com.example.petscoffee.task;
 
 import android.app.Service;
 import android.os.AsyncTask;
 
 import com.example.petscoffee.action.Worker;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.file.Archive;
+import com.example.petscoffee.database.Archive;
 import com.example.petscoffee.listener.WorkListener;
 
 import java.util.ArrayList;
@@ -63,4 +63,4 @@ public class WorkTask extends AsyncTask<Integer, Integer, Integer> {
             }
         return TYPE_SUCCESS;
     }
-}
+}*/

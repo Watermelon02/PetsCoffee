@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.example.petscoffee.R;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -31,7 +29,6 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
     private final static int OPEN_ALBUM = 1;
     private ImageView image;
     private Uri uri;//文件地址uri
-    private Bitmap bitmap;//要操作的bitmap实例
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,27 +75,24 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
                 case TAKE_PHOTO:
                     try {
                         Bitmap photo = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
-                        image.setImageBitmap(photo);
+                        setImage(photo);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                     break;
                 case OPEN_ALBUM:
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {//保存用户选取的照片到指定头像路径(通过io流)
-                                OutputStream out = new FileOutputStream(new File("/data/data/com.example.petscoffee/userHead.jpg"));
-                                InputStream in = getContentResolver().openInputStream(data.getData());
-                                int temp = 0;
-                                while ((temp = in.read()) != -1) {
-                                    out.write(temp);
-                                }
-                                Bitmap photo = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
-                                image.setImageBitmap(photo);//不知道为什么卡的一批
-                            }catch (Exception e){
-                                e.printStackTrace();
+                    new Thread(()->{
+                        try {//保存用户选取的照片到指定头像路径(通过io流)
+                            OutputStream out = new FileOutputStream(new File("/data/data/com.example.petscoffee/userHead.jpg"));
+                            InputStream in = getContentResolver().openInputStream(data.getData());
+                            int temp = 0;
+                            while ((temp = in.read()) != -1) {
+                                out.write(temp);
                             }
+                            Bitmap photo = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                            setImage(photo);//不知道为什么卡的一批
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }).start();
             }
@@ -107,4 +101,12 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    public void setImage(Bitmap photo) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.with(PictureActivity.this).load(photo).into(image);
+            }
+        });
+    }
 }

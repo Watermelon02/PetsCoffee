@@ -1,6 +1,6 @@
 package com.example.petscoffee.fragment;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,18 +16,19 @@ import androidx.fragment.app.Fragment;
 
 import com.example.petscoffee.R;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.file.Archive;
+import com.example.petscoffee.database.Archive;
 import com.example.petscoffee.pets.Create;
 
 public class Shop_pets_fragment extends Fragment implements View.OnClickListener {
     private static CoffeeShop coffee;
-    private Context context;
+    private static Activity activity;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shop_pets_fragment, container, false);
-        context = getActivity();
+        activity = getActivity();
+        coffee = Archive.load(activity);
         Button buyCat = view.findViewById(R.id.shop_cat_buy);
         Button buyDog = view.findViewById(R.id.shop_dog_buy);
         buyCat.setOnClickListener(this);
@@ -49,8 +50,8 @@ public class Shop_pets_fragment extends Fragment implements View.OnClickListener
 
     public void buyPet(CoffeeShop coffee, int species) {//购买宠物方法
         if (coffee.getMoney() >= 2000f) {
-            View view = LayoutInflater.from(context).inflate(R.layout.input, null);
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+            View view = LayoutInflater.from(activity).inflate(R.layout.input, null);
+            AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
             dialog.setTitle("购 买 " + (species == 1 ? "猫 猫" : "狗 狗"));
             dialog.setMessage("给新" + (species == 1 ? "猫猫" : "狗狗") + "取一个名字：");
             dialog.setCancelable(false);
@@ -67,17 +68,8 @@ public class Shop_pets_fragment extends Fragment implements View.OnClickListener
             });
             dialog.show();
         } else {
-            Toast.makeText(context, "钱钱不够TvT", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "钱钱不够TvT", Toast.LENGTH_SHORT).show();
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Archive.save(coffee,getActivity());//保存购买后的结果
-    }
-
-    public void setCoffee(CoffeeShop coffee){
-        this.coffee = coffee;
-    }
 }

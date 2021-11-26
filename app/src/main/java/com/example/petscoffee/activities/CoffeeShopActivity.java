@@ -18,7 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.petscoffee.R;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.file.Archive;
+import com.example.petscoffee.database.Archive;
+import com.example.petscoffee.database.CoffeeDatabase;
 import com.example.petscoffee.service.WorkService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;

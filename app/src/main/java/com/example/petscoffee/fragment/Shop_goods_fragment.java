@@ -26,7 +26,7 @@ import com.example.petscoffee.equipment.Bell;
 import com.example.petscoffee.equipment.Bowl;
 import com.example.petscoffee.equipment.Equipment;
 import com.example.petscoffee.equipment.Nest;
-import com.example.petscoffee.file.Archive;
+import com.example.petscoffee.database.Archive;
 import com.example.petscoffee.goods.Foods;
 import com.example.petscoffee.goods.Goods;
 
@@ -41,13 +41,17 @@ public class Shop_goods_fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shop_goods_fragment, container, false);
-        activity = getActivity();
-        coffee = Archive.load(activity);
-        RecyclerView recyclerView = view.findViewById(R.id.shop_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        initGoods();
-        ShopAdapter adapter = new ShopAdapter(goods);
-        recyclerView.setAdapter(adapter);
+        try {
+            activity = getActivity();
+            coffee = Archive.load(activity);
+            RecyclerView recyclerView = view.findViewById(R.id.shop_recycler);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            initGoods();
+            ShopAdapter adapter = new ShopAdapter(goods);
+            recyclerView.setAdapter(adapter);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return view;
     }
 
@@ -166,15 +170,10 @@ public class Shop_goods_fragment extends Fragment {
         goods.clear();
     }
 
-    public ArrayList<Goods> initGoods() {//初始化商店商品
+    public void initGoods() {//初始化商店商品
         goods.add(new Foods());
         goods.add(new Bell());
         goods.add(new Bowl());
         goods.add(new Nest());
-        return goods;
-    }
-
-    public void setCoffee(CoffeeShop coffee){
-        this.coffee = coffee;
     }
 }

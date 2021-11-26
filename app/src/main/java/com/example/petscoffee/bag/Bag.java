@@ -1,13 +1,20 @@
 package com.example.petscoffee.bag;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import com.example.petscoffee.goods.Goods;
+import com.example.petscoffee.goods.GoodsConverter;
 import com.example.petscoffee.goods.Keys;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+@Entity
+@TypeConverters({GoodsConverter.class})
 public class Bag implements Serializable {
-
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     private static ArrayList<Goods> bag = new ArrayList<Goods>();// 仓库物品动态数组
 
     public Bag() {
@@ -26,7 +33,7 @@ public class Bag implements Serializable {
     }
 
 
-    public synchronized float addGood(String name, int number) throws Exception {// 新增物品功能,返回物品的价格，方便商店扣费
+    public float addGood(String name, int number) throws Exception {// 新增物品功能,返回物品的价格，方便商店扣费
         float price;
         int index = search(name);//search查找物品是否存在，如果存在返回其序号
         if (index != -1) {// 如果仓库里已经有该物品，增加该物品数量
@@ -40,7 +47,7 @@ public class Bag implements Serializable {
         return price;
     }
 
-    public synchronized float reduce(String name, int number) throws Exception {// 减少物品功能,可用于商场贩卖道具，或是日常消耗道具；返回物品的价格，方便商店增加金钱
+    public float reduce(String name, int number) throws Exception {// 减少物品功能,可用于商场贩卖道具，或是日常消耗道具；返回物品的价格，方便商店增加金钱
         float price;
         int index = search(name);//search查找物品是否存在，如果存在返回其序号
         if (bag.get(index).getNumber() >= number) {//如果该物品数量大于减少数量
@@ -52,17 +59,17 @@ public class Bag implements Serializable {
         return price;
     }
 
-    public synchronized Goods factory(String name) throws Exception {// 工厂类，当增加新商品时，修改此方法
+    public Goods factory(String name) throws Exception {// 工厂类，当增加新商品时，修改此方法
         Goods goods = null;
         goods = (Goods) Class.forName(Goods.class.getName().replace("Goods",name)).getConstructor().newInstance();
         return goods;
     }
 
-    public synchronized int getSize() {
+    public int getSize() {
         return bag.size();
     }
 
-    public synchronized ArrayList<Goods> getBag() {
+    public ArrayList<Goods> getBag() {
         return bag;
     }
 

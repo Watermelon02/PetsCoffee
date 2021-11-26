@@ -17,6 +17,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="道具"
+            android:background="@color/teal_200"
             style="?android:attr/buttonBarButtonStyle" />
         <Button
             android:id="@+id/shop_choose_pets"

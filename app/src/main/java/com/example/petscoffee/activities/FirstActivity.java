@@ -15,7 +15,7 @@ import com.example.petscoffee.R;
 import com.example.petscoffee.adapters.MessageAdapter;
 import com.example.petscoffee.bag.Bag;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.file.Archive;
+import com.example.petscoffee.database.Archive;
 import com.example.petscoffee.message.Message;
 import com.example.petscoffee.message.MsgType;
 import com.example.petscoffee.pets.Cat;

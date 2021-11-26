@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.petscoffee.R;
 import com.example.petscoffee.adapters.PetsAdapter;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.file.Archive;
+import com.example.petscoffee.database.Archive;
 import com.example.petscoffee.pets.Pets;
 
 import java.util.ArrayList;

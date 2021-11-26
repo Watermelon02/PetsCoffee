@@ -6,8 +6,11 @@
         <entry key="app/src/main/res/layout/activity_bag.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/activity_coffee_shop.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_first.xml" value="0.11817125145292522" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.6532258064516129" />
         <entry key="app/src/main/res/layout/activity_picture.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_shop.xml" value="0.40085868707275363" />
         <entry key="app/src/main/res/layout/activity_work.xml" value="0.1171875" />
+        <entry key="app/src/main/res/layout/content_login.xml" value="0.2132435465768799" />
         <entry key="app/src/main/res/layout/user_nav_header.xml" value="0.25630252100840334" />
         <entry key="app/src/main/res/menu/user_menu.xml" value="0.23802083333333332" />
       </map>

@@ -1,5 +1,6 @@
 package com.example.petscoffee.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,22 +15,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.petscoffee.R;
 import com.example.petscoffee.action.Eater;
 import com.example.petscoffee.action.Washer;
-import com.example.petscoffee.bag.Bag;
+import com.example.petscoffee.coffeeShop.CoffeeShop;
+import com.example.petscoffee.goods.Goods;
 import com.example.petscoffee.pets.Pets;
 
-import java.util.ArrayList;
+
+import java.util.List;
 import java.util.Timer;
 
 public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> implements View.OnClickListener{
-    private ArrayList<Pets> pets;
-    private Bag bag;
+    private List<Pets> pets;
+    private List<Goods> bag;
     private Pets pet;//本item的宠物对象
     private Context context;//父类context(应该传入 onCreateViewHolder中的parent的context)
     private ViewHolder petsViewHolder;//为洗澡，吃饭之后能改变属性值的textView
 
-    public PetsAdapter(ArrayList<Pets> pets,Bag bag) {
-        this.pets = pets;
-        this.bag = bag;
+    public PetsAdapter(CoffeeShop coffeeShop) {
+        this.pets = coffeeShop.getPets();
+        this.bag = coffeeShop.getBag();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -72,13 +75,14 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> im
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pets_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pets, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         context = parent.getContext();//为传到washer的context和viewHolder
         this.petsViewHolder = viewHolder;
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         pet = pets.get(position);

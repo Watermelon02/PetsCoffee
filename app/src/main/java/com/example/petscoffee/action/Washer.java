@@ -25,7 +25,7 @@ public class Washer extends TimerTask implements Runnable {//实现了线程功�
         this.pet = pet;
         this.context = context;
         this.petsViewHolder = petsViewHolder;
-        View view = LayoutInflater.from(context).inflate(R.layout.wash, null);//获取洗澡进度条view
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_pets_wash, null);//获取洗澡进度条view
         AlertDialog.Builder alertdialog = new AlertDialog.Builder(context);//洗澡小游戏功能,
         // 通过传入的context设置显示的位置(一般是由宠物界面的洗澡按钮调用)
         alertdialog.setTitle("洗 澡");

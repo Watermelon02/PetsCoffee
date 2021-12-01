@@ -12,10 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetsCoffee">
         <activity
+            android:name=".activities.test"
+            android:exported="false" />
+        <activity
             android:name=".activities.LoginActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.PetsCoffee.NoActionBar" />
+            android:theme="@style/Theme.PetsCoffee.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -47,20 +56,13 @@
             android:exported="false" />
         <activity
             android:name=".activities.CoffeeShopActivity"
-            android:exported="false"
-            android:launchMode="singleTask" />
+            android:exported="false" />
         <activity
             android:name=".activities.PictureActivity"
             android:exported="false" />
         <activity
             android:name=".activities.FirstActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -3,8 +3,8 @@ package com.example.petscoffee.pets;
 import com.example.petscoffee.R;
 import com.example.petscoffee.equipment.Equipment;
 
-public class Cat implements Pets {
-    private int hp;
+public class Cat extends Pets {
+    /*private int hp;
     private int hunger;// 饥饿度
     private int cleanliness;// 清洁度
     private int mood;// 心情]
@@ -13,20 +13,21 @@ public class Cat implements Pets {
     private String name;// 名字
     private int species;//物种属性,1为猫，2为狗
     private int imageId = R.drawable.cat;//图标id
-    private Equipment[] equipments = new Equipment[3];
+    private Equipment[] equipments = new Equipment[3];*/
 
     public Cat(int hp, int hunger, int cleanliness, int mood, int loveliness, int sp, String name) {
-        this.hp = hp;
+        super(hp,hunger,cleanliness,mood,loveliness,sp,name,1);
+        /*this.hp = hp;
         this.hunger = hunger;
         this.cleanliness = cleanliness;
         this.mood = mood;
         this.loveliness = loveliness;
         this.sp = sp;
         this.name = name;
-        this.setSpecies(1);
+        this.setSpecies(1);*/
     }
 
-    @Override
+   /* @Override
     public int addHp() {
         int addHp = 0;
         for (int i = 0; i < 3; i++) {
@@ -71,10 +72,7 @@ public class Cat implements Pets {
         return money = loveliness - negative;
     }
 
-    @Override
-    public int compareTo(Pets pet) {
-        return Integer.compare(this.loveliness, pet.getLoveliness());
-    }
+
 
     @Override
     public int getHp() {
@@ -164,5 +162,5 @@ public class Cat implements Pets {
     @Override
     public void setSpecies(int species) {
         this.species = species;
-    }
+    }*/
 }

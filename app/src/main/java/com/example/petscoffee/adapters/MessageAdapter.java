@@ -44,7 +44,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -77,8 +77,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 try {
                     Thread.sleep(1000);
                     Intent intent = new Intent(context,CoffeeShopActivity.class);
-                    intent.putExtra("coffee",coffee);
                     context.startActivity(intent);
+                    msgArray.clear();//清除消息list
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

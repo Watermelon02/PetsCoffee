@@ -6,27 +6,26 @@ import com.example.petscoffee.coffeeShop.CoffeeShop;
 import com.example.petscoffee.database.Archive;
 import com.example.petscoffee.pets.Pets;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Worker {
-    private Pets pet;
+public class Worker {//获取每个宠物的工作结果
     private CoffeeShop coffee;
     private float fee;// 营业额
-    private Service service;
     private Random random = new Random(System.currentTimeMillis());
-    private String process;//字符串，用来存储宠物在营业中的经历
-    private String bill;//存储宠物收入字符串，用于输出到营业结果界面
+    private ArrayList<String> process = new ArrayList<>();//字符串，用来存储宠物在营业中的经历
+    private ArrayList<String> bill = new ArrayList<>();//存储宠物收入字符串，用于输出到营业结果界面
     private float income;//该宠物带来的收入
 
-    public Worker(Service service, int petIndex) {//传入CoffeeShop实例和工作的宠物的序号
+    public Worker(CoffeeShop coffee) {//传入CoffeeShop实例和工作的宠物的序号
         // 传入Service以保存
-        this.service = service;
-        this.coffee = Archive.load(service);
-        this.pet = coffee.getPets().get(petIndex);
-        work();
+        this.coffee = coffee;
+        for (Pets pet : coffee.getPets()){
+            work(pet);
+        }
     }
 
-    public Worker work() {
+    public Worker work(Pets pet) {
         if (pet.getHunger() > 0) {// 饥饿度不为0
             int roll = random.nextInt(20);// 随机事件值
             if (roll == 0) {// 被乱rua事件
@@ -68,7 +67,6 @@ public class Worker {
         setIncome(extra + fee);
         coffee.setMoney(extra + fee);//结算工作收入
         coffee.timeChange();//时间推移
-        Archive.save(coffee, service);//存档
         return this;
     }
 
@@ -114,22 +112,22 @@ public class Worker {
     }
 
     public void setBill(String bill) {
-        this.bill = bill;
+        this.bill.add(bill);
     }
 
     public void setProcess(String process) {
-        this.process = process;
+        this.process.add(process);
     }
 
     public void setIncome(float income) {
         this.income = income;
     }
 
-    public String getBill() {
+    public ArrayList<String> getBill() {
         return bill;
     }
 
-    public String getProcess() {
+    public ArrayList<String> getProcess() {
         return process;
     }
 

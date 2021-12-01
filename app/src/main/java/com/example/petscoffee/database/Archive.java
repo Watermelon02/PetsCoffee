@@ -1,52 +1,79 @@
 package com.example.petscoffee.database;
 
-import android.app.Activity;
-import android.app.Service;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.petscoffee.coffeeShop.CoffeeShop;
 import com.google.gson.Gson;
 
+import java.util.List;
+
 public class Archive {
-    static Gson gson = GsonInstance.getGsonInstance();
+    private static Gson gson = GsonInstance.getGsonInstance();
+    private static int id;//登录的用户id
+
     //持久化保存和读取方法,
-    // 使用了Gson将自定义对象转为json对象(以及反序列化)，
-    // 使用Gson时需将所有内部类设置为静态
-    public static CoffeeShop load(Activity activity) {
-        //通过Gson序列化CoffeeShop对象，变为json对象；
-        SharedPreferences sp = activity.getSharedPreferences("coffee", Context.MODE_PRIVATE);
-        String data = sp.getString("coffee", null);
-        return gson.fromJson(data, CoffeeShop.class);
+    // 通过room数据库进行异步存储和读取，
+    public static void loadCoffee(Context context, LoadListener_CoffeeShop loadListener) {
+        //通过数据库读取数据时，需要通过回调来返回读取到的数据和进行接下来的操作
+        new Thread(() -> {
+            try {
+                CoffeeShop coffeeShop = CoffeeDatabase.getInstance(context).coffeeShopDao().queryCoffee(id);
+                loadListener.complete(coffeeShop);
+                List<CoffeeShop> coffeeShops = CoffeeDatabase.getInstance(context).coffeeShopDao().queryCoffees();
+                Log.d("testTag", "saveCoffee: ");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
-    public static CoffeeShop load(Service service) {//重载该方法，以供Service来读取存档
-        //通过Gson序列化CoffeeShop对象，变为json对象；
-        SharedPreferences sp = service.getSharedPreferences("coffee", Context.MODE_PRIVATE);
-        String data = sp.getString("coffee", null);
-        return gson.fromJson(data, CoffeeShop.class);
+    public static void loadCoffee(Context context,String account,LoadListener_CoffeeShop loadListener) {
+        //通过数据库读取数据时，需要通过回调来返回读取到的数据和进行接下来的操作
+        new Thread(() -> {
+            try {
+                CoffeeShop coffeeShop = CoffeeDatabase.getInstance(context).coffeeShopDao().queryCoffee(account);
+                loadListener.complete(coffeeShop);
+                List<CoffeeShop> coffeeShops = CoffeeDatabase.getInstance(context).coffeeShopDao().queryCoffees();
+                Log.d("testTag", "saveCoffee: ");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
-    public static void save(CoffeeShop coffee, Activity activity) {
-        //通过Gson序列化CoffeeShop对象，变为json对象；
-        SharedPreferences.Editor editor = activity.getSharedPreferences("coffee", Context.MODE_PRIVATE).edit();
-        String data = gson.toJson(coffee);
-        editor.putString("coffee", data);
-        editor.apply();
-        /*if (gson.fromJson(activity.getSharedPreferences("coffee",Context.MODE_PRIVATE).getString("coffee",null),CoffeeShop.class).getBag().getBag().size()>1){
-            CoffeeShop test = gson.fromJson(activity.getSharedPreferences("coffee",Context.MODE_PRIVATE).getString("coffee",null),CoffeeShop.class);
-            Goods test1 = test.getBag().getBag().get(1);
-            Log.d("testTag","123");
-        }*/
-
+    public static void saveCoffee(CoffeeShop coffee, Context context) {
+        new Thread(() -> {
+            if (CoffeeDatabase.getInstance(context).coffeeShopDao().queryCoffee(id) == null) {
+                //如果存在该数据则update
+                try {
+                    CoffeeDatabase.getInstance(context).coffeeShopDao().insertCoffee(coffee);
+                    List<CoffeeShop> coffeeShops = CoffeeDatabase.getInstance(context).coffeeShopDao().queryCoffees();
+                    Log.d("testTag", "saveCoffee: ");
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            } else {//否则insert
+                try {
+                    CoffeeDatabase.getInstance(context).coffeeShopDao().upDateCoffee(coffee);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
-    public static void save(CoffeeShop coffee, Service service) {//重载该方法，以供Service来保存存档
-        //通过Gson序列化CoffeeShop对象，变为json对象；
-        SharedPreferences.Editor editor = service.getSharedPreferences("coffee", Context.MODE_PRIVATE).edit();
-        String data = gson.toJson(coffee);
-        editor.putString("coffee", data);
-        editor.apply();
+
+    public interface LoadListener_CoffeeShop {//loadCoffee回调接口
+
+        void complete(CoffeeShop coffeeShop);
     }
 
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Archive.id = id;
+    }
 }

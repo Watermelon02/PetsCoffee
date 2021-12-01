@@ -12,39 +12,43 @@ import androidx.appcompat.app.AlertDialog;
 import com.example.petscoffee.R;
 import com.example.petscoffee.adapters.PetsAdapter;
 import com.example.petscoffee.bag.Bag;
+import com.example.petscoffee.goods.Goods;
 import com.example.petscoffee.pets.Pets;
+
+
+import java.util.List;
 
 public class Eater {// 实现多宠物同时开饭
     private Context context;
     private Pets pet;
     private PetsAdapter.ViewHolder viewHolder;
-    private Bag bag;
+    private List<Goods> bag;
 
-    public Eater(Context context, PetsAdapter.ViewHolder viewHolder,Bag bag,Pets pet) {
+    public Eater(Context context, PetsAdapter.ViewHolder viewHolder,List<Goods> bag,Pets pet) {
         this.context = context;
         this.pet = pet;
         this.bag = bag;
         this.viewHolder = viewHolder;
-        View view = LayoutInflater.from(context).inflate(R.layout.eat,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_pets_eat,null);
         EditText editText = view.findViewById(R.id.eat_edit);
         AlertDialog.Builder alert =  new AlertDialog.Builder(context);
-        if(bag.search("Foods")!=-1){
+        if(Bag.search(bag,"Foods")!=-1){
             //如果背包里有食物
-            alert.setTitle("投 喂").setMessage("剩余食物："    +bag.getBag().get(bag.search("Foods")).getNumber())
+            alert.setTitle("投 喂").setMessage("剩余食物："    +bag.get(Bag.search(bag,"Foods")).getNumber())
                     .setCancelable(false)
-                    .setView(view).
-                    setPositiveButton("确认", (dialog, which) -> {
+                    .setView(view)
+                    .setPositiveButton("确认", (dialog, which) -> {
                         TextView petHungerText = viewHolder.getPetsHunger();//
                         int eaten = Integer.valueOf(editText.getText().toString());//获取用户输入的投喂食物数
-                        int total = bag.getBag().get(bag.search("Foods")).getNumber();//获取背包中该物品剩余数量
+                        int total = bag.get(Bag.search(bag,"Foods")).getNumber();//获取背包中该物品剩余数量
                         if(eaten <= total){//如果输入的数量小于/等于剩余食物数量
                             if(eaten<=10-pet.getHunger()){//吃的食物数量小于/等于未满的饥饿值
                                 pet.setHunger(eaten);
-                                bag.getBag().get(bag.search("Foods")).setNumber(-eaten);
+                                bag.get(Bag.search(bag,"Foods")).setNumber(-eaten);
                                 petHungerText.setText("饱食度："+String.valueOf(pet.getHunger()));//修改宠物界面饱食度
                                 Toast.makeText(context, "恢复了"+String.valueOf(eaten)+"点饱食度", Toast.LENGTH_SHORT).show();
                             }else {//吃的食物数量大于未满的饥饿值
-                                bag.getBag().get(bag.search("Foods")).setNumber(10-pet.getHunger());//减少不足饱食度数量的食物
+                                bag.get(Bag.search(bag,"Foods")).setNumber(10-pet.getHunger());//减少不足饱食度数量的食物
                                 pet.setHunger(10-pet.getHunger());//补满饱食度
                                 petHungerText.setText("饱食度："+String.valueOf(pet.getHunger()));//修改宠物界面饱食度
                                 Toast.makeText(context, pet.getName()+"已经吃撑了", Toast.LENGTH_SHORT).show();

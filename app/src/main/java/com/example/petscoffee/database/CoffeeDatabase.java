@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.petscoffee.bag.Bag;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
 
-@Database(entities = {CoffeeShop.class, Bag.class}, version = 1,exportSchema = false)
+@Database(entities = {CoffeeShop.class}, version = 1,exportSchema = false)
 public abstract class CoffeeDatabase extends RoomDatabase {
     private static CoffeeDatabase database;
 

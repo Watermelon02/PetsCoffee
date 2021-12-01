@@ -12,26 +12,30 @@ import com.example.petscoffee.coffeeShop.CoffeeShop;
 import com.example.petscoffee.database.Archive;
 import com.example.petscoffee.pets.Pets;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public class PetsActivity extends AppCompatActivity {
     private static CoffeeShop coffee;
-    private static ArrayList<Pets> pets;
+    private static List<Pets> pets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets);
-        coffee = Archive.load(PetsActivity.this);
-        pets = coffee.getPets();
-        ViewPager2 recyclerView = findViewById(R.id.pets_recyclerView);
-        PetsAdapter petsAdapter = new PetsAdapter(pets,coffee.getBag());
-        recyclerView.setAdapter(petsAdapter);
+        Archive.loadCoffee(this, coffeeShop -> {
+            this.runOnUiThread(()->{
+                coffee = coffeeShop;
+                ViewPager2 recyclerView = findViewById(R.id.pets_recyclerView);
+                PetsAdapter petsAdapter = new PetsAdapter(coffee);
+                recyclerView.setAdapter(petsAdapter);
+            });
+        });
     }
 
     @Override
     public void onBackPressed() {
-        Archive.save(coffee,PetsActivity.this);//存储数据
+        Archive.saveCoffee(coffee,this);//存储数据
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();

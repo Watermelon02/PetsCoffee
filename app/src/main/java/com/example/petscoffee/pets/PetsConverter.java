@@ -6,12 +6,13 @@ import androidx.room.TypeConverters;
 import com.example.petscoffee.database.GsonInstance;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PetsConverter {
     //用于room存储接口list
     @TypeConverter
-    public String objectToJson(List<? extends Pets> object) {
+    public String objectToJson(List<Pets> object) {
         return GsonInstance.getGsonInstance().toJson(object);
     }
     @TypeConverter

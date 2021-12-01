@@ -6,13 +6,15 @@ import com.example.petscoffee.database.GsonInstance;
 import com.example.petscoffee.pets.Pets;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GoodsConverter {
     //用于room存储接口list
     @TypeConverter
-    public String objectToJson(List<? extends Goods> object) {
+    public String objectToJson(List<Goods> object) {
         return GsonInstance.getGsonInstance().toJson(object);
     }
     @TypeConverter

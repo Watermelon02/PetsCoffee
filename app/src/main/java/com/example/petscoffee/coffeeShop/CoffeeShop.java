@@ -4,32 +4,32 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.example.petscoffee.bag.Bag;
+import com.example.petscoffee.goods.Goods;
+import com.example.petscoffee.goods.GoodsConverter;
 import com.example.petscoffee.pets.Pets;
 import com.example.petscoffee.pets.PetsConverter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+@TypeConverters({PetsConverter.class,GoodsConverter.class})
 @Entity(tableName = "coffeeShop")
-@TypeConverters({PetsConverter.class})
-public class CoffeeShop implements Serializable {
+public class CoffeeShop {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int day;// 总天数
-    private int time;// 一日两档期
+    private int time;
+    private int day;
     private float money;
-    private static Bag bag;
-    private static ArrayList<Pets> pets = new ArrayList<Pets>();// 宠物对象变长数组
+    private String account;
+    private String name;
+    private String password;
+    private List<Pets> pets = new ArrayList<>();// 宠物对象变长数组
+    private List<Goods> bag = new ArrayList<>();
 
-    public CoffeeShop(){};
-
-    public CoffeeShop(int day, int time, float money, Bag bag) {
-        //用于FirstActivity中初始化
-        this.day = day;
+    public CoffeeShop(int time, int day, float money) {
         this.time = time;
+        this.day = day;
         this.money = money;
-        this.bag = bag;
     }
 
     public void timeChange() {
@@ -53,13 +53,10 @@ public class CoffeeShop implements Serializable {
         return money;
     }
 
-    public ArrayList<Pets> getPets() {
+    public List<Pets> getPets() {
         return pets;
     }
 
-    public Bag getBag() {
-        return bag;
-    }
 
     public void setMoney(float fee) {
         this.money += fee;
@@ -73,12 +70,9 @@ public class CoffeeShop implements Serializable {
         this.day += day;
     }
 
-    public void setBag(Bag bag) {
-        this.bag = bag;
-    }
 
-    public static void setPets(ArrayList<Pets> pets) {
-        CoffeeShop.pets = pets;
+    public void setPets(List<Pets> pets) {
+        this.pets = pets;
     }
 
     public int getId() {
@@ -87,5 +81,37 @@ public class CoffeeShop implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Goods> getBag() {
+        return bag;
+    }
+
+    public void setBag(List<Goods> bag) {
+        this.bag = bag;
     }
 }

@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.petscoffee.R;
 import com.example.petscoffee.activities.WorkActivity;
 import com.example.petscoffee.listener.WorkListener;
-/*import com.example.petscoffee.task.WorkTask;*/
+import com.example.petscoffee.task.WorkTask;
 
 import java.util.ArrayList;
 
@@ -47,8 +47,8 @@ public class WorkService extends Service {
         super.onCreate();
         super.onCreate();
         Notification notification = createNotification(0);
-        /*WorkTask workTask = new WorkTask(this, workListener);
-        workTask.execute();*/
+        WorkTask workTask = new WorkTask(this, workListener);
+        workTask.execute();
         startForeground(1, notification);
     }
 

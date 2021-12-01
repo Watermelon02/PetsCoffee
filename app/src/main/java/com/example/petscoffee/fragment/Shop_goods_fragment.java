@@ -31,36 +31,36 @@ import com.example.petscoffee.goods.Foods;
 import com.example.petscoffee.goods.Goods;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Shop_goods_fragment extends Fragment {
-    private ArrayList<Goods> goods = new ArrayList<Goods>();//商品list,通过initGoods来设置内容
-    private static CoffeeShop coffee ;
+    private List<Goods> goods = new ArrayList<Goods>();//商品list,通过initGoods来设置内容
+    private static CoffeeShop coffee;
     private static Activity activity;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.shop_goods_fragment, container, false);
-        try {
-            activity = getActivity();
-            coffee = Archive.load(activity);
+        View view = inflater.inflate(R.layout.fragment_shop_goods, container, false);
+        activity = getActivity();
+        Archive.loadCoffee(activity, coffeeShop -> {
+            coffee = coffeeShop;
             RecyclerView recyclerView = view.findViewById(R.id.shop_recycler);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             initGoods();
             ShopAdapter adapter = new ShopAdapter(goods);
             recyclerView.setAdapter(adapter);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        });
+
         return view;
     }
 
     public static class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
-        private Bag bag;//为购买物品到背包设置该属性
-        private ArrayList<Goods> goods;
+        private List<Goods> bag;//为购买物品到背包设置该属性
+        private List<Goods> goods;
         private Context context;//购买商品时需加载到的ShopActivity的context,通过onCreateViewHolder中的parent来获取
 
-        public ShopAdapter(ArrayList<Goods> goods) {
+        public ShopAdapter(List<Goods> goods) {
             this.bag = coffee.getBag();
             this.goods = goods;
         }
@@ -82,7 +82,7 @@ public class Shop_goods_fragment extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             context = parent.getContext();
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shop, parent, false);
             ViewHolder viewHolder = new ViewHolder(view);
             return viewHolder;
         }
@@ -92,9 +92,8 @@ public class Shop_goods_fragment extends Fragment {
             Goods good = goods.get(position);
             holder.shop_image.setImageResource(good.getImageId());
             holder.shop_info.setText(good.getInfo() + "\n价格:" + good.getPrice());
-            holder.shop_buy.setOnClickListener(v -> {
-                buyGoods(good.getName());
-            });
+            holder.shop_buy.setOnClickListener(v -> buyGoods(good.getName())
+            );
         }
 
         @Override
@@ -103,7 +102,7 @@ public class Shop_goods_fragment extends Fragment {
         }
 
         public void buyGoods(String name) {//购买goods方法
-            View view = LayoutInflater.from(context).inflate(R.layout.input, null);
+            View view = LayoutInflater.from(context).inflate(R.layout.shop_fragment_number_input, null);
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             try {
                 Goods good = (Goods) Class.forName(Goods.class.getName().replace("Goods", name)).getConstructor().newInstance();
@@ -118,19 +117,19 @@ public class Shop_goods_fragment extends Fragment {
                     int num = Integer.parseInt(editText.getText().toString());
                     if (coffee.getMoney() >= num * price) {//如果钱够买这么多食物
                         try {//调用背包中的addGood方法
-                            bag.addGood(name, num);
+                            Bag.addGood(bag,name, num);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                         coffee.setMoney(-num * price);//扣钱
-                        Archive.save(coffee,activity);//保存购买后的结果
+                        Archive.saveCoffee(coffee, activity);//保存购买后的结果
                     } else {
                         Toast.makeText(context, "钱钱不够", Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (Exception e) {
                 try {//当购买的为装备时，因为装备类不在goods包下，无法通过上面的反射得到，所以通过如下操作购买
-                    Goods good = (Goods) Class.forName(Equipment.class.getName().replace("Equipment",name)).getConstructor().newInstance();
+                    Goods good = (Goods) Class.forName(Equipment.class.getName().replace("Equipment", name)).getConstructor().newInstance();
                     //通过反射获取包名
                     float price = good.getPrice();//获取物品价格
                     dialog.setTitle("购 买 " + name);
@@ -142,17 +141,17 @@ public class Shop_goods_fragment extends Fragment {
                         int num = Integer.parseInt(editText.getText().toString());
                         if (coffee.getMoney() >= num * price) {//如果钱够买这么多食物
                             try {//调用背包中的addGood方法
-                                bag.addGood(name, num);
+                                Bag.addGood(bag,name, num);
                             } catch (Exception w) {
                                 e.printStackTrace();
                             }
                             coffee.setMoney(-num * price);//扣钱
-                            Archive.save(coffee,activity);//保存购买后的结果
+                            Archive.saveCoffee(coffee, activity);//保存购买后的结果
                         } else {
                             Toast.makeText(context, "钱钱不够", Toast.LENGTH_SHORT).show();
                         }
                     });
-                }catch (Exception w){
+                } catch (Exception w) {
                     w.printStackTrace();
                 }
                 e.printStackTrace();

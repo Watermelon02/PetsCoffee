@@ -11,7 +11,6 @@ import com.example.petscoffee.R;
 import com.example.petscoffee.coffeeShop.CoffeeShop;
 
 public class ShopActivity extends AppCompatActivity{
-    private static CoffeeShop coffee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,6 @@ public class ShopActivity extends AppCompatActivity{
             goods.setVisibility(View.GONE);
         });
     }
-
-
 
     @Override
     public void onBackPressed() {

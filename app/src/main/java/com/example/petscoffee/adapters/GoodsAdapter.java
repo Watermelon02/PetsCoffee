@@ -14,9 +14,10 @@ import com.example.petscoffee.bag.Bag;
 import com.example.petscoffee.goods.Goods;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> {
-    private ArrayList<Goods> bag;
+    private List<Goods> bag;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View goodsView;
@@ -35,14 +36,14 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
         }
     }
 
-    public GoodsAdapter(Bag bag) {//将要展示的 数据 通过构造方法传入
-        this.bag = bag.getBag();
+    public GoodsAdapter(List<Goods> bag) {//将要展示的 数据 通过构造方法传入
+        this.bag = bag;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {//实例化viewHolder
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.goods_item, parent
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_goods, parent
                 , false);//通过layout.goods_item布局实例化itemView对象
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;

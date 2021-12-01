@@ -1,27 +1,12 @@
 package com.example.petscoffee.bag;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
 import com.example.petscoffee.goods.Goods;
-import com.example.petscoffee.goods.GoodsConverter;
-import com.example.petscoffee.goods.Keys;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-@Entity
-@TypeConverters({GoodsConverter.class})
-public class Bag implements Serializable {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
-    private static ArrayList<Goods> bag = new ArrayList<Goods>();// 仓库物品动态数组
+import java.util.List;
 
-    public Bag() {
-        bag.add(new Keys());
-    }
+public class Bag {//背包list操作类
 
-    public int search(String name) {// 仓库物品搜索功能,返回物品在数组中的索引
+    public static int search(List<Goods> bag, String name) {// 仓库物品搜索功能,返回物品在数组中的索引
         int index = -1;
         for (int i = 0; i < bag.size(); i++) {
             if (bag.get(i).getName().equals(name)) {
@@ -33,9 +18,9 @@ public class Bag implements Serializable {
     }
 
 
-    public float addGood(String name, int number) throws Exception {// 新增物品功能,返回物品的价格，方便商店扣费
+    public static float addGood(List<Goods> bag, String name, int number) throws Exception {// 新增物品功能,返回物品的价格，方便商店扣费
         float price;
-        int index = search(name);//search查找物品是否存在，如果存在返回其序号
+        int index = search(bag, name);//search查找物品是否存在，如果存在返回其序号
         if (index != -1) {// 如果仓库里已经有该物品，增加该物品数量
             bag.get(index).setNumber(number);// 增加该物品数量
             price = bag.get(index).getPrice();// 设置物品价格
@@ -47,9 +32,9 @@ public class Bag implements Serializable {
         return price;
     }
 
-    public float reduce(String name, int number) throws Exception {// 减少物品功能,可用于商场贩卖道具，或是日常消耗道具；返回物品的价格，方便商店增加金钱
+    public static float reduce(List<Goods> bag, String name, int number) throws Exception {// 减少物品功能,可用于商场贩卖道具，或是日常消耗道具；返回物品的价格，方便商店增加金钱
         float price;
-        int index = search(name);//search查找物品是否存在，如果存在返回其序号
+        int index = search(bag, name);//search查找物品是否存在，如果存在返回其序号
         if (bag.get(index).getNumber() >= number) {//如果该物品数量大于减少数量
             bag.get(index).setNumber(-number);
             price = bag.get(index).getPrice() / 2;//贩卖价格减半；
@@ -59,18 +44,10 @@ public class Bag implements Serializable {
         return price;
     }
 
-    public Goods factory(String name) throws Exception {// 工厂类，当增加新商品时，修改此方法
+    public static Goods factory(String name) throws Exception {// 工厂类，当增加新商品时，修改此方法
         Goods goods = null;
-        goods = (Goods) Class.forName(Goods.class.getName().replace("Goods",name)).getConstructor().newInstance();
+        goods = (Goods) Class.forName(Goods.class.getName().replace("Goods", name)).getConstructor().newInstance();
         return goods;
-    }
-
-    public int getSize() {
-        return bag.size();
-    }
-
-    public ArrayList<Goods> getBag() {
-        return bag;
     }
 
 }

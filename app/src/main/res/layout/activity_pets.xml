@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PetsActivity">
+    tools:context=".ui.pets.activities.PetsActivity">
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pets_recyclerView"
         android:layout_width="match_parent"
+        android:overScrollMode="never"
         android:layout_height="match_parent"/>
 
 </LinearLayout>

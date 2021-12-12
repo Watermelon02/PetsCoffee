@@ -1,35 +1,29 @@
-package com.example.petscoffee.database;
+package com.example.petscoffee.repository.local
 
-import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.Query;
-import androidx.room.Update;
-
-import com.example.petscoffee.coffeeShop.CoffeeShop;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.petscoffee.model.CoffeeShop
+import androidx.lifecycle.LiveData
+import androidx.room.*
 
 @Dao
-public interface CoffeeShopDao {
+interface CoffeeShopDao {
     @Insert
-    void insertCoffee(CoffeeShop coffee);
+    fun insertCoffee(coffee: CoffeeShop)
 
     @Query("SELECT * FROM coffeeShop WHERE id =:id")
-    CoffeeShop queryCoffee(int id);
+    fun queryCoffee(id: Int): CoffeeShop
 
     @Query("SELECT * FROM coffeeShop WHERE account=:account")
-    CoffeeShop queryCoffee(String account);
+    fun queryCoffee(account: String): CoffeeShop
+
+    @Query("SELECT * FROM coffeeShop WHERE id=:id")
+    fun queryCoffeeLiveData(id: Int): LiveData<CoffeeShop>
 
     @Delete
-    void deleteCoffee(CoffeeShop coffee);
+    fun deleteCoffee(coffee: CoffeeShop)
 
     @Query("SELECT * FROM coffeeShop")
-    List<CoffeeShop> queryCoffees();
+    fun queryCoffees(): MutableList<CoffeeShop>
 
     @Update
-    void upDateCoffee(CoffeeShop coffee);
-
-    //上面为CoffeeShop数据的curd
+    fun upDateCoffee(coffee: CoffeeShop) //上面为CoffeeShop数据的curd
 }

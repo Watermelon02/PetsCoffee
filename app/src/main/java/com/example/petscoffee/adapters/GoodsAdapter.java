@@ -10,10 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petscoffee.R;
-import com.example.petscoffee.bag.Bag;
-import com.example.petscoffee.goods.Goods;
+import com.example.petscoffee.model.goods.Goods;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> {

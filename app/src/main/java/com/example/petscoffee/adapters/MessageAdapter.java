@@ -1,26 +1,7 @@
 package com.example.petscoffee.adapters;
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.petscoffee.R;
-import com.example.petscoffee.activities.CoffeeShopActivity;
-import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.message.Message;
-import com.example.petscoffee.message.MsgType;
-
-import java.util.ArrayList;
-
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
-    ArrayList<Message> msgArray;
+public class MessageAdapter /*extends RecyclerView.Adapter<MessageAdapter.ViewHolder>*/ {
+    /*ArrayList<Message> msgArray;
     Context context;
     CoffeeShop coffee;
     public MessageAdapter(ArrayList<Message> msgArray){
@@ -76,7 +57,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             new Thread(()->{
                 try {
                     Thread.sleep(1000);
-                    Intent intent = new Intent(context,CoffeeShopActivity.class);
+                    Intent intent = new Intent(context, MainPageActivity.class);
                     context.startActivity(intent);
                     msgArray.clear();//清除消息list
                 } catch (InterruptedException e) {
@@ -92,5 +73,5 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public void setContext(Context context) {
         this.context = context;
-    }
+    }*/
 }

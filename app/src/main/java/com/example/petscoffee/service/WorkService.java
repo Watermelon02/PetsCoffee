@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.example.petscoffee.R;
-import com.example.petscoffee.activities.WorkActivity;
+import com.example.petscoffee.ui.pets.activities.WorkActivity;
 import com.example.petscoffee.listener.WorkListener;
 import com.example.petscoffee.task.WorkTask;
 

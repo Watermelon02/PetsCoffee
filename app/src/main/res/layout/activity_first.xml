@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.FirstActivity">
+    tools:context=".ui.pets.activities.FirstActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/first_recycler"
         android:layout_height="0dp"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <Button android:id="@+id/first_button_send"
+        <Button android:id="@+id/first_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="发送"/>

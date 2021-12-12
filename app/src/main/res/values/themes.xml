@@ -19,6 +19,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="mToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决toolbar左边空白部分-->
+    </style>
+
     <style name="Theme.PetsCoffee.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PetsCoffee.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

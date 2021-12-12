@@ -13,11 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petscoffee.R;
-import com.example.petscoffee.action.Eater;
-import com.example.petscoffee.action.Washer;
-import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.goods.Goods;
-import com.example.petscoffee.pets.Pets;
+import com.example.petscoffee.petsAction.Eater;
+import com.example.petscoffee.petsAction.Washer;
+import com.example.petscoffee.model.CoffeeShop;
+import com.example.petscoffee.model.goods.Goods;
+import com.example.petscoffee.model.pets.Pets;
 
 
 import java.util.List;

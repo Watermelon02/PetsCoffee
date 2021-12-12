@@ -3,9 +3,9 @@ package com.example.petscoffee.task;
 import android.app.Service;
 import android.os.AsyncTask;
 
-import com.example.petscoffee.action.Worker;
-import com.example.petscoffee.coffeeShop.CoffeeShop;
-import com.example.petscoffee.database.Archive;
+import com.example.petscoffee.petsAction.Worker;
+import com.example.petscoffee.model.CoffeeShop;
+import com.example.petscoffee.repository.local.Archive;
 import com.example.petscoffee.listener.WorkListener;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class WorkTask extends AsyncTask<Integer, Integer, Integer> {
                     Worker worker = new Worker(coffee);
                     process = worker.getProcess();//process字符串，用来存储宠物在营业中的经历
                     bill = worker.getBill(); //bill存储宠物收入字符串，用于输出到营业结果界面
-                    coffee.setMoney(worker.getIncome());//该宠物带来的收入
+                    coffee.setMoney(worker.getIncome()+coffee.getMoney());//该宠物带来的收入
                     Archive.saveCoffee(coffee, service);
                     listener.onSuccess(money, process, bill);//获取工作结果
                 }catch (Exception e){

@@ -1,40 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.PictureActivity">
-    <androidx.cardview.widget.CardView
-        android:layout_height="0dp"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="bottomBarListener"
+            type="com.example.petscoffee.listener.BottomBarListener" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="2">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.pets.activities.PictureActivity">
+
         <ImageView
             android:id="@+id/pictureActivity_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@color/purple_200"/>
-    </androidx.cardview.widget.CardView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <Button
-            android:id="@+id/pictureActivity_takePhoto"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:text="拍照"
-            android:textSize="80dp"/>
-        <Button
-            android:id="@+id/pictureActivity_openAlbum"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:text="相册"
-            android:textSize="80dp"/>
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="@color/purple_500" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/pictureActivity_takePhoto"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="拍照"
+                android:textSize="60dp" />
+
+            <Button
+                android:id="@+id/pictureActivity_openAlbum"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="相册"
+                android:textSize="60dp" />
+        </LinearLayout>
+
+        <include layout="@layout/bottom_toolbar"
+            app:bottomBarListener="@{bottomBarListener}"/>
+
+    </LinearLayout>
+</layout>

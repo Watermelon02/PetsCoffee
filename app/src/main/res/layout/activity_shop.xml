@@ -34,15 +34,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/teal_200"
-                android:text="道具" />
+                android:fontFamily="@font/store_my_stamp_number"
+                android:text="Goods" />
 
             <Button
                 android:id="@+id/shop_choose_pets"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="宠物" />
+                android:fontFamily="@font/store_my_stamp_number"
+                android:text="Pets" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,7 +59,7 @@
 
                 <fragment
                     android:id="@+id/shop_activity_goods_fragment"
-                    android:name="com.example.petscoffee.ui.pets.fragments.Shop_goods_fragment"
+                    android:name="com.example.petscoffee.ui.pets.fragments.ShopGoodsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -71,7 +72,7 @@
 
                 <fragment
                     android:id="@+id/shop_activity_pets_fragment"
-                    android:name="com.example.petscoffee.ui.pets.fragments.Shop_pets_fragment"
+                    android:name="com.example.petscoffee.ui.pets.fragments.ShopPetsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>

@@ -27,7 +27,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_baseline_access_time_48"
+                android:fontFamily="@font/store_my_stamp_number"
                 android:gravity="center_horizontal"
+
                 android:text="@{coffeeShop.showTime()}"
                 android:textSize="30sp" />
 
@@ -35,10 +37,17 @@
                 android:id="@+id/headerBar_money"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/store_my_stamp_number"
                 android:drawableLeft="@drawable/ic_baseline_money_48"
                 android:gravity="center_horizontal"
                 android:text="@{String.valueOf(coffeeShop.money)}"
                 android:textSize="30sp" />
+            <View
+                android:layout_width="360dp"
+                android:layout_height="0.5dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="#3F51B5" />
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 </layout>

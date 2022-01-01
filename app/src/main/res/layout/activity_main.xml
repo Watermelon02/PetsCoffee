@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="coffeeShop"
             type="com.example.petscoffee.model.CoffeeShop" />
+
         <variable
             name="bottomBarListener"
             type="com.example.petscoffee.listener.BottomBarListener" />
@@ -14,8 +16,7 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/mainPage_DrawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,58 +27,80 @@
             android:orientation="vertical"
             tools:context=".ui.pets.CoffeeShopActivity">
 
-            <include layout="@layout/header_toolbar"
-                app:coffeeShop="@{coffeeShop}"/>
+            <include
+                layout="@layout/header_toolbar"
+                app:coffeeShop="@{coffeeShop}" />
 
-                <com.google.android.material.card.MaterialCardView
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp">
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:orientation="vertical">
-                       <EditText
-                           android:id="@+id/edit_main_query"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                       <TextView
-                           android:id="@+id/text_main_address"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="@color/purple_500"
-                           android:textSize="40dp"/>
-                       <TextView
-                           android:id="@+id/text_main_temp"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="@color/purple_500"
-                           android:textSize="40dp"/>
-                       <TextView
-                           android:id="@+id/text_main_weather"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="@color/purple_500"
-                           android:textSize="40dp"/>
-                       <TextView
-                           android:id="@+id/text_main_windDirection"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="@color/purple_500"
-                           android:textSize="40dp"/>
-                       <TextView
-                           android:id="@+id/text_main_windPower"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="@color/purple_500"
-                           android:textSize="40dp"/>
-                   </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                </com.google.android.material.card.MaterialCardView>
+                    <EditText
+                        android:id="@+id/edit_main_query"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-            <include layout="@layout/bottom_toolbar"
-                app:bottomBarListener="@{bottomBarListener}"/>
+                    <TextView
+                        android:id="@+id/text_main_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3F51B5"
+                        android:textSize="40dp" />
+
+                    <TextView
+                        android:id="@+id/text_main_temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3F51B5"
+                        android:textSize="40dp" />
+
+                    <TextView
+                        android:id="@+id/text_main_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3F51B5"
+                        android:textSize="40dp" />
+
+                    <TextView
+                        android:id="@+id/text_main_windDirection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3F51B5"
+                        android:textSize="40dp" />
+
+                    <TextView
+                        android:id="@+id/text_main_windPower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3F51B5"
+                        android:textSize="40dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_lamp"/>
+            <ImageView
+                android:id="@+id/mainPage_background"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="160dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:src="@drawable/ic_bar_counter" />
+
+            <include
+                layout="@layout/bottom_toolbar"
+                app:bottomBarListener="@{bottomBarListener}" />
 
         </LinearLayout>
 
@@ -85,7 +108,8 @@
             android:id="@+id/mainPage_navigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:menu="@menu/user_menu"
-            android:layout_gravity="start" />
+            android:layout_gravity="start"
+            app:headerLayout="@layout/user_nav_header"
+            app:menu="@menu/user_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

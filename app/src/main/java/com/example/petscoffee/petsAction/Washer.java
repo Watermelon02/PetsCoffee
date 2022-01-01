@@ -55,11 +55,11 @@ public class Washer extends TimerTask implements Runnable {//实现了线程功�
         alertdialog.setCancelable(false);
         alertdialog.setPositiveButton("完毕", (dialog, which) -> {
             TextView petsCleanliness = petsViewHolder.getPetsCleanliness();//重新设置宠物属性界面的数值显示
-            petsCleanliness.setText("清洁度:"+String.valueOf(pet.getCleanliness()));
+            petsCleanliness.setText("clean :"+String.valueOf(pet.getCleanliness()));
         });
         alertdialog.setNegativeButton("结束", (dialog, which) -> {
             TextView petsCleanliness = petsViewHolder.getPetsCleanliness();
-            petsCleanliness.setText("清洁度:"+String.valueOf(pet.getCleanliness()));
+            petsCleanliness.setText("clean :"+String.valueOf(pet.getCleanliness()));
         });
         alertdialog.show();
     }

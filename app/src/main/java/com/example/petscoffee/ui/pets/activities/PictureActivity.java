@@ -54,6 +54,7 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         button_openAlbum.setOnClickListener(this);
         button_takePhoto.setOnClickListener(this);
     }
@@ -96,7 +97,7 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
                                 out.write(temp);
                             }
                             Bitmap photo = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
-                            setImage(photo);//不知道为什么卡的一批
+                            setImage(photo);//不知道为什么卡的一批(可能是因为out.write(int)每次只写入了一个字节，可以之后改一下)
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

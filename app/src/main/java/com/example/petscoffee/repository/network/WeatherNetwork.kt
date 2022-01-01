@@ -1,7 +1,9 @@
 package com.example.petscoffee.repository.network
 
-import retrofit2.await
+import com.example.petscoffee.model.WeatherResponse
+
 
 object WeatherNetwork {
-    suspend fun queryWeather(address : String) = ServiceCreator.create<WeatherService>().queryWeather(address).await()
+    private val weatherService = ServiceCreator.create<WeatherService>()
+    suspend fun queryWeather(address : String) = weatherService.queryWeather(address).await<WeatherResponse>()
 }

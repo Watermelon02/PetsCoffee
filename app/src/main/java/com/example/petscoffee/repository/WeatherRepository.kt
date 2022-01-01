@@ -1,10 +1,8 @@
 package com.example.petscoffee.repository
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.example.petscoffee.repository.network.WeatherNetwork
-import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
-import java.lang.RuntimeException
 
 object WeatherRepository {
     fun queryWeather(address: String) = liveData {

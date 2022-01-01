@@ -36,6 +36,7 @@ public class WorkTask extends AsyncTask<Integer, Integer, Integer> {
                     process = worker.getProcess();//process字符串，用来存储宠物在营业中的经历
                     bill = worker.getBill(); //bill存储宠物收入字符串，用于输出到营业结果界面
                     coffee.setMoney(worker.getIncome()+coffee.getMoney());//该宠物带来的收入
+                    coffee.timeChange();
                     Archive.saveCoffee(coffee, service);
                     listener.onSuccess(money, process, bill);//获取工作结果
                 }catch (Exception e){

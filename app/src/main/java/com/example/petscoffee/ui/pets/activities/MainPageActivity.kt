@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.ActivityMainBinding
 import com.example.petscoffee.listener.BottomBarListener
@@ -24,7 +24,6 @@ class MainPageActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         //加载头像
         val file = File("/data/data/com.example.petscoffee/userHead.jpg")
         if (file.exists()) {
@@ -73,6 +72,7 @@ class MainPageActivity : AppCompatActivity() {
                 text_main_windPower.text = null
             }
         })
+        Glide.with(this).load(R.drawable.mainpage_background_1).into(mainPage_background)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

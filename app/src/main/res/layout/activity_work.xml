@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.pets.activities.WorkActivity"
     android:orientation="vertical">
-    <androidx.appcompat.widget.Toolbar
-        android:layout_height="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:background="@color/purple_500"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/work_recycler"

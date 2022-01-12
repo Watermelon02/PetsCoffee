@@ -83,15 +83,16 @@
                         android:textSize="40dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_lamp"/>
-            <ImageView
-                android:id="@+id/mainPage_background"
+
+            <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="160dp"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+                <com.example.petscoffee.customview.WindowView
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"/>
+
+            </FrameLayout>
 
             <ImageView
                 android:layout_width="match_parent"

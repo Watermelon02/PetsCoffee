@@ -10,9 +10,10 @@ import kotlin.math.log
 
 object Connect {
     var cookies: List<String>? = null
-    fun newCall(request: Request){
+    fun newCall(request: Request) {
 
     }
+
     inline fun <reified T> get(url: String): Response<T> {
         (URL(url).openConnection() as HttpURLConnection).run {
             if (cookies != null) {
@@ -58,7 +59,7 @@ object Connect {
             requestMethod = "POST"
             setRequestProperty("Connection", "Keep-Alive")
             connect()
-            val header: Map<String, List<String>> = headerFields
+            val header = headerFields
             cookies = header["Set-cookie"]
             val reader = BufferedReader(InputStreamReader(inputStream))
             val builder = StringBuilder()

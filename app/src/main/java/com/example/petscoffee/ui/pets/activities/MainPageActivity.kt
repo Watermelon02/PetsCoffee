@@ -72,7 +72,7 @@ class MainPageActivity : AppCompatActivity() {
                 text_main_windPower.text = null
             }
         })
-        Glide.with(this).load(R.drawable.mainpage_background_1).into(mainPage_background)
+        /*Glide.with(this).load(R.drawable.mainpage_background_1).into(mainPage_background)*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

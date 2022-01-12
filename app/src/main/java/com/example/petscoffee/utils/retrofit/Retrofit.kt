@@ -26,7 +26,7 @@ class RetrofitBuilder {
 }
 
 class Retrofit(val baseurl: String, val gson: Gson?) {
-    @RequiresApi(Build.VERSION_CODES.O)
+
     fun <T> create(service: Class<T>): T {
         return Proxy.newProxyInstance(
             service.classLoader,

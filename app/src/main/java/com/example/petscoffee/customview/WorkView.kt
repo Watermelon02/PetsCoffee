@@ -72,40 +72,46 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
-                increase(6000)
+                increase(3000)
                 return true
             }
             MotionEvent.ACTION_UP -> {
-                decrease(6000)
+                decrease(3000)
             }
         }
         return super.onTouchEvent(event)
     }
 
     private fun increase(duration: Long) {
-            increaseAnimator = ValueAnimator.ofFloat(process, 1f)
-            increaseAnimator.addUpdateListener {
-                process = it.animatedValue as Float
+        increaseAnimator = ValueAnimator.ofFloat(process, 1f)
+        increaseAnimator.addUpdateListener {
+            process = it.animatedValue as Float
+            if (process < 1) {
                 invalidate()
+            } else {
+                decrease(1000)
             }
-            increaseAnimator.duration = (duration * (1 - process)).toLong()
-            increaseAnimator.start()
-            shakeAnimator.start()
+        }
+        increaseAnimator.duration = (duration * (1 - process)).toLong()
+        increaseAnimator.start()
+        shakeAnimator.start()
     }
 
     private fun decrease(duration: Long) {
-            increaseAnimator.pause()
-            shakeAnimator.pause()
-            if (process < 1) {
-                decreaseAnimator = ValueAnimator.ofFloat(process, 0f)
-                decreaseAnimator.addUpdateListener {
-                    process = it.animatedValue as Float
-                    processPath.rewind()
-                    invalidate()
-                }
-                decreaseAnimator.duration = (duration * process).toLong()
-                decreaseAnimator.start()
-            }
+        increaseAnimator.pause()
+        shakeAnimator.pause()
+        if(process==1f){
+            workListener?.work()
+            this.animate().rotationYBy(360f).duration = 500
+        }
+        decreaseAnimator = ValueAnimator.ofFloat(process, 0f)
+        decreaseAnimator.addUpdateListener {
+            process = it.animatedValue as Float
+            processPath.rewind()
+            invalidate()
+        }
+        decreaseAnimator.duration = (duration * process).toLong()
+        decreaseAnimator.start()
     }
 
     abstract class WorkListener {

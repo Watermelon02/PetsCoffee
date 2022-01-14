@@ -17,7 +17,7 @@ class AvatarView(val mBitmap:Bitmap) : Drawable() {
 
     override fun draw(canvas: Canvas) {
         min = minOf(mBounds.width().toFloat(),mBounds.height().toFloat())
-        canvas.drawRoundRect(mBounds.toRectF(),min/2,min/2,mPaint)
+        canvas.drawCircle(mBounds.width()/2f,mBounds.height()/2f,min/2,mPaint)
     }
 
     override fun setAlpha(alpha: Int) {
@@ -32,11 +32,4 @@ class AvatarView(val mBitmap:Bitmap) : Drawable() {
         return PixelFormat.TRANSLUCENT
     }
 
-    override fun getIntrinsicHeight(): Int {
-        return mBitmap.height
-    }
-
-    override fun getIntrinsicWidth(): Int {
-        return mBitmap.width
-    }
 }

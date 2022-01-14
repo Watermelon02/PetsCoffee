@@ -110,7 +110,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:headerLayout="@layout/user_nav_header"
             app:menu="@menu/user_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

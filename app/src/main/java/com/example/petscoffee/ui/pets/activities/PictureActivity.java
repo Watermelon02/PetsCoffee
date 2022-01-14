@@ -44,7 +44,7 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
         Button button_openAlbum = findViewById(R.id.pictureActivity_openAlbum);
 
         File file = new File("/data/data/com.example.petscoffee/userHead.jpg");
-        uri = FileProvider.getUriForFile(this, "com.example.petscoffee.ui.activities.PictureActivity", file);
+        uri = FileProvider.getUriForFile(this, "com.example.petscoffee.ui.pets.activities.PictureActivity", file);
         try {
             if (file.exists()) {//若存在则显示头像
                 image.setImageBitmap(BitmapFactory.decodeStream(getContentResolver().openInputStream(uri)));

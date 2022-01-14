@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/purple_500">
+    android:background="#3F51B5">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -14,6 +14,7 @@
             android:id="@+id/user_nav_header_image"
             android:layout_width="128dp"
             android:layout_height="128dp"
+            android:scaleType="center"
             android:background="@color/purple_200"
             />
     </androidx.cardview.widget.CardView>

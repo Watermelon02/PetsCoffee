@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.petscoffee.R
-import com.example.petscoffee.customview.PetView
+import com.example.petscoffee.customview.PlayablePetView
 import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.model.pets.createPet
 import com.example.petscoffee.repository.local.Archive
@@ -29,14 +29,14 @@ class ShopPetsFragment : Fragment() {
         Archive.loadCoffee(activity) { coffeeShop: CoffeeShop? ->
             val buyCat: CardView = view.shop_cat_buy
             val buyDog: CardView = view.shop_dog_buy
-            val cat: PetView = view.shop_cat_image
-            val dog: PetView = view.shop_dog_image
+            val cat: PlayablePetView = view.shop_cat_image
+            val dog: PlayablePetView = view.shop_dog_image
             buyCat.setOnClickListener {
-                cat.jump()
+                cat.jump(100)
                 buyPet(coffeeShop, 1)
             }
             buyDog.setOnClickListener {
-                dog.jump()
+                dog.jump(100)
                 buyPet(coffeeShop, 2)
             }
         }

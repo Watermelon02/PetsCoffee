@@ -94,13 +94,19 @@
 
             </FrameLayout>
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
-                android:src="@drawable/ic_bar_counter" />
+                android:id="@+id/mainPage_counter">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:src="@drawable/ic_bar_counter" />
+            </FrameLayout>
 
             <include
                 layout="@layout/bottom_toolbar"
+                android:id="@+id/mainPage_test"
                 app:bottomBarListener="@{bottomBarListener}" />
 
         </LinearLayout>

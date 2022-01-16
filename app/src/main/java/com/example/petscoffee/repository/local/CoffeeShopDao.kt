@@ -3,6 +3,7 @@ package com.example.petscoffee.repository.local
 import com.example.petscoffee.model.CoffeeShop
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.petscoffee.model.pets.Pets
 
 @Dao
 interface CoffeeShopDao {

@@ -59,7 +59,7 @@ public class WorkTask extends AsyncTask<Integer, Integer, Integer> {
         int progress = 0;
         while (progress < 100) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);//设置营业所需时间
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

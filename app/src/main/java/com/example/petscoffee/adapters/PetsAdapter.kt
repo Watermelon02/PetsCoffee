@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.R
 import com.example.petscoffee.customview.BloodBar
 import com.example.petscoffee.customview.PetView
+import com.example.petscoffee.customview.PlayablePetView
 import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.model.goods.Goods
 import com.example.petscoffee.model.pets.Pets
@@ -73,6 +73,7 @@ class PetsAdapter(coffeeShop: CoffeeShop) : RecyclerView.Adapter<PetsAdapter.Vie
         holder.petsMood.text = "mood  :" + pet.mood.toString()
         holder.petsLoveliness.text = "love  :" + pet.loveliness.toString()
         holder.petsSp.text = "spec  :" + pet.sp.toString()
+        holder.petsImage.jump()
         holder.petsImage.setOnClickListener {
             if (!holder.isClicked) {
                 holder.petsImage.jump()

@@ -22,7 +22,8 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private lateinit var decreaseAnimator: ValueAnimator
     private lateinit var shakeAnimator: ObjectAnimator
     private var pic: Bitmap
-    private var workListener: WorkListener? = null
+    private lateinit var work : ()->Unit
+
 
     init {
         setLayerType(LAYER_TYPE_NONE, null)
@@ -101,7 +102,7 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         increaseAnimator.pause()
         shakeAnimator.pause()
         if(process==1f){
-            workListener?.work()
+            work()
             this.animate().rotationYBy(360f).duration = 500
         }
         decreaseAnimator = ValueAnimator.ofFloat(process, 0f)
@@ -114,7 +115,7 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         decreaseAnimator.start()
     }
 
-    abstract class WorkListener {
-        abstract fun work()
+    fun setWork(work : ()->Unit){
+        this.work = work
     }
 }

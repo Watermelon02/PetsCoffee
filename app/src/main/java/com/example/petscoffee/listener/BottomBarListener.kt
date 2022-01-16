@@ -1,45 +1,35 @@
-package com.example.petscoffee.listener;
+package com.example.petscoffee.listener
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.View;
+import android.content.Context
+import android.view.View
+import com.example.petscoffee.R
+import android.content.Intent
+import com.example.petscoffee.ui.pets.activities.BagActivity
+import com.example.petscoffee.ui.pets.activities.ShopActivity
+import com.example.petscoffee.ui.pets.activities.PetsActivity
+import com.example.petscoffee.ui.pets.activities.MainPageActivity
 
-import com.example.petscoffee.R;
-import com.example.petscoffee.ui.pets.activities.BagActivity;
-import com.example.petscoffee.ui.pets.activities.MainPageActivity;
-import com.example.petscoffee.ui.pets.activities.PetsActivity;
-import com.example.petscoffee.ui.pets.activities.ShopActivity;
-import com.example.petscoffee.service.WorkService;
-
-public class BottomBarListener {//底部toolbar的点击监听
-    private Context context;
-
-    public BottomBarListener(Context context) {
-        this.context = context;
-    }
-
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.bottomBar_bag:
-                Intent bagIntent = new Intent(context, BagActivity.class);
-                context.startActivity(bagIntent);
-                break;
-            case R.id.bottomBar_shop:
-                Intent shopIntent = new Intent(context, ShopActivity.class);
-                context.startActivity(shopIntent);
-                break;
-            case R.id.bottomBar_work:
-                Intent workIntent = new Intent(context, WorkService.class);
-                context.startService(workIntent);
-                break;
-            case R.id.bottomBar_pets:
-                Intent petsIntent = new Intent(context, PetsActivity.class);
-                context.startActivity(petsIntent);
-                break;
-            case R.id.bottomBar_wash:
-                Intent homeIntent = new Intent(context, MainPageActivity.class);
-                context.startActivity(homeIntent);
-                ;
+class BottomBarListener(  //底部toolbar的点击监听
+    private val context: Context
+) {
+    fun onClick(view: View) {
+        when (view.id) {
+            R.id.bottomBar_bag -> {
+                val bagIntent = Intent(context, BagActivity::class.java)
+                context.startActivity(bagIntent)
+            }
+            R.id.bottomBar_shop -> {
+                val shopIntent = Intent(context, ShopActivity::class.java)
+                context.startActivity(shopIntent)
+            }
+            R.id.bottomBar_pets -> {
+                val petsIntent = Intent(context, PetsActivity::class.java)
+                context.startActivity(petsIntent)
+            }
+            R.id.bottomBar_wash -> {
+                val homeIntent = Intent(context, MainPageActivity::class.java)
+                context.startActivity(homeIntent)
+            }
         }
     }
 }

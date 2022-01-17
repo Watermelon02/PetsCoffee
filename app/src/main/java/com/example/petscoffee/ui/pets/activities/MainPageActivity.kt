@@ -11,7 +11,6 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.R
@@ -52,23 +51,14 @@ class MainPageActivity : AppCompatActivity() {
             mainPageBinding.coffeeShop = coffee
         })
         //查询天气监听
-        edit_main_query.addTextChangedListener { text ->
-            viewModel.queryWeather(text.toString())
-        }
         viewModel.weather.observe(this, { result ->
-            val weatherData = result.getOrNull()
+            val weatherData = result?.getOrNull()
             if (weatherData != null) {
-                text_main_address.text = weatherData.address
-                text_main_temp.text = weatherData.temp
                 text_main_weather.text = weatherData.weather
-                text_main_windDirection.text = weatherData.windDirection
-                text_main_windPower.text = weatherData.windPower
             } else {
-                text_main_address.text = null
-                text_main_temp.text = null
+
                 text_main_weather.text = null
-                text_main_windDirection.text = null
-                text_main_windPower.text = null
+
             }
         })
     }

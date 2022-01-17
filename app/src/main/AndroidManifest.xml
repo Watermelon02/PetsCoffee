@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +13,12 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.PetsCoffee">
+        <service
+            android:name=".service.WeatherService"
+            android:exported="false"></service>
+
         <activity
-            android:name="com.example.petscoffee.ui.pets.activities.LoginActivity"
+            android:name=".ui.pets.activities.LoginActivity"
             android:exported="true"
             android:label="PetsCoffee"
             android:theme="@style/Theme.PetsCoffee.NoActionBar">
@@ -35,7 +40,7 @@
         </provider>
 
         <activity
-            android:name="com.example.petscoffee.ui.pets.activities.WorkActivity"
+            android:name=".ui.pets.activities.WorkActivity"
             android:exported="false" />
 
         <service
@@ -44,28 +49,28 @@
             android:exported="true" />
 
         <activity
-            android:name="com.example.petscoffee.ui.pets.activities.PetsActivity"
-            android:launchMode="singleTask"
-            android:exported="false" />
-        <activity
-            android:name="com.example.petscoffee.ui.pets.activities.ShopActivity"
-            android:launchMode="singleTask"
-            android:exported="false" />
-        <activity
-            android:name="com.example.petscoffee.ui.pets.activities.BagActivity"
-            android:launchMode="singleTask"
-            android:exported="false" />
-        <activity
-            android:name="com.example.petscoffee.ui.pets.activities.MainPageActivity"
-            android:launchMode="singleTask"
+            android:name=".ui.pets.activities.PetsActivity"
             android:exported="false"
-            android:theme="@style/Theme.PetsCoffee.NoActionBar"/>
+            android:launchMode="singleTask" />
         <activity
-            android:name="com.example.petscoffee.ui.pets.activities.PictureActivity"
+            android:name=".ui.pets.activities.ShopActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.pets.activities.BagActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.pets.activities.MainPageActivity"
+            android:exported="false"
             android:launchMode="singleTask"
-            android:exported="false" />
+            android:theme="@style/Theme.PetsCoffee.NoActionBar" />
         <activity
-            android:name="com.example.petscoffee.ui.pets.activities.FirstActivity"
+            android:name=".ui.pets.activities.PictureActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.pets.activities.FirstActivity"
             android:exported="true" />
     </application>
 

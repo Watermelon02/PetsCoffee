@@ -4,7 +4,7 @@ import com.example.petscoffee.utils.retrofit.RetrofitBuilder
 
 
 object ServiceCreator {
-    private const val BASE_URL = "https://www.mxnzp.com/api/"
+    private const val BASE_URL = "https://restapi.amap.com/"
     private val retrofit =
         RetrofitBuilder().baseUrl(BASE_URL).build()
 

@@ -60,14 +60,14 @@ class PlayablePetView(context: Context?, attrs: AttributeSet?) :
             if (pX < -100) right = true
             -y * 0.3f
         }
-        animate().translationXBy(dx).translationYBy(-y).setDuration((y * 4.9).toLong())
+        animate().scaleY(1.1f).translationXBy(dx).translationY(520-y).setDuration((y * 4.9).toLong())
             .setListener(object : AnimatorListener {
                 override fun onAnimationStart(animation: Animator?) {
 
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {//升高结束时进入该回调
-                    animate().translationXBy(dx).translationYBy(y)
+                    animate().scaleY(0.9f).translationXBy(dx).translationY(520+y)
                         .setDuration((y * 4.9).toLong()).setListener(object : AnimatorListener {
                             override fun onAnimationStart(animation: Animator?) {
                             }
@@ -94,7 +94,7 @@ class PlayablePetView(context: Context?, attrs: AttributeSet?) :
     }
 
     fun drop() {//生成该view时平移到地面
-        translationY = 560f
+        this.animate().translationY(520f)
     }
 
     private fun love() {
@@ -103,10 +103,10 @@ class PlayablePetView(context: Context?, attrs: AttributeSet?) :
         while (i < number) {
             val positionX = Random.nextInt(128).toFloat()
             val positionY = Random.nextInt(128).toFloat()
-            val valueAnimator = ValueAnimator.ofFloat(100f)
+            val valueAnimator = ValueAnimator.ofFloat(200f)
             loveHearts[i] = LoveHeart(positionX, positionY)
             valueAnimator.setDuration(1000).addUpdateListener {
-                val value = 100 - it.animatedValue as Float
+                val value = 160 - it.animatedValue as Float
                 loveHearts[i]?.y = if (value > y) y else value
                 invalidate()
             }
@@ -125,6 +125,7 @@ class PlayablePetView(context: Context?, attrs: AttributeSet?) :
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
                 this.animate().cancel()
+                drop()
                 return true
             }
             MotionEvent.ACTION_MOVE -> {

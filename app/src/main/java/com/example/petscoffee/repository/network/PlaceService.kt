@@ -11,6 +11,6 @@ import com.example.petscoffee.utils.retrofit.RetrofitBuilder
  * date : 2022/1/17 15:18
  */
 interface PlaceService {
-    @RetrofitBuilder.GET("v5/ip?key=97065ad82535ec4c645a1a31426c14e1&type=6&ip={ip}}")
+    @RetrofitBuilder.GET("v5/ip?key=97065ad82535ec4c645a1a31426c14e1&type=6&ip={ip}")
     fun queryPlace(@RetrofitBuilder.Path("ip") ip: String): Call<WeatherResponse>
 }

@@ -7,20 +7,29 @@ import androidx.lifecycle.Transformations
 import com.example.petscoffee.repository.WeatherRepository
 import com.example.petscoffee.repository.local.Archive
 import com.example.petscoffee.repository.local.CoffeeDatabase
-import com.example.petscoffee.utils.ipGetter.IpGetter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class MainPageViewModel(application: Application) : AndroidViewModel(application) {
-    private val ip = IpGetter.getLocalIp()
-    private val adcode = MutableLiveData<String>()
+    private var place = MutableLiveData<String>("110000")
 
     val coffeeShop = CoffeeDatabase.getInstance(application).coffeeShopDao()
         .queryCoffeeLiveData(Archive.getId())
 
-    val weather = Transformations.switchMap(adcode) { adcode ->
-        WeatherRepository.queryWeather(adcode)
+    val adcode = Transformations.switchMap(place) { place ->
+        WeatherRepository.queryWeather(place)
     }
 
-    suspend fun queryWeather(){
-        adcode.value = WeatherRepository.queryPlace(ip)
+    val weather = Transformations.switchMap(adcode) { adcode ->
+        WeatherRepository.queryWeather(adcode.getOrNull()?.adcode)
+    }
+
+
+
+    suspend fun queryWeather() {
+        val mAdcode = WeatherRepository.queryPlace()
+        withContext(Dispatchers.Main){
+            place.value = mAdcode
+        }
     }
 }

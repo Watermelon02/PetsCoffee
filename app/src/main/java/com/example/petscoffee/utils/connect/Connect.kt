@@ -1,12 +1,10 @@
 package com.example.petscoffee.utils.connect
 
-import android.util.Log
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import kotlin.math.log
 
 object Connect {
     var cookies: List<String>? = null
@@ -34,7 +32,6 @@ object Connect {
             val builder = StringBuilder()
             reader.use {
                 it.forEachLine {
-                    Log.d("testTag", it)
                     builder.append(it)
                 }
             }

@@ -1,10 +1,10 @@
 package com.example.petscoffee.utils.retrofit
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.petscoffee.utils.connect.Call
 import com.example.petscoffee.utils.connect.RequestBuilder
-import java.lang.RuntimeException
 import java.lang.reflect.Method
 
 abstract class HttpUrlMethod<RequestT, ReturnT> : ServiceMethod<ReturnT>() {
@@ -55,6 +55,7 @@ abstract class HttpUrlMethod<RequestT, ReturnT> : ServiceMethod<ReturnT>() {
             val str = (parameter.annotations[0] as RetrofitBuilder.Path).value
             val strList = url.split("{"+str+"}")
             url = strList[0]+ args?.get(0)+strList[1]
+            Log.d("testTag", url)
         }
     }
 

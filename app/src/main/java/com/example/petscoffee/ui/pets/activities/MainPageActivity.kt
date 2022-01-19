@@ -22,6 +22,8 @@ import com.example.petscoffee.service.WorkService
 import com.example.petscoffee.ui.pets.viewModel.MainPageViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.user_nav_header.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -35,9 +37,6 @@ class MainPageActivity : AppCompatActivity() {
         val mainPageBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main) as ActivityMainBinding
         initUserHeader()
-        viewModel = ViewModelProvider(this).get(
-            MainPageViewModel::class.java
-        )
         mainPageBinding.bottomBarListener = BottomBarListener(this)//为底部栏设置点击监听
         mainPageBinding.mainPageTest.bottomBarWork.setWork {//为工作按钮设置监听器
             val workIntent = Intent(
@@ -47,6 +46,10 @@ class MainPageActivity : AppCompatActivity() {
             startService(workIntent)
             workStart()
         }
+        viewModel = ViewModelProvider(this).get(
+            MainPageViewModel::class.java
+        )
+        GlobalScope.launch { viewModel.queryWeather() }
         viewModel.coffeeShop.observe(this, { coffee ->
             mainPageBinding.coffeeShop = coffee
         })
@@ -56,9 +59,7 @@ class MainPageActivity : AppCompatActivity() {
             if (weatherData != null) {
                 text_main_weather.text = weatherData.weather
             } else {
-
                 text_main_weather.text = null
-
             }
         })
     }

@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (coffeeShop == null) {
                     //通过用户名查询数据库，如果不存在该用户则继续
                     if (register_password.equals(register_confirm)) {//检测两次密码输入是否相同
-                        CoffeeShop register_coffeeShop = new CoffeeShop(1, 0, 10000.0f, register_account, register_name, register_password);
+                        CoffeeShop register_coffeeShop = new CoffeeShop(register_account, register_name, register_password);
                         Archive.saveCoffee(register_coffeeShop, this);
                         runOnUiThread(() -> Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show());
                         register_dialog.dismiss();//关闭dialog

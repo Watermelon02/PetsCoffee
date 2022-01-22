@@ -8,20 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.MsgAdapter
+import com.example.petscoffee.databinding.ActivityFirstBinding
 import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.repository.local.Archive
-import com.example.petscoffee.model.goods.Keys
 import com.example.petscoffee.model.Message
+import com.example.petscoffee.model.goods.Keys
 import com.example.petscoffee.model.pets.Cat
-import kotlinx.android.synthetic.main.activity_first.*
+import com.example.petscoffee.repository.local.Archive
 import java.util.*
 
 class FirstActivity : AppCompatActivity() {
+    private lateinit var mActivityPageBinding:ActivityFirstBinding
     lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mActivityPageBinding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_first)
-        recyclerView = first_recycler
+        recyclerView = mActivityPageBinding.firstRecycler
         //绑定按钮
         initMessage() //初始化消息数组
         //进行存档判断
@@ -41,8 +43,8 @@ class FirstActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager //设置recyclerView
         //以下为默认第一只宠物属性设置
         val firstPet = Cat(10, 10, 8, 10, 8, 8, "default")
-        first_button.setOnClickListener {
-            val name = first_editText.text.toString()
+        mActivityPageBinding.firstButton.setOnClickListener {
+            val name = mActivityPageBinding.firstEditText.text.toString()
             val message = Message("我的第一只猫猫的名字是———$name", Message.RIGHT_MSG)
             coffeeShop.bag.add(Keys())
             firstPet.name = name

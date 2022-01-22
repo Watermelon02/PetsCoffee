@@ -5,94 +5,85 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.petscoffee.R
-import com.example.petscoffee.customview.BloodBar
-import com.example.petscoffee.customview.PetView
-import com.example.petscoffee.customview.PlayablePetView
+import com.example.petscoffee.databinding.ItemPetsBinding
 import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.model.goods.Goods
 import com.example.petscoffee.model.pets.Pets
 import com.example.petscoffee.petsAction.Eater
 import com.example.petscoffee.petsAction.Washer
-import com.google.android.material.button.MaterialButton
-
-import kotlinx.android.synthetic.main.item_pets.view.*
 import java.util.*
 
-class PetsAdapter(coffeeShop: CoffeeShop) : RecyclerView.Adapter<PetsAdapter.ViewHolder>() {
+/**
+ * description ： 宠物界面vp2的adapter
+ * author : Watermelon02
+ * email : 1446157077@qq.com
+ * date : 2022/1/22 22:53
+ */
+
+class PetsAdapter(coffeeShop: CoffeeShop) : RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
     private val pets: List<Pets>
     private val bag: List<Goods>
-    private lateinit var pet
-            : Pets//本item的宠物对象
+    private lateinit var pet: Pets
     private lateinit var context
             : Context//父类context(应该传入 onCreateViewHolder中的parent的context)
     private lateinit var petsViewHolder
-            : ViewHolder//为洗澡，吃饭之后能改变属性值的textView
+            : PetViewHolder//传递给Washer，Eater模块之后以改变子textView
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val petsImage: PetView = view.pets_image
-        val petsName: TextView = view.pets_name
-        val petsHp: BloodBar = view.pets_hp
-
-        //为投喂之后能获得该textView，
-        // 以改变宠物界面的饱食度数值
-        val petsHunger: TextView = view.pets_hunger
-
-        //为洗澡之后能获得该textView，
-        // 以改变宠物界面的清洁度数值
-        val petsCleanliness: TextView = view.pets_cleanliness
-        val petsMood: TextView = view.pets_mood
-        val petsLoveliness: TextView = view.pets_loveliness
-        val petsSp: TextView = view.pets_sp
-        val wash: MaterialButton = view.pets_button_wash
-        val eat: MaterialButton = view.pets_button_eat
-        var isClicked = false
+    init {
+        pets = coffeeShop.pets
+        bag = coffeeShop.bag
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pets, parent, false)
-        val viewHolder = ViewHolder(view)
+
+    class PetViewHolder(val binding: ItemPetsBinding) : RecyclerView.ViewHolder(binding.root) {
+        var isClicked = false//宠物图片点击标志位,控制动画状态
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
+        val view = ItemPetsBinding.inflate(LayoutInflater.from(parent.context))
+        val viewHolder = PetViewHolder(view)
         context = parent.context //为传到washer的context和viewHolder
         petsViewHolder = viewHolder
         return viewHolder
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
         pet = pets[position]
-        holder.petsImage.setImageResource(pet.imageId)
-        holder.petsName.text = "name  :" + pet.name
-        holder.petsHp.setValue(pet.hp)
-        holder.petsHunger.text = "hunger:" + pet.hunger.toString()
-        holder.petsCleanliness.text = "clean :" + pet.cleanliness.toString()
-        holder.petsMood.text = "mood  :" + pet.mood.toString()
-        holder.petsLoveliness.text = "love  :" + pet.loveliness.toString()
-        holder.petsSp.text = "spec  :" + pet.sp.toString()
-        holder.petsImage.jump()
-        holder.petsImage.setOnClickListener {
-            if (!holder.isClicked) {
-                holder.petsImage.jump()
-                buttonShow(holder.wash, holder.eat)
-                holder.isClicked = true
-            } else {
-                holder.petsImage.jump()
-                buttonDisappear(holder.wash, holder.eat)
-                holder.isClicked = false
+        holder.binding.apply {
+            petsImage.setImageResource(pet.imageId)
+            petsName.text = "name  :" + pet.name
+            petsHp.setValue(pet.hp)
+            petsHunger.text = "hunger:" + pet.hunger.toString()
+            petsCleanliness.text = "clean :" + pet.cleanliness.toString()
+            petsMood.text = "mood  :" + pet.mood.toString()
+            petsLoveliness.text = "love  :" + pet.loveliness.toString()
+            petsSp.text = "spec  :" + pet.sp.toString()
+            petsImage.jump()
+            petsImage.setOnClickListener {
+                if (!holder.isClicked) {
+                    holder.binding.petsImage.jump()
+                    buttonShow(holder.binding.petsButtonWash, holder.binding.petsButtonEat)
+                    holder.isClicked = true
+                } else {
+                    holder.binding.petsImage.jump()
+                    buttonDisappear(holder.binding.petsButtonWash, holder.binding.petsButtonEat)
+                    holder.isClicked = false
+                }
+            }
+            petsButtonEat.setOnClickListener { Eater(context, petsViewHolder, bag, pet) }
+            petsButtonWash.setOnClickListener {
+                Timer().schedule(
+                    Washer(context, pet, petsViewHolder),
+                    1000,
+                    1000
+                )
             }
         }
-        holder.eat.setOnClickListener { Eater(context, petsViewHolder, bag, pet) }
-        holder.wash.setOnClickListener {
-            Timer().schedule(
-                Washer(context, pet, petsViewHolder),
-                1000,
-                1000
-            )
-        }
+
     }
 
     override fun getItemCount(): Int {
@@ -129,10 +120,5 @@ class PetsAdapter(coffeeShop: CoffeeShop) : RecyclerView.Adapter<PetsAdapter.Vie
         )
         set.duration = 1000
         set.start()
-    }
-
-    init {
-        pets = coffeeShop.pets
-        bag = coffeeShop.bag
     }
 }

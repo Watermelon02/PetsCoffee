@@ -1,9 +1,8 @@
 package com.example.petscoffee.repository.local
 
-import com.example.petscoffee.model.CoffeeShop
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.petscoffee.model.pets.Pets
+import com.example.petscoffee.model.CoffeeShop
 
 @Dao
 interface CoffeeShopDao {
@@ -11,13 +10,13 @@ interface CoffeeShopDao {
     fun insertCoffee(coffee: CoffeeShop)
 
     @Query("SELECT * FROM coffeeShop WHERE id =:id")
-    fun queryCoffee(id: Int): CoffeeShop
+    fun queryCoffee(id: Long): CoffeeShop
 
     @Query("SELECT * FROM coffeeShop WHERE account=:account")
     fun queryCoffee(account: String): CoffeeShop
 
     @Query("SELECT * FROM coffeeShop WHERE id=:id")
-    fun queryCoffeeLiveData(id: Int): LiveData<CoffeeShop>
+    fun queryCoffeeLiveData(id: Long): LiveData<CoffeeShop>
 
     @Delete
     fun deleteCoffee(coffee: CoffeeShop)

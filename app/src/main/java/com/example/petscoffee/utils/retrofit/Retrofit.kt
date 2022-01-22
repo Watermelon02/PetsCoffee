@@ -31,7 +31,13 @@ class Retrofit(val baseurl: String, val gson: Gson?) {
         return Proxy.newProxyInstance(
             service.classLoader,
             arrayOf(service)
-        ) { proxy, method, args -> loadServiceMethod(method, this).invoke(args) } as T
+        ) { proxy, method, args ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//该方法有兼容性问题
+                loadServiceMethod(method, this).invoke(args)
+            } else {
+                TODO("VERSION.SDK_INT < O")
+            }
+        } as T
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -39,6 +45,6 @@ class Retrofit(val baseurl: String, val gson: Gson?) {
         method: Method,
         retrofit: Retrofit
     ): ServiceMethod<Any?> {
-        return ServiceMethod.parseAnnotation(method,retrofit)
+        return ServiceMethod.parseAnnotation(method, retrofit)
     }
 }

@@ -14,7 +14,7 @@ class MainPageViewModel(application: Application) : AndroidViewModel(application
     private var place = MutableLiveData<String>("110000")
 
     val coffeeShop = CoffeeDatabase.getInstance(application).coffeeShopDao()
-        .queryCoffeeLiveData(Archive.getId())
+        .queryCoffeeLiveData(Archive.id)
 
     val adcode = Transformations.switchMap(place) { place ->
         WeatherRepository.queryWeather(place)

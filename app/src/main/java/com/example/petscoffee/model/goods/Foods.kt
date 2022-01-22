@@ -1,6 +1,5 @@
 package com.example.petscoffee.model.goods
 
-import com.example.petscoffee.model.goods.Goods
 import com.example.petscoffee.R
 import java.io.Serializable
 

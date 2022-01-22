@@ -22,11 +22,11 @@ import java.util.List;
 public class Eater {// 实现多宠物同时开饭
     private Context context;
     private Pets pet;
-    private PetsAdapter.ViewHolder viewHolder;
+    private PetsAdapter.PetViewHolder viewHolder;
     private List<Goods> bag;
 
     @SuppressLint("SetTextI18n")
-    public Eater(Context context, PetsAdapter.ViewHolder viewHolder, List<Goods> bag, Pets pet) {
+    public Eater(Context context, PetsAdapter.PetViewHolder viewHolder, List<Goods> bag, Pets pet) {
         this.context = context;
         this.pet = pet;
         this.bag = bag;

@@ -20,8 +20,6 @@ import com.example.petscoffee.databinding.ActivityMainBinding
 import com.example.petscoffee.listener.BottomBarListener
 import com.example.petscoffee.service.WorkService
 import com.example.petscoffee.ui.pets.viewModel.MainPageViewModel
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.user_nav_header.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -30,11 +28,12 @@ import java.io.FileNotFoundException
 class MainPageActivity : AppCompatActivity() {
     private lateinit var userHeaderLauncherCallback: ActivityResultCallback<ActivityResult>
     private lateinit var viewModel: MainPageViewModel
+    private lateinit var mainPageBinding: ActivityMainBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val mainPageBinding =
+        mainPageBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main) as ActivityMainBinding
         initUserHeader()
         mainPageBinding.bottomBarListener = BottomBarListener(this)//为底部栏设置点击监听
@@ -57,15 +56,15 @@ class MainPageActivity : AppCompatActivity() {
         viewModel.weather.observe(this, { result ->
             val weatherData = result?.getOrNull()
             if (weatherData != null) {
-                text_main_weather.text = weatherData.weather
+                mainPageBinding.textMainWeather.text = weatherData.weather
             } else {
-                text_main_weather.text = null
+                mainPageBinding.textMainWeather.text = null
             }
         })
     }
 
     private fun initUserHeader() {
-        val userHeaderImage = mainPage_navigationView.inflateHeaderView(R.layout.user_nav_header)
+        val userHeaderImage = mainPageBinding.mainPageNavigationView.inflateHeaderView(R.layout.user_nav_header)
             .findViewById(R.id.user_nav_header_image) as ImageView
         //加载头像
         val file = File("/data/data/com.example.petscoffee/userHead.jpg")
@@ -90,7 +89,7 @@ class MainPageActivity : AppCompatActivity() {
         userHeaderLauncherCallback = ActivityResultCallback<ActivityResult> {
             //头像设置界面返回
             try { //重新设置userHeader
-                user_nav_header_image.setImageBitmap(
+                userHeaderImage.setImageBitmap(
                     BitmapFactory.decodeStream(
                         contentResolver.openInputStream(
                             FileProvider.getUriForFile(
@@ -122,7 +121,7 @@ class MainPageActivity : AppCompatActivity() {
             for (pet in it.pets) {
                 val petView = PlayablePetView(this, null)
                 petView.setImageResource(pet.imageId)
-                mainPage_counter.addView(petView, ViewGroup.LayoutParams(128,128))
+                mainPageBinding.mainPageCounter.addView(petView, ViewGroup.LayoutParams(128, 128))
                 petsViews.add(petView)
                 petView.drop()
                 petView.move()

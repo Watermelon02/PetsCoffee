@@ -27,6 +27,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * description ： 用户头像上传界面，可以从相册选择也可以拍照。
+ * 在上传后会改变mainPage的DrawerLayout中的头像
+ * author : Watermelon02
+ * email : 1446157077@qq.com
+ * date : 2022/1/22 22:53
+ */
+
 public class PictureActivity extends AppCompatActivity implements View.OnClickListener {
     private final static int TAKE_PHOTO = 0;
     private final static int OPEN_ALBUM = 1;
@@ -37,7 +45,7 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //为底部toolBar的dataBinding传入数据
-        ActivityPictureBinding pictureBinding = DataBindingUtil.setContentView(this,R.layout.activity_picture);
+        ActivityPictureBinding pictureBinding = DataBindingUtil.setContentView(this, R.layout.activity_picture);
         pictureBinding.setBottomBarListener(new BottomBarListener(this));
         image = findViewById(R.id.pictureActivity_image);
         Button button_takePhoto = findViewById(R.id.pictureActivity_takePhoto);
@@ -88,7 +96,7 @@ public class PictureActivity extends AppCompatActivity implements View.OnClickLi
                     }
                     break;
                 case OPEN_ALBUM:
-                    new Thread(()->{
+                    new Thread(() -> {
                         try {//保存用户选取的照片到指定头像路径(通过io流)
                             OutputStream out = new FileOutputStream(new File("/data/data/com.example.petscoffee/userHead.jpg"));
                             InputStream in = getContentResolver().openInputStream(data.getData());

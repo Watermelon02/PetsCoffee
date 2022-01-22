@@ -1,18 +1,16 @@
 package com.example.petscoffee.utils.ipGetter
 
-import android.util.Log
 import java.net.NetworkInterface
 import java.net.SocketException
 
 /**
- * description ： 网上抄袭的获取ip地址方法，完全不知道原理，寄了，之后再来看（返回的是ipv6地址
+ * description ： 网上的获取ip地址方法，完全不知道原理，寄了，之后再来看（返回的是ipv6地址
  * author : Watermelon02
  * email : 1446157077@qq.com
  * date : 2022/1/17 15:44
  */
 object IpGetter {
     fun getLocalIp(): String {
-        var ip: String
         try {
             val en = NetworkInterface.getNetworkInterfaces()
             while (en.hasMoreElements()) {
@@ -23,8 +21,7 @@ object IpGetter {
                     if (!inetAddress.isLoopbackAddress && !inetAddress.isLinkLocalAddress) return inetAddress.hostAddress.toString()
                 }
             }
-        } catch (ex: SocketException) {
-            Log.e("testTag", ex.toString())
+        } catch (e: SocketException) {
         }
         return "null"
     }

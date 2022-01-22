@@ -1,84 +1,73 @@
 package com.example.petscoffee.ui.pets.fragments
 
-import com.example.petscoffee.model.goods.Goods
-import java.util.ArrayList
-import android.app.Activity
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.os.Bundle
-import android.view.View
-import com.example.petscoffee.R
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import com.example.petscoffee.model.goods.Foods
-import com.example.petscoffee.model.equipments.Bell
-import com.example.petscoffee.model.equipments.Bowl
-import com.example.petscoffee.model.equipments.Nest
-import com.example.petscoffee.repository.local.Archive
-import com.example.petscoffee.model.CoffeeShop
 import android.content.DialogInterface
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
-import com.example.petscoffee.model.Bag
-import java.lang.Exception
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.petscoffee.R
+import com.example.petscoffee.databinding.FragmentShopGoodsBinding
+import com.example.petscoffee.databinding.ItemShopBinding
+import com.example.petscoffee.model.Bag
+import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.model.equipments.Bell
+import com.example.petscoffee.model.equipments.Bowl
 import com.example.petscoffee.model.equipments.Equipment
+import com.example.petscoffee.model.equipments.Nest
+import com.example.petscoffee.model.goods.Foods
+import com.example.petscoffee.model.goods.Goods
+import com.example.petscoffee.repository.local.Archive
+import java.util.*
+
+/**
+ * description ： 商店购买商品fragment,包含一个recyclerView
+ * 购买成功时会播放动画
+ * author : Watermelon02
+ * email : 1446157077@qq.com
+ * date : 2022/1/22 22:53
+ */
 
 class ShopGoodsFragment : Fragment() {
     private val goods: MutableList<Goods> = ArrayList() //商品list,通过initGoods来设置内容
-    private var activity: Activity? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_shop_goods, container, false)
-        activity = getActivity()
-        val recyclerView: RecyclerView = view.findViewById(R.id.shop_recycler)
-        recyclerView.layoutManager =
+    ): View {
+        val binding = FragmentShopGoodsBinding.inflate(inflater, container, false)
+        binding.shopRecycler.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        initGoods()
-        val adapter = ShopAdapter(goods)
-        recyclerView.adapter = adapter
-        return view
+        initGoods()//初始化商店商品
+        binding.shopRecycler.adapter = ShopAdapter(goods)
+        return binding.root
     }
 
     inner class ShopAdapter(private val goods: List<Goods>) :
         RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
-        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var shopImage: ImageView = itemView.findViewById(R.id.shop_item_image)
-            var shopInfo: TextView = itemView.findViewById(R.id.shop_item_info)
-            private var shopItemLayout: CardView = itemView.findViewById(R.id.shop_item_layout)
-
+        inner class ViewHolder(val binding: ItemShopBinding) :
+            RecyclerView.ViewHolder(binding.root) {
             init {
-                shopItemLayout.setOnClickListener {
-                    buyGoods(
-                        goods[adapterPosition].name
-                    )
+                binding.shopItemLayout.setOnClickListener {
+                    buyGoods(goods[absoluteAdapterPosition].name)
                 }
             }
         }
 
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): ViewHolder {
-            val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.item_shop, parent, false)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = ItemShopBinding.inflate(LayoutInflater.from(parent.context))
             return ViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val good = goods[position]
-            holder.shopImage.setImageResource(good.imageId)
-            holder.shopInfo.text = """
-                ${good.info}
-                价格:${good.price}
-                """.trimIndent()
+            holder.binding.shopItemImage.setImageResource(good.imageId)
+            holder.binding.shopItemInfo.text = "${good.info}价格:${good.price}"
         }
 
         override fun getItemCount(): Int {
@@ -106,7 +95,7 @@ class ShopGoodsFragment : Fragment() {
         goods.add(Foods())
     }
 
-    fun buyGoods(name: String) { //购买goods方法
+    fun buyGoods(name: String) { //购买商品
         Archive.loadCoffee(activity) { coffeeShop: CoffeeShop ->
             val view =
                 LayoutInflater.from(activity).inflate(R.layout.shop_fragment_number_input, null)
@@ -123,7 +112,7 @@ class ShopGoodsFragment : Fragment() {
                 builder.setMessage("想要买多少个：")
                 builder.setCancelable(false)
                 builder.setView(view)
-                builder.setPositiveButton("确认") { dialog: DialogInterface?, which: Int ->
+                builder.setPositiveButton("确认") { _: DialogInterface?, _: Int ->
                     val editText = view?.findViewById<EditText>(R.id.inputValue)
                     val num = editText?.text.toString().toInt()
                     if (coffeeShop.money >= num * price) { //如果钱够买这么多食物
@@ -149,7 +138,7 @@ class ShopGoodsFragment : Fragment() {
                     builder.setMessage("想要买多少个：")
                     builder.setCancelable(false)
                     builder.setView(view)
-                    builder.setPositiveButton("确认") { dialog1: DialogInterface?, which: Int ->
+                    builder.setPositiveButton("确认") { _: DialogInterface?, _: Int ->
                         val editText = view?.findViewById<EditText>(R.id.inputValue)
                         val num = editText?.text.toString().toInt()
                         if (coffeeShop.money >= num * price) { //如果钱够买这么多食物
@@ -169,14 +158,14 @@ class ShopGoodsFragment : Fragment() {
                 }
                 e.printStackTrace()
             }
-            builder.setNegativeButton("取消") { dialog12: DialogInterface?, which: Int -> }
+            builder.setNegativeButton("取消") { _: DialogInterface?, _: Int -> }
             requireActivity().runOnUiThread { builder.show() }
         }
     }
 
-    private fun playSuccess(){
+    private fun playSuccess() {//播放购买成功动画
         AlertDialog.Builder(requireActivity()).apply {
-            setView(LayoutInflater.from(activity).inflate(R.layout.shopping_success,null))
+            setView(LayoutInflater.from(activity).inflate(R.layout.shopping_success, null))
             show()
         }
     }

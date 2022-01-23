@@ -43,7 +43,7 @@ class PetsAdapter(coffeeShop: CoffeeShop) : RecyclerView.Adapter<PetsAdapter.Pet
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
-        val view = ItemPetsBinding.inflate(LayoutInflater.from(parent.context))
+        val view = ItemPetsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         val viewHolder = PetViewHolder(view)
         context = parent.context //为传到washer的context和viewHolder
         petsViewHolder = viewHolder

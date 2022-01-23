@@ -1,6 +1,7 @@
 package com.example.petscoffee.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.petscoffee.model.goods.Goods
 import com.example.petscoffee.model.goods.GoodsConverter
@@ -20,6 +21,7 @@ class CoffeeShop(
     var money = 10000f
     var pets: MutableList<Pets> = mutableListOf()// 宠物对象变长数组
     var bag: MutableList<Goods> = mutableListOf()
+    @PrimaryKey
     var id: Long = 0
 
     fun timeChange() {

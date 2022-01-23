@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.example.petscoffee.R
 import com.example.petscoffee.adapters.MsgAdapter
 import com.example.petscoffee.databinding.ActivityFirstBinding
 import com.example.petscoffee.model.CoffeeShop
@@ -22,7 +20,7 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mActivityPageBinding = ActivityFirstBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_first)
+        setContentView(mActivityPageBinding.root)
         recyclerView = mActivityPageBinding.firstRecycler
         //绑定按钮
         initMessage() //初始化消息数组
@@ -37,12 +35,10 @@ class FirstActivity : AppCompatActivity() {
     }
 
     private fun newGame(coffeeShop: CoffeeShop) {
-        val messageAdapter = MsgAdapter(msgArray)
-        val layoutManager: LayoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = messageAdapter
-        recyclerView.layoutManager = layoutManager //设置recyclerView
         //以下为默认第一只宠物属性设置
         val firstPet = Cat(10, 10, 8, 10, 8, 8, "default")
+        recyclerView.adapter = MsgAdapter(msgArray)
+        recyclerView.layoutManager  = LinearLayoutManager(this)
         mActivityPageBinding.firstButton.setOnClickListener {
             val name = mActivityPageBinding.firstEditText.text.toString()
             val message = Message("我的第一只猫猫的名字是———$name", Message.RIGHT_MSG)
@@ -52,7 +48,7 @@ class FirstActivity : AppCompatActivity() {
             Archive.saveCoffee(coffeeShop, this@FirstActivity) //先保存一个存档，为后面打开商店读档做准备
             msgArray.add(message) //输出用户输入的名字
             msgArray.add(Message("那么，开始工作吧！", Message.LEFT_MSG))
-            messageAdapter.notifyItemInserted(msgArray.size - 1) //有新消息时，刷新recyclerView中的显示
+            (recyclerView.adapter as MsgAdapter).notifyItemInserted(msgArray.size - 1) //有新消息时，刷新recyclerView中的显示
             Timer().schedule(object : TimerTask() {
                 //在跳转到主界面后，结束该活动
                 override fun run() {

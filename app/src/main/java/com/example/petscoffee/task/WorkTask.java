@@ -19,7 +19,9 @@ public class WorkTask extends AsyncTask<Integer, Integer, Integer> {
 
     public WorkTask(Service service, WorkListener listener) {
         this.listener = listener;
-        Archive.loadCoffee(service, coffeeShop -> coffee = coffeeShop);
+        Archive.loadCoffee(service, coffeeShop -> {coffee = coffeeShop;
+            return null;
+        });
         this.service = service;
     }
 

@@ -17,10 +17,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.petscoffee.R;
 import com.example.petscoffee.model.CoffeeShop;
 import com.example.petscoffee.repository.local.Archive;
+import com.example.petscoffee.repository.local.CoffeeDatabase;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
+
+/**
+ * description ： 登录activity，包含登录（可通过sp记住密码），注册功能。
+ * 在该模块创建了roomDatabase的实例
+ * author : Watermelon02
+ * email : 1446157077@qq.com
+ * date : 2022/1/22 22:53
+ */
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private String account;
@@ -44,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //绑定控件
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        CoffeeDatabase.createInstance(this);//因为该activity为app的最初activity,再次创建数据库实例
         initView();
         //登陆逻辑部分
         isSaved = sp.getBoolean("isSaved", false);
@@ -103,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 runOnUiThread(() -> password_layout.setError("请输入密码"));
                 return;
             }
-            Archive.loadCoffee(this, account, user -> {
+            Archive.loadCoffee( account, user -> {
                 if (user != null) {//如果存在该用户
                     if (this.password.equals(user.getPassword())) {//比对密码
                         //比对成功，进入FirstActivity界面
@@ -148,12 +158,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String register_name = editText_register_name.getText().toString();
             String register_password = editText_register_password.getText().toString();
             String register_confirm = editText_register_confirm.getText().toString();
-            Archive.loadCoffee(this, register_account, coffeeShop -> {
+            Archive.loadCoffee(register_account, coffeeShop -> {
                 if (coffeeShop == null) {
                     //通过用户名查询数据库，如果不存在该用户则继续
                     if (register_password.equals(register_confirm)) {//检测两次密码输入是否相同
                         CoffeeShop register_coffeeShop = new CoffeeShop(register_account, register_name, register_password);
-                        Archive.saveCoffee(register_coffeeShop, this);
+                        Archive.saveCoffee(register_coffeeShop);
                         runOnUiThread(() -> Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show());
                         register_dialog.dismiss();//关闭dialog
                     } else {//两次密码不相同

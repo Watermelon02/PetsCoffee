@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 class MainPageViewModel(application: Application) : AndroidViewModel(application) {
     private var place = MutableLiveData<String>("110000")
 
-    val coffeeShop = CoffeeDatabase.getInstance(application).coffeeShopDao()
+    val coffeeShop = CoffeeDatabase.getInstance().coffeeShopDao()
         .queryCoffeeLiveData(Archive.id)
 
     val adcode = Transformations.switchMap(place) { place ->

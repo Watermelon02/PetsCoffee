@@ -25,7 +25,7 @@ class FirstActivity : AppCompatActivity() {
         //绑定按钮
         initMessage() //初始化消息数组
         //进行存档判断
-        Archive.loadCoffee(this) { coffeeShop: CoffeeShop ->
+        Archive.loadCoffee{ coffeeShop: CoffeeShop ->
             if (coffeeShop.bag.size == 0 || coffeeShop.pets.size == 0) { //如果该用户还没有初始化CoffeeShop或强制关闭导致存档损坏，则新开游戏
                 newGame(coffeeShop)
             } else {
@@ -45,7 +45,7 @@ class FirstActivity : AppCompatActivity() {
             coffeeShop.bag.add(Keys())
             firstPet.name = name
             coffeeShop.pets.add(firstPet)
-            Archive.saveCoffee(coffeeShop, this@FirstActivity) //先保存一个存档，为后面打开商店读档做准备
+            Archive.saveCoffee(coffeeShop) //先保存一个存档，为后面打开商店读档做准备
             msgArray.add(message) //输出用户输入的名字
             msgArray.add(Message("那么，开始工作吧！", Message.LEFT_MSG))
             (recyclerView.adapter as MsgAdapter).notifyItemInserted(msgArray.size - 1) //有新消息时，刷新recyclerView中的显示

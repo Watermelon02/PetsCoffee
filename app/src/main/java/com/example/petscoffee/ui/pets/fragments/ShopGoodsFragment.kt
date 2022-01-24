@@ -26,8 +26,7 @@ import com.example.petscoffee.repository.local.Archive
 import java.util.*
 
 /**
- * description ： 商店购买商品fragment,包含一个recyclerView
- * 购买成功时会播放动画
+ * description ： 商店购买商品fragment,包含一个recyclerView，购买成功时会播放动画
  * author : Watermelon02
  * email : 1446157077@qq.com
  * date : 2022/1/22 22:53
@@ -41,9 +40,9 @@ class ShopGoodsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentShopGoodsBinding.inflate(inflater, container, false)
+        initGoods()//初始化商店商品
         binding.shopRecycler.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        initGoods()//初始化商店商品
         binding.shopRecycler.adapter = ShopAdapter(goods)
         return binding.root
     }
@@ -60,8 +59,8 @@ class ShopGoodsFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view = ItemShopBinding.inflate(LayoutInflater.from(parent.context))
-            return ViewHolder(view)
+            val binding = ItemShopBinding.inflate(LayoutInflater.from(parent.context))
+            return ViewHolder(binding)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -96,7 +95,7 @@ class ShopGoodsFragment : Fragment() {
     }
 
     fun buyGoods(name: String) { //购买商品
-        Archive.loadCoffee(activity) { coffeeShop: CoffeeShop ->
+        Archive.loadCoffee { coffeeShop: CoffeeShop ->
             val view =
                 LayoutInflater.from(activity).inflate(R.layout.shop_fragment_number_input, null)
             val builder = AlertDialog.Builder(
@@ -123,7 +122,7 @@ class ShopGoodsFragment : Fragment() {
                             e.printStackTrace()
                         }
                         coffeeShop.money = coffeeShop.money - num * price //扣钱
-                        Archive.saveCoffee(coffeeShop, activity) //保存购买后的结果
+                        Archive.saveCoffee(coffeeShop) //保存购买后的结果
                     } else {
                         Toast.makeText(activity, "钱钱不够", Toast.LENGTH_SHORT).show()
                     }
@@ -148,7 +147,7 @@ class ShopGoodsFragment : Fragment() {
                                 e.printStackTrace()
                             }
                             coffeeShop.money = coffeeShop.money - num * price //扣钱
-                            Archive.saveCoffee(coffeeShop, activity) //保存购买后的结果
+                            Archive.saveCoffee(coffeeShop) //保存购买后的结果
                         } else {
                             Toast.makeText(activity, "钱钱不够", Toast.LENGTH_SHORT).show()
                         }

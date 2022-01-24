@@ -25,6 +25,17 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileNotFoundException
 
+/**
+ * description ：
+ * 游戏主界面，包含:
+ * 天气展示模块（通过获取当前ip地址定位(IpGetter)获取天气）;
+ * 长按底部open按钮后的营业功能；
+ * 侧滑用户信息模块（头像展示，点击头像可进入PictureActivity）
+ * author : Watermelon02
+ * email : 1446157077@qq.com
+ * date : 2022/1/23 21:50
+ */
+
 class MainPageActivity : AppCompatActivity() {
     private lateinit var userHeaderLauncherCallback: ActivityResultCallback<ActivityResult>
     private lateinit var viewModel: MainPageViewModel

@@ -63,7 +63,6 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_work"
-                android:onClick="@{bottomBarListener.onClick}"
                 app:layout_constraintBottom_toBottomOf="@+id/mainPage_pets"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

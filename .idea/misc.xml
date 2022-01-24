@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/layout/content_login.xml" value="0.2132435465768799" />
         <entry key="app/src/main/res/layout/dialog_login_register.xml" value="0.24898435544957315" />
         <entry key="app/src/main/res/layout/dialog_pets_eat.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/dialog_pets_wash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/eat.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1203125" />

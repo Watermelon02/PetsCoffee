@@ -27,6 +27,6 @@
             android:layout_height="match_parent"
             android:text="揉搓！"
             android:layout_weight="1"/>
-    </LinearLayout>>
+    </LinearLayout>
 
 </LinearLayout>

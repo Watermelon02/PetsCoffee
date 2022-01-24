@@ -15,7 +15,7 @@ public class ShopViewModel extends AndroidViewModel {
 
     public ShopViewModel(@NonNull Application application) {
         super(application);
-        coffeeShopLiveData = CoffeeDatabase.getInstance(application).coffeeShopDao().queryCoffeeLiveData(Archive.getId());
+        coffeeShopLiveData = CoffeeDatabase.getInstance().coffeeShopDao().queryCoffeeLiveData(Archive.getId());
     }
 
     public LiveData<CoffeeShop> getCoffeeShopLiveData() {

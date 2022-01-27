@@ -51,12 +51,14 @@ abstract class HttpUrlMethod<RequestT, ReturnT> : ServiceMethod<ReturnT>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun parseArgs(method: Method,args:Array<out Any>?){//解析serviceMethod的参数中是否有@Path，如果有则将该值替换方法注解中的{name:}
+        var index = 0//解析的参数
         for (parameter in method.parameters){
             val str = (parameter.annotations[0] as RetrofitBuilder.Path).value
             val strList = url.split("{"+str+"}")
-            url = strList[0]+ args?.get(0)+strList[1]
-            Log.d("testTag", url)
+            url = strList[0]+ args?.get(index)+strList[1]
+            index++
         }
+        Log.d("testTag", "url:${url}")
     }
 
 }

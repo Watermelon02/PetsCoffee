@@ -1,11 +1,6 @@
-package com.example.petscoffee.model.equipments;
+package com.example.petscoffee.model.equipments
 
-import com.example.petscoffee.R;
-import com.example.petscoffee.model.goods.Goods;
+import com.example.petscoffee.R
+import com.example.petscoffee.model.goods.Goods
 
-public class Nest extends Goods /*implements Equipment*/ {
-    public Nest(){
-        super("nest",500,0,R.drawable.nest,"Nest\n装备上宠物的生命值上限+2");
-    }
-
-}
+class Nest : Goods("nest", 500f, 0, R.drawable.nest, "Nest\n装备上宠物的生命值上限+2") /*implements Equipment*/

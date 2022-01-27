@@ -1,14 +1,18 @@
 package com.example.petscoffee.repository.network
 
-import com.example.petscoffee.model.PlaceResponse
-import com.example.petscoffee.model.WeatherResponse
-import com.example.petscoffee.model.pets.AdcodeResponse
+import com.example.petscoffee.model.network.AdcodeResponse
+import com.example.petscoffee.model.network.PlaceResponse
+import com.example.petscoffee.model.network.WeatherResponse
+import com.example.petscoffee.repository.service.weather.AdcodeService
+import com.example.petscoffee.repository.service.weather.PlaceService
+import com.example.petscoffee.repository.service.weather.WeatherService
+import com.example.petscoffee.repository.service.weather.WeatherServiceCreator
 
 
 object WeatherNetwork {
-    private val weatherService = ServiceCreator.create<WeatherService>()
-    private val placeService = ServiceCreator.create<PlaceService>()
-    private val adcodeService = ServiceCreator.create<AdcodeService>()
+    private val weatherService = WeatherServiceCreator.create<WeatherService>()
+    private val placeService = WeatherServiceCreator.create<PlaceService>()
+    private val adcodeService = WeatherServiceCreator.create<AdcodeService>()
     suspend fun queryWeather(adcode: String) =
         weatherService.queryWeather(adcode).await<WeatherResponse>()
 

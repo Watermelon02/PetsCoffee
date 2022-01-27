@@ -1,4 +1,4 @@
-package com.example.petscoffee.model
+package com.example.petscoffee.model.network
 
 data class WeatherResponse(//天气查询bean
     val count: String,

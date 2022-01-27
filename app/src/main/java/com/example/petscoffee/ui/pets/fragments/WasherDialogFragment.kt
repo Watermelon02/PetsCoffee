@@ -5,21 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.databinding.DialogPetsWashBinding
 import com.example.petscoffee.ui.pets.viewModel.WasherViewModel
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
- * description ： 宠物点击喂食按钮后的fragment,具有生命周期，因此可以直接使用livedata
+ * description ： 宠物点击喂食按钮后的fragment,使用livedata
  * author : Watermelon02
  * email : 1446157077@qq.com
  * date : 2022/1/24 15:56
  */
-class WasherDialogFragment : AppCompatDialogFragment() {
+class WasherDialogFragment : DialogFragment() {
     private var index = -1//要操作的宠物的下标
     private lateinit var progressBar: ProgressBar
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -63,7 +64,7 @@ class WasherDialogFragment : AppCompatDialogFragment() {
     }
 
     private fun decreaseProgress() {
-        GlobalScope.launch {//定时减少进度
+        CoroutineScope(Dispatchers.Default).launch {//定时减少进度
             while (progressBar.progress in 0..99) {
                 progressBar.progress -= 10
                 delay(1000)

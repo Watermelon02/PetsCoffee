@@ -1,22 +1,19 @@
-package com.example.petscoffee.model.goods;
+package com.example.petscoffee.model.goods
 
-import androidx.room.TypeConverter;
+import androidx.room.TypeConverter
+import com.example.petscoffee.repository.local.GsonInstance
+import com.google.gson.reflect.TypeToken
 
-import com.example.petscoffee.repository.local.GsonInstance;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.List;
-
-public class GoodsConverter {
+class GoodsConverter {
     //用于room存储接口list
     @TypeConverter
-    public String objectToJson(List<Goods> object) {
-        return GsonInstance.getGsonInstance().toJson(object);
+    fun objectToJson(`object`: List<Goods?>?): String {
+        return GsonInstance.getGsonInstance().toJson(`object`)
     }
+
     @TypeConverter
-    public List<Goods> jsonToObject(String json){
-        Type type =  new TypeToken<List<Goods>>(){}.getType();
-        return GsonInstance.getGsonInstance().fromJson(json,type);
+    fun jsonToObject(json: String?): List<Goods> {
+        val type = object : TypeToken<List<Goods?>?>() {}.type
+        return GsonInstance.getGsonInstance().fromJson(json, type)
     }
 }

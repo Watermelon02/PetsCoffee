@@ -1,117 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.pets.activities.LoginActivity">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:src="@drawable/logo" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_account_layout"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:boxBackgroundMode="none"
-        android:hint="请输入账号"
-        android:theme="@style/Widget.Design.TextInputLayout"
-        app:errorEnabled="true"
-        app:errorTextColor="@color/purple_500">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:id="@+id/login_account_editText"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:drawableStart="@drawable/ic_baseline_account_circle_24"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_password_layout"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:boxBackgroundMode="none"
-        app:endIconMode="password_toggle"
-        android:hint="请输入密码"
-        app:errorTextColor="@color/purple_500"
-        app:errorEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_password_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_baseline_vpn_key_24"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="忘记密码"
-            android:id="@+id/login_forget"
-            android:textSize="20dp" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/login_register"
-            android:gravity="right"
-            android:text="立即注册"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_button"
-        android:layout_width="300dp"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:layout_weight="0.3"
-        app:cornerRadius="20dp"
-        android:shadowRadius="@integer/material_motion_duration_long_1"
-        android:text="登陆" />
-
-    <LinearLayout
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:gravity="right"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.pets.activities.LoginActivity">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/logo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_account_layout"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:boxBackgroundMode="none"
+            android:hint="请输入账号"
+            android:theme="@style/Widget.Design.TextInputLayout"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/purple_500">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:id="@+id/login_account_editText"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:drawableStart="@drawable/ic_baseline_account_circle_24"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_password_layout"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:boxBackgroundMode="none"
+            app:endIconMode="password_toggle"
+            android:hint="请输入密码"
+            app:errorTextColor="@color/purple_500"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_password_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+                android:inputType="textPassword"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="忘记密码"
+                android:id="@+id/login_forget"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/login_register"
+                android:gravity="right"
+                android:text="立即注册"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_button"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            app:cornerRadius="20dp"
+            android:shadowRadius="@integer/material_motion_duration_long_1"
+            android:text="登陆" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
             android:gravity="right"
-            android:text="记住密码" />
+            android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/login_checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="记住密码" />
+
+            <CheckBox
+                android:id="@+id/login_checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-</LinearLayout>
+</layout>

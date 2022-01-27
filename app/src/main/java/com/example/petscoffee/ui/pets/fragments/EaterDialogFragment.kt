@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.databinding.DialogPetsEatBinding
 import com.example.petscoffee.model.Bag
@@ -17,7 +17,7 @@ import com.example.petscoffee.ui.pets.viewModel.EaterViewModel
  * email : 1446157077@qq.com
  * date : 2022/1/24 15:56
  */
-class EaterDialogFragment : AppCompatDialogFragment() {
+class EaterDialogFragment : DialogFragment() {
     private var index = -1
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val viewModel = ViewModelProvider(this)[EaterViewModel::class.java]
@@ -29,7 +29,7 @@ class EaterDialogFragment : AppCompatDialogFragment() {
             val pet = it.pets[index]
             if (Bag.search(bag, "Foods") != -1) {
                 //如果背包里有食物
-                binding.dialogPetsEatNumber.text = "剩余：" + bag[Bag.search(bag, "Foods")].getNumber()
+                binding.dialogPetsEatNumber.text = "剩余：${bag[Bag.search(bag, "Foods")].getNumber()}"
                 binding.dialogPetsEatButton.setOnClickListener {
                     val eaten = binding.dialogPetsEatEdit.text.toString().toInt() //获取用户输入的投喂食物数
                     val total = bag[Bag.search(bag, "Foods")].getNumber() //获取背包中该物品剩余数量
@@ -42,7 +42,7 @@ class EaterDialogFragment : AppCompatDialogFragment() {
                         if (eaten <= 10 - pet.hunger) { //吃的食物数量小于/等于未满的饥饿值
                             pet.hunger = pet.hunger + eaten
                             bag[Bag.search(bag, "Foods")].setNumber(-eaten)
-                            Toast.makeText(context, "恢复了" + eaten + "点饱食度", Toast.LENGTH_SHORT)
+                            Toast.makeText(context, "恢复了${eaten}点饱食度", Toast.LENGTH_SHORT)
                                 .show()
                         } else { //吃的食物数量大于未满的饥饿值
                             bag[Bag.search(
@@ -50,7 +50,7 @@ class EaterDialogFragment : AppCompatDialogFragment() {
                                 "Foods"
                             )].setNumber(10 - pet.hunger) //减少不足饱食度数量的食物
                             pet.hunger = 10 - pet.hunger //补满饱食度
-                            Toast.makeText(context, pet.name + "已经吃撑了", Toast.LENGTH_SHORT)
+                            Toast.makeText(context, "${pet.name}已经吃撑了", Toast.LENGTH_SHORT)
                                 .show()
                         }
                     } else {

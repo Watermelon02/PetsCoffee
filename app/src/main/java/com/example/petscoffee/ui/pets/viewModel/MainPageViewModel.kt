@@ -1,35 +1,42 @@
 package com.example.petscoffee.ui.pets.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import com.example.petscoffee.model.network.WeatherResponse
 import com.example.petscoffee.repository.WeatherRepository
 import com.example.petscoffee.repository.local.Archive
 import com.example.petscoffee.repository.local.CoffeeDatabase
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class MainPageViewModel(application: Application) : AndroidViewModel(application) {
-    private var place = MutableLiveData<String>("110000")
+/**
+ * description ： mainPageActivity对应的viewModel,其包含一个用协程查询天气的方法
+ * 在该模块创建了roomDatabase的实例
+ * author : Watermelon02
+ * email : 1446157077@qq.com
+ * date : 2022/1/25 16:30
+ */
+
+class MainPageViewModel : ViewModel() {
+    private lateinit var job: Job
+    val weather = MutableLiveData<WeatherResponse.Live>()
 
     val coffeeShop = CoffeeDatabase.getInstance().coffeeShopDao()
         .queryCoffeeLiveData(Archive.id)
 
-    val adcode = Transformations.switchMap(place) { place ->
-        WeatherRepository.queryWeather(place)
-    }
-
-    val weather = Transformations.switchMap(adcode) { adcode ->
-        WeatherRepository.queryWeather(adcode.getOrNull()?.adcode)
-    }
-
-
-
-    suspend fun queryWeather() {
-        val mAdcode = WeatherRepository.queryPlace()
-        withContext(Dispatchers.Main){
-            place.value = mAdcode
+    fun queryWeather() {
+        job = CoroutineScope(Dispatchers.IO).launch {
+            WeatherRepository.queryPlace()?.let {//避免返回值为null时的查询
+                WeatherRepository.queryAdcode(it)
+                    ?.let { weather.postValue(WeatherRepository.queryWeather(it)) }
+            }
         }
+    }
+
+    override fun onCleared() {//关闭协程作用域
+        super.onCleared()
+        job.cancel()
     }
 }

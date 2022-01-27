@@ -1,4 +1,4 @@
-package com.example.petscoffee.model.pets
+package com.example.petscoffee.model.network
 
 /**
  * description ： 因为ipv6查询只返回行政区不返回adcode，所以又要把行政区发出去获得该类的adcode

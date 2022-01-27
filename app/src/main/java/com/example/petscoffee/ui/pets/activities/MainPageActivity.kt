@@ -1,6 +1,5 @@
 package com.example.petscoffee.ui.pets.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -20,8 +19,6 @@ import com.example.petscoffee.databinding.ActivityMainBinding
 import com.example.petscoffee.listener.BottomBarListener
 import com.example.petscoffee.service.WorkService
 import com.example.petscoffee.ui.pets.viewModel.MainPageViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -41,7 +38,6 @@ class MainPageActivity : AppCompatActivity() {
     private lateinit var viewModel: MainPageViewModel
     private lateinit var mainPageBinding: ActivityMainBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainPageBinding =
@@ -59,24 +55,20 @@ class MainPageActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(
             MainPageViewModel::class.java
         )
-        GlobalScope.launch { viewModel.queryWeather() }
+        viewModel.queryWeather()//查询天气
         viewModel.coffeeShop.observe(this, { coffee ->
             mainPageBinding.coffeeShop = coffee
         })
         //查询天气监听
-        viewModel.weather.observe(this, { result ->
-            val weatherData = result?.getOrNull()
-            if (weatherData != null) {
-                mainPageBinding.textMainWeather.text = weatherData.weather
-            } else {
-                mainPageBinding.textMainWeather.text = null
-            }
+        viewModel.weather.observe(this, {
+            mainPageBinding.textMainWeather.text = it.weather
         })
     }
 
     private fun initUserHeader() {
-        val userHeaderImage = mainPageBinding.mainPageNavigationView.inflateHeaderView(R.layout.user_nav_header)
-            .findViewById(R.id.user_nav_header_image) as ImageView
+        val userHeaderImage =
+            mainPageBinding.mainPageNavigationView.inflateHeaderView(R.layout.user_nav_header)
+                .findViewById(R.id.user_nav_header_image) as ImageView
         //加载头像
         val file = File("/data/data/com.example.petscoffee/userHead.jpg")
         if (file.exists()) {

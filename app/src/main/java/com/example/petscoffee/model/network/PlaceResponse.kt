@@ -1,4 +1,4 @@
-package com.example.petscoffee.model
+package com.example.petscoffee.model.network
 
 class PlaceResponse(
     val city: String,

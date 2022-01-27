@@ -12,17 +12,17 @@ import com.example.petscoffee.model.pets.PetsConverter
 @Entity(tableName = "coffeeShop")
 class CoffeeShop(
     val account: String,
-    var name: String,
-    var password: String,
-
+    val name: String,
+    val password: String,
+    @PrimaryKey
+    val id: Long = 0
 ) {
     var time = 0
     var day = 0
     var money = 10000f
     var pets: MutableList<Pets> = mutableListOf()// 宠物对象变长数组
     var bag: MutableList<Goods> = mutableListOf()
-    @PrimaryKey
-    var id: Long = 0
+
 
     fun timeChange() {
         if (time < 1) {

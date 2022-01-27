@@ -26,4 +26,5 @@ interface CoffeeShopDao {
 
     @Update
     fun upDateCoffee(coffee: CoffeeShop) //上面为CoffeeShop数据的curd
+
 }

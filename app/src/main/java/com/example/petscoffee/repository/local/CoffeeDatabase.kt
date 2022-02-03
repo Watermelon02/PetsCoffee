@@ -4,7 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.model.friends.FriendConverter
+import com.example.petscoffee.model.friends.MessageConverter
 
 /**
  * description ： 本地room数据库，单例设计模式
@@ -14,6 +17,7 @@ import com.example.petscoffee.model.CoffeeShop
  */
 
 @Database(entities = [CoffeeShop::class], version = 1, exportSchema = false)
+@TypeConverters(FriendConverter::class,MessageConverter::class)
 abstract class CoffeeDatabase : RoomDatabase() {
     abstract fun coffeeShopDao(): CoffeeShopDao //Database access object
 

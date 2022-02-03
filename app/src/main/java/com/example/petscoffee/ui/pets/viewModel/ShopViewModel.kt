@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.repository.local.Archive.id
+import com.example.petscoffee.repository.ArchiveRepository.id
 import com.example.petscoffee.repository.local.CoffeeDatabase.Companion.getInstance
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {

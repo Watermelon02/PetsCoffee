@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.petscoffee.R
 import com.example.petscoffee.databinding.ItemPetsBinding
 import com.example.petscoffee.model.pets.Pets
 import com.example.petscoffee.ui.pets.fragments.EaterDialogFragment
@@ -33,7 +34,7 @@ class PetsAdapter(var pets: List<Pets>, val fragmentManager: FragmentManager) :
         val mPet = pets[position]
         holder.binding.apply {
             pet = mPet//为dataBinding中的data传值
-            petsImage.setImageResource(mPet.imageId)
+            petsImage.setImageResource(if (mPet.species==1) R.drawable.cat else R.drawable.dog)
             petsHp.setValue(mPet.hp)//这两项都是自定义view的属性设置，暂时没法从xml的dataBinding直接设置
             petsImage.jump()
         }

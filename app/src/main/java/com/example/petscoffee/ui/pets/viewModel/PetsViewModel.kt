@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.petscoffee.model.pets.Pets
-import com.example.petscoffee.repository.local.Archive
+import com.example.petscoffee.repository.ArchiveRepository
 import com.example.petscoffee.repository.local.CoffeeDatabase
 
 /**
@@ -17,7 +17,7 @@ import com.example.petscoffee.repository.local.CoffeeDatabase
 class PetsViewModel : ViewModel() {
     fun getPets(): LiveData<List<Pets>> {
         val coffeeShop =
-            CoffeeDatabase.getInstance().coffeeShopDao().queryCoffeeLiveData(Archive.id)
+            CoffeeDatabase.getInstance().coffeeShopDao().queryCoffeeLiveData(ArchiveRepository.id)
         return Transformations.switchMap(coffeeShop) { coffeeShop ->
             MutableLiveData(coffeeShop.pets)
         }

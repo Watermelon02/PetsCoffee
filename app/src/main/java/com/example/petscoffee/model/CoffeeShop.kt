@@ -3,6 +3,7 @@ package com.example.petscoffee.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.example.petscoffee.model.friends.Friend
 import com.example.petscoffee.model.goods.Goods
 import com.example.petscoffee.model.goods.GoodsConverter
 import com.example.petscoffee.model.pets.Pets
@@ -20,9 +21,9 @@ class CoffeeShop(
     var time = 0
     var day = 0
     var money = 10000f
-    var pets: MutableList<Pets> = mutableListOf()// 宠物对象变长数组
-    var bag: MutableList<Goods> = mutableListOf()
-
+    var pets: MutableList<Pets> = ArrayList()// 宠物对象变长数组
+    var bag: MutableList<Goods> = ArrayList()
+    var friends:MutableList<Friend> = ArrayList()
 
     fun timeChange() {
         if (time < 1) {
@@ -33,7 +34,7 @@ class CoffeeShop(
         }
     }
 
-    fun showTime(): String {//为databinding展示时间
+    fun showTime(): String {//为dataBinding展示时间
         return StringBuilder().run {
             append("第")
             append(day)

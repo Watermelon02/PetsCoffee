@@ -53,22 +53,26 @@
             <View
                 android:layout_width="2dp"
                 android:layout_height="20dp"
+                android:layout_marginRight="-30dp"
                 android:layout_gravity="center"
                 android:background="#f0f0f0"/>
 
             <com.example.petscoffee.customview.WorkView
                 android:id="@+id/bottomBar_work"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
                 android:src="@drawable/ic_work"
                 app:layout_constraintBottom_toBottomOf="@+id/mainPage_pets"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="20dp"
+                android:layout_marginLeft="-30dp"
                 android:layout_gravity="center"
                 android:background="#f0f0f0"/>
 
@@ -88,7 +92,7 @@
                 android:background="#f0f0f0"/>
 
             <ImageView
-                android:id="@+id/bottomBar_wash"
+                android:id="@+id/bottomBar_friend"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

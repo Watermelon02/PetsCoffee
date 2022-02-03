@@ -3,8 +3,8 @@ package com.example.petscoffee.ui.pets.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.petscoffee.model.network.WeatherResponse
+import com.example.petscoffee.repository.ArchiveRepository
 import com.example.petscoffee.repository.WeatherRepository
-import com.example.petscoffee.repository.local.Archive
 import com.example.petscoffee.repository.local.CoffeeDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +24,7 @@ class MainPageViewModel : ViewModel() {
     val weather = MutableLiveData<WeatherResponse.Live>()
 
     val coffeeShop = CoffeeDatabase.getInstance().coffeeShopDao()
-        .queryCoffeeLiveData(Archive.id)
+        .queryCoffeeLiveData(ArchiveRepository.id)
 
     fun queryWeather() {
         job = CoroutineScope(Dispatchers.IO).launch {

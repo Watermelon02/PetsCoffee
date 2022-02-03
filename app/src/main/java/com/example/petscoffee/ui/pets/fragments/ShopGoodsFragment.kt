@@ -22,7 +22,7 @@ import com.example.petscoffee.model.equipments.Equipment
 import com.example.petscoffee.model.equipments.Nest
 import com.example.petscoffee.model.goods.Foods
 import com.example.petscoffee.model.goods.Goods
-import com.example.petscoffee.repository.local.Archive
+import com.example.petscoffee.repository.ArchiveRepository
 import java.util.*
 
 /**
@@ -95,7 +95,7 @@ class ShopGoodsFragment : Fragment() {
     }
 
     fun buyGoods(name: String) { //购买商品
-        Archive.loadCoffee { coffeeShop: CoffeeShop ->
+        ArchiveRepository.loadCoffee { coffeeShop: CoffeeShop ->
             val view =
                 LayoutInflater.from(activity).inflate(R.layout.shop_fragment_number_input, null)
             val builder = AlertDialog.Builder(
@@ -122,7 +122,7 @@ class ShopGoodsFragment : Fragment() {
                             e.printStackTrace()
                         }
                         coffeeShop.money = coffeeShop.money - num * price //扣钱
-                        Archive.saveCoffee(coffeeShop) //保存购买后的结果
+                        ArchiveRepository.saveCoffee(coffeeShop) //保存购买后的结果
                     } else {
                         Toast.makeText(activity, "钱钱不够", Toast.LENGTH_SHORT).show()
                     }
@@ -147,7 +147,7 @@ class ShopGoodsFragment : Fragment() {
                                 e.printStackTrace()
                             }
                             coffeeShop.money = coffeeShop.money - num * price //扣钱
-                            Archive.saveCoffee(coffeeShop) //保存购买后的结果
+                            ArchiveRepository.saveCoffee(coffeeShop) //保存购买后的结果
                         } else {
                             Toast.makeText(activity, "钱钱不够", Toast.LENGTH_SHORT).show()
                         }

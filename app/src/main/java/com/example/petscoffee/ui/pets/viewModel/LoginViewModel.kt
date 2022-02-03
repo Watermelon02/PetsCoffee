@@ -1,10 +1,12 @@
 package com.example.petscoffee.ui.pets.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.petscoffee.repository.LoginRepository
 import com.example.petscoffee.repository.LoginResult
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -16,9 +18,14 @@ import kotlinx.coroutines.launch
 class LoginViewModel : ViewModel() {
     val loginResult = MutableLiveData(LoginResult.CONNECTING)
     fun login(account: String, password: String) {
-        viewModelScope.launch {
-            val result = LoginRepository.login(account, password)
-            loginResult.postValue(result)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val result = LoginRepository.login(account, password)
+                loginResult.postValue(result)
+            }catch (e:Exception){
+                Log.d("testTag", "loginViewModel:${e}")
+                loginResult.postValue(LoginResult.FALSE)
+            }
         }
     }
 }

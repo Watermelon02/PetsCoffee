@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 
 import com.example.petscoffee.petsAction.Worker;
 import com.example.petscoffee.model.CoffeeShop;
-import com.example.petscoffee.repository.local.Archive;
+import com.example.petscoffee.repository.ArchiveRepository;
 import com.example.petscoffee.listener.WorkListener;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class WorkTask extends AsyncTask<Integer, Integer, Integer> {
 
     public WorkTask(Service service, WorkListener listener) {
         this.listener = listener;
-        Archive.loadCoffee(coffeeShop -> {coffee = coffeeShop;
+        ArchiveRepository.loadCoffee(coffeeShop -> {coffee = coffeeShop;
             return null;
         });
         this.service = service;
@@ -39,7 +39,7 @@ public class WorkTask extends AsyncTask<Integer, Integer, Integer> {
                     bill = worker.getBill(); //bill存储宠物收入字符串，用于输出到营业结果界面
                     coffee.setMoney(worker.getIncome()+coffee.getMoney());//该宠物带来的收入
                     coffee.timeChange();
-                    Archive.saveCoffee(coffee);
+                    ArchiveRepository.saveCoffee(coffee);
                     listener.onSuccess(money, process, bill);//获取工作结果
                 }catch (Exception e){
                     e.printStackTrace();

@@ -22,7 +22,7 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private lateinit var decreaseAnimator: ValueAnimator
     private lateinit var shakeAnimator: ObjectAnimator
     private var pic: Bitmap
-    private lateinit var work : ()->Unit
+    private lateinit var work: () -> Unit
 
 
     init {
@@ -33,7 +33,13 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
             style = Paint.Style.STROKE
             strokeWidth = 6f
         }
-        pic = BitmapFactory.decodeResource(resources, R.drawable.work1)
+        pic = Bitmap.createScaledBitmap(//缩小图片
+            BitmapFactory.decodeResource(resources, R.drawable.work),
+            80,
+            80,
+            true
+        )
+
         path.apply {
             addCircle(
                 90f + pic.width / 2,
@@ -101,7 +107,7 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private fun decrease(duration: Long) {
         increaseAnimator.pause()
         shakeAnimator.pause()
-        if(process==1f){
+        if (process == 1f) {
             work()
             this.animate().rotationYBy(360f).duration = 500
         }
@@ -115,7 +121,7 @@ class WorkView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         decreaseAnimator.start()
     }
 
-    fun setWork(work : ()->Unit){
+    fun setWork(work: () -> Unit) {
         this.work = work
     }
 }

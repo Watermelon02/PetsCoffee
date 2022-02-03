@@ -1,8 +1,7 @@
 package com.example.petscoffee.repository
 
-import com.example.petscoffee.repository.local.Archive
 import com.example.petscoffee.repository.local.CoffeeDatabase
-import com.example.petscoffee.repository.network.LoginNetwork
+import com.example.petscoffee.repository.network.CoffeeNetwork
 
 /**
  * description ： LoginActivity所需的repository层，负责从后端获取返回的登录结果,如果成功则同步数据，失败则返回错误
@@ -12,12 +11,12 @@ import com.example.petscoffee.repository.network.LoginNetwork
  */
 object LoginRepository {
     suspend fun login(account: String, password: String): LoginResult {
-        val mCoffeeShop = LoginNetwork.login(account, password)
+        val mCoffeeShop = CoffeeNetwork.login(account, password)
         return if (mCoffeeShop.account == "error" && mCoffeeShop.password == "error") {//验证失败
             LoginResult.FALSE
         } else {//验证成功
             CoffeeDatabase.getInstance().coffeeShopDao().upDateCoffee(mCoffeeShop)
-            Archive.id = mCoffeeShop.id//Archive需要修改
+            ArchiveRepository.id = mCoffeeShop.id//Archive需要修改
             LoginResult.SUCCESS
         }
     }

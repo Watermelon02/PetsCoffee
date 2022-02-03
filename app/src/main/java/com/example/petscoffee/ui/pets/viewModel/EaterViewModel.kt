@@ -3,7 +3,7 @@ package com.example.petscoffee.ui.pets.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.repository.local.Archive
+import com.example.petscoffee.repository.ArchiveRepository
 import com.example.petscoffee.repository.local.CoffeeDatabase
 
 /**
@@ -14,7 +14,7 @@ import com.example.petscoffee.repository.local.CoffeeDatabase
  */
 class EaterViewModel : ViewModel() {
     fun getCoffee(): LiveData<CoffeeShop> {
-        return CoffeeDatabase.getInstance().coffeeShopDao().queryCoffeeLiveData(Archive.id)
+        return CoffeeDatabase.getInstance().coffeeShopDao().queryCoffeeLiveData(ArchiveRepository.id)
     }
 
     fun saveCoffee(coffeeShop: CoffeeShop) {

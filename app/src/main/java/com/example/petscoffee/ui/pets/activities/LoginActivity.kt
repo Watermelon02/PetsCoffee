@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding =
             DataBindingUtil.setContentView(this, R.layout.activity_login) as ActivityLoginBinding
-        createInstance(this) //因为该activity为app的最初activity,再次创建数据库实例
+        createInstance(this.applicationContext) //因为该activity为app的最初activity,创建数据库实例
         viewModel.loginResult.observe(this) {
             when (it) {
                 LoginResult.SUCCESS -> loginSuccess()

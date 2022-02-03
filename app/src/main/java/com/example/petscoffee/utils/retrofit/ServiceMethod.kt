@@ -9,6 +9,7 @@ abstract class ServiceMethod<T> {
     abstract fun  invoke(args: Array<out Any>?): Call<T>
 
     lateinit var url: String
+    var body=""//post请求中的body
     @RequiresApi(Build.VERSION_CODES.O)
     companion object {
         fun <RequestT> parseAnnotation(method: Method,retrofit: Retrofit): ServiceMethod<RequestT> {

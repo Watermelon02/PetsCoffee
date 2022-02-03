@@ -10,6 +10,7 @@ class RetrofitBuilder {
     annotation class GET(val url: String)
     annotation class POST(val url: String)
     annotation class Path(val value: String)
+    annotation class Field(val field:String)
 
     private lateinit var baseurl: String
     private var gson: Gson = Gson()

@@ -1,5 +1,6 @@
 package com.example.petscoffee.utils.connect
 
+import android.util.Log
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
@@ -12,19 +13,19 @@ open class Call<T>(val request: Request) {
                         val response = Connect.get<T>(request.url).body
                         callback.onResponse(Response(response))
                     } catch (e: Exception) {
+                        Log.d("testTag", "Call:${e}")
                         callback.onFailure(e)
                     }
                 }.start()
             }
             "POST" -> {
-                Thread {
                     try {
-                        val response = Connect.post<T>(request.url)
+                        val response = Connect.post<T>(request)
                         callback.onResponse(response)
                     } catch (e: Exception) {
+                        Log.d("testTag", "Call:${e}")
                         callback.onFailure(e)
                     }
-                }.start()
             }
         }
     }

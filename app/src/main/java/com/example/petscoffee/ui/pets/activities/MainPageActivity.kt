@@ -2,6 +2,7 @@ package com.example.petscoffee.ui.pets.activities
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.example.petscoffee.R
 import com.example.petscoffee.customview.AvatarView
 import com.example.petscoffee.customview.PlayablePetView
@@ -19,6 +22,8 @@ import com.example.petscoffee.databinding.ActivityMainBinding
 import com.example.petscoffee.listener.BottomBarListener
 import com.example.petscoffee.service.WorkService
 import com.example.petscoffee.ui.pets.viewModel.MainPageViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -63,6 +68,7 @@ class MainPageActivity : AppCompatActivity() {
         viewModel.weather.observe(this, {
             mainPageBinding.textMainWeather.text = it.weather
         })
+
     }
 
     private fun initUserHeader() {
@@ -123,12 +129,30 @@ class MainPageActivity : AppCompatActivity() {
             val petsViews = ArrayList<PlayablePetView>()
             for (pet in it.pets) {
                 val petView = PlayablePetView(this, null)
-                petView.setImageResource(pet.imageId)
+                petView.setImageResource(if (pet.species == 1) R.drawable.cat else R.drawable.dog)//根据宠物的species属性设置对应的drawable
                 mainPageBinding.mainPageCounter.addView(petView, ViewGroup.LayoutParams(128, 128))
                 petsViews.add(petView)
                 petView.drop()
                 petView.move()
+                lifecycleScope.launch {
+                    delay(20500)//工作结束后清除所有增加的petView
+                    mainPageBinding.mainPageCounter.removeViews(
+                        1,
+                        mainPageBinding.mainPageCounter.childCount - 1
+                    )
+                }
             }
         })
+    }
+
+    private fun initMessageBoard() {//初始化留言板
+        //初始化留言板的svg动画
+        val animatedVectorDrawable =
+            AnimatedVectorDrawableCompat.create(this, R.drawable.animated_vector_window)
+        mainPageBinding.mainPageWindow.setImageDrawable(animatedVectorDrawable)
+        (mainPageBinding.mainPageWindow.drawable as Animatable).start()
+        mainPageBinding.mainPageWindow.setOnClickListener { //设置点击监听
+
+        }
     }
 }

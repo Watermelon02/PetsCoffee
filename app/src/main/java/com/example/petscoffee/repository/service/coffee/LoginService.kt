@@ -12,5 +12,5 @@ import com.example.petscoffee.utils.retrofit.RetrofitBuilder
  */
 interface LoginService {
     @RetrofitBuilder.GET("login?account={account}&password={password}")
-    suspend fun login(@RetrofitBuilder.Path("account")account:String,@RetrofitBuilder.Path("password")password:String):Call<CoffeeShop>
+    fun login(@RetrofitBuilder.Path("account")account:String,@RetrofitBuilder.Path("password")password:String):Call<CoffeeShop>
 }

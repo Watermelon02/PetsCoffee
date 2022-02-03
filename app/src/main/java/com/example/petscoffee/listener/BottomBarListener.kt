@@ -1,13 +1,13 @@
 package com.example.petscoffee.listener
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import com.example.petscoffee.R
-import android.content.Intent
 import com.example.petscoffee.ui.pets.activities.BagActivity
-import com.example.petscoffee.ui.pets.activities.ShopActivity
+import com.example.petscoffee.ui.pets.activities.FriendsActivity
 import com.example.petscoffee.ui.pets.activities.PetsActivity
-import com.example.petscoffee.ui.pets.activities.MainPageActivity
+import com.example.petscoffee.ui.pets.activities.ShopActivity
 
 class BottomBarListener(  //底部toolbar的点击监听
     private val context: Context
@@ -26,8 +26,8 @@ class BottomBarListener(  //底部toolbar的点击监听
                 val petsIntent = Intent(context, PetsActivity::class.java)
                 context.startActivity(petsIntent)
             }
-            R.id.bottomBar_wash -> {
-                val homeIntent = Intent(context, MainPageActivity::class.java)
+            R.id.bottomBar_friend -> {
+                val homeIntent = Intent(context, FriendsActivity::class.java)
                 context.startActivity(homeIntent)
             }
         }

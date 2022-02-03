@@ -13,7 +13,7 @@ import com.example.petscoffee.R
 import com.example.petscoffee.databinding.FragmentShopPetsBinding
 import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.model.pets.createPet
-import com.example.petscoffee.repository.local.Archive
+import com.example.petscoffee.repository.ArchiveRepository
 
 /**
  * description ： 商店购买宠物fragment,只包含两个子item
@@ -30,7 +30,7 @@ class ShopPetsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentShopPetsBinding.inflate(inflater, container, false)
-        Archive.loadCoffee{ coffeeShop: CoffeeShop? ->
+        ArchiveRepository.loadCoffee{ coffeeShop: CoffeeShop? ->
             binding.shopCatBuy.setOnClickListener {
                 binding.shopCatImage.jump()//点击按钮时播放宠物跳跃动画
                 buyPet(coffeeShop, 1)
@@ -57,7 +57,7 @@ class ShopPetsFragment : Fragment() {
                         val name = editText.text.toString()
                         createPet(coffee, name, species) //调用pets.Create方法创建新宠物
                         coffee.money = coffee.money - 2000f //扣钱
-                        Archive.saveCoffee(coffee) //保存
+                        ArchiveRepository.saveCoffee(coffee) //保存
                     }
                     setNegativeButton("取消") { _: DialogInterface?, _: Int -> }
                     show()

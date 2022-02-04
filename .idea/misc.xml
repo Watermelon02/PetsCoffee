@@ -6,6 +6,7 @@
         <entry key="../../../../../layout/custom_preview.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1175925925925926" />
         <entry key="app/src/main/res/drawable/animated_vector_window.xml" value="0.17314814814814813" />
+        <entry key="app/src/main/res/drawable/ic_add_friend.xml" value="0.16203703703703703" />
         <entry key="app/src/main/res/drawable/ic_bag.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/drawable/ic_bar_counter.xml" value="0.4837010334887479" />
         <entry key="app/src/main/res/drawable/ic_baseline_access_time_48.xml" value="0.13645833333333332" />
@@ -22,6 +23,7 @@
         <entry key="app/src/main/res/drawable/ic_pets.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/drawable/ic_shop.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/drawable/ic_user.xml" value="0.1111111111111111" />
+        <entry key="app/src/main/res/drawable/ic_visit.xml" value="0.16203703703703703" />
         <entry key="app/src/main/res/drawable/ic_window.xml" value="0.30537161840293314" />
         <entry key="app/src/main/res/drawable/ic_work.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/layout/activity_bag.xml" value="0.1503623188405797" />
@@ -39,6 +41,7 @@
         <entry key="app/src/main/res/layout/bottom_toolbar.xml" value="0.55290891933779" />
         <entry key="app/src/main/res/layout/bottombar.xml" value="0.15364583333333334" />
         <entry key="app/src/main/res/layout/content_login.xml" value="0.2132435465768799" />
+        <entry key="app/src/main/res/layout/dialog_friend.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/dialog_login_register.xml" value="0.24898435544957315" />
         <entry key="app/src/main/res/layout/dialog_pets_eat.xml" value="0.15364583333333334" />
         <entry key="app/src/main/res/layout/dialog_pets_wash.xml" value="0.1" />

@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.databinding.ItemFriendBinding
 import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.ui.pets.fragments.FriendDialogFragment
 
 /**
  * description ： FriendsActivity中的vp2对应的adapter
@@ -15,20 +17,21 @@ import com.example.petscoffee.model.CoffeeShop
  * date : 2022/1/29 19:49
  */
 
-class FriendsAdapter(private var friends:List<CoffeeShop>) : RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
-    class ViewHolder(val binding:ItemFriendBinding) : RecyclerView.ViewHolder(binding.root)
+class FriendsAdapter(
+    private var friends: List<CoffeeShop>,
+    private val fragmentManager: FragmentManager
+) :
+    RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
-        val binding = ItemFriendBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        binding.root.setOnClickListener {
-
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ItemFriendBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.itemFriendName.text = "${friends[position].name}(${friends[position].account})"
+        holder.binding.itemFriendName.text =
+            "${friends[position].name}(${friends[position].account})"
         holder.binding.itemFriendTime.text = "${friends[position].day}天"
         holder.binding.itemFriendMoney.text = "$:${friends[position].money}"
         holder.binding.itemFriendPets.text = "${friends[position].pets.size}只宠物"
@@ -37,5 +40,14 @@ class FriendsAdapter(private var friends:List<CoffeeShop>) : RecyclerView.Adapte
     override fun getItemCount(): Int {
         Log.d("testTag", "friends:${friends.size}")
         return friends.size
+    }
+
+    inner class ViewHolder(val binding: ItemFriendBinding) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {//点击该item则传入对应的好友数据并创建FriendDialogFragment
+                FriendDialogFragment().setCoffeeShop(friends[absoluteAdapterPosition])
+                    .show(fragmentManager, "FriendDialog")
+            }
+        }
     }
 }

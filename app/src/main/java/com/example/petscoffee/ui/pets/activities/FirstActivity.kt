@@ -14,6 +14,13 @@ import com.example.petscoffee.model.pets.Cat
 import com.example.petscoffee.repository.ArchiveRepository
 import java.util.*
 
+/**
+ * description ： 新用户登录后为第一只宠物取名的Activity,如果已经创建则进入MainPageActivity
+ * author : Watermelon02
+ * email : 1446157077@qq.com
+ * date : 2022/1/20 21:44
+ */
+
 class FirstActivity : AppCompatActivity() {
     private lateinit var mActivityPageBinding:ActivityFirstBinding
     lateinit var recyclerView: RecyclerView

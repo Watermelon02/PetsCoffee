@@ -9,4 +9,4 @@ import java.io.Serializable
  * date : 2022/1/29 20:12
  */
 
-class Messages(val senderAccount: String, val recipientAccount: String, val content: String):Serializable
+class Messages(val senderAccount: String, val recipientAccount: String,val title:String, val content: String,val id:String):Serializable

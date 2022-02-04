@@ -5,4 +5,4 @@
     android:valueTo="0.9"
     android:repeatCount="infinite"
     android:repeatMode="reverse"
-    android:duration="10000"/>
+    android:duration="5000"/>

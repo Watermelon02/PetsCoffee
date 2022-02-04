@@ -8,6 +8,15 @@
         android:animation="@animator/anim_window1"
         android:name="window1"/>
     <target
+        android:animation="@animator/anim_window5"
+        android:name="window5"/>
+    <target
+        android:animation="@animator/anim_window6"
+        android:name="window6"/>
+    <target
+        android:animation="@animator/anim_window2"
+        android:name="window2"/>
+    <target
         android:animation="@animator/anim_line1"
         android:name="window_line"/>
     <target

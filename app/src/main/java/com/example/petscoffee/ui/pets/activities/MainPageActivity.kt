@@ -68,7 +68,7 @@ class MainPageActivity : AppCompatActivity() {
         viewModel.weather.observe(this, {
             mainPageBinding.textMainWeather.text = it.weather
         })
-
+        initMessageBoard()
     }
 
     private fun initUserHeader() {

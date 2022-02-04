@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.FriendsAdapter
 import com.example.petscoffee.databinding.ActivityFriendsBinding
@@ -28,7 +29,8 @@ class FriendsActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this)[FriendsViewModel::class.java]
         val friends = ArrayList<CoffeeShop>()
         binding.activityFriendsViewPager
-        binding.activityFriendsViewPager.adapter = FriendsAdapter(friends)
+        binding.activityFriendsViewPager.adapter = FriendsAdapter(friends,supportFragmentManager)
+        binding.activityFriendsViewPager.layoutManager = LinearLayoutManager(this)
         binding.activityFriendsSearch.addTextChangedListener {
             if (it.toString().isNotEmpty()) {
                 viewModel.query(it.toString())

@@ -39,6 +39,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding =
             DataBindingUtil.setContentView(this, R.layout.activity_login) as ActivityLoginBinding
+        binding.loginCheckBox.isChecked//默认记住密码
         createInstance(this.applicationContext) //因为该activity为app的最初activity,创建数据库实例
         viewModel.loginResult.observe(this) {
             when (it) {

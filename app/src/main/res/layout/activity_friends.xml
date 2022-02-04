@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+
+        <variable
+            name="coffeeShop"
+            type="com.example.petscoffee.model.CoffeeShop" />
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -7,14 +15,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.pets.activities.FriendsActivity">
+
+        <include
+            layout="@layout/header_toolbar"
+            app:coffeeShop="@{coffeeShop}" />
+
         <EditText
             android:id="@+id/activity_friends_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_friends_viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </layout>

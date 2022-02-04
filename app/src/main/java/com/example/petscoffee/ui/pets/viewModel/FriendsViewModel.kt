@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
  */
 class FriendsViewModel : ViewModel() {
     val friendsLiveData = MutableLiveData<List<CoffeeShop>>()
+    val coffeeShop = MutableLiveData<CoffeeShop>()
 
     fun friends() {//进入好友界面时，首先调用此方法，根据coffeeShop.friends查询已经添加的好友
         ArchiveRepository.loadCoffee { coffeeShop ->
@@ -32,6 +33,10 @@ class FriendsViewModel : ViewModel() {
     }
 
     fun query(name: String) {
-            viewModelScope.launch { friendsLiveData.postValue(CoffeeNetwork.query(name)) }
+        viewModelScope.launch { friendsLiveData.postValue(CoffeeNetwork.query(name)) }
+    }
+
+    fun getCoffeeShop(){
+        ArchiveRepository.loadCoffee { this.coffeeShop.postValue(it) }
     }
 }

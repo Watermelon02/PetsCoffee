@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.FriendsAdapter
@@ -28,7 +29,7 @@ class FriendsActivity : AppCompatActivity() {
         ) as ActivityFriendsBinding
         val viewModel = ViewModelProvider(this)[FriendsViewModel::class.java]
         val friends = ArrayList<CoffeeShop>()
-        binding.activityFriendsViewPager
+        binding.activityFriendsViewPager.itemAnimator = DefaultItemAnimator()
         binding.activityFriendsViewPager.adapter = FriendsAdapter(friends,supportFragmentManager)
         binding.activityFriendsViewPager.layoutManager = LinearLayoutManager(this)
         binding.activityFriendsSearch.addTextChangedListener {
@@ -43,6 +44,10 @@ class FriendsActivity : AppCompatActivity() {
             friends.addAll(it)
             binding.activityFriendsViewPager.adapter?.notifyDataSetChanged()
         }
+        viewModel.coffeeShop.observe(this){
+            binding.coffeeShop = it
+        }
+        viewModel.getCoffeeShop()
         viewModel.friends()//初始化最后时加载已经添加的好友
     }
 }

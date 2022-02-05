@@ -17,6 +17,7 @@ object LoginRepository {
         } else {//验证成功
             CoffeeDatabase.getInstance().coffeeShopDao().upDateCoffee(mCoffeeShop)
             ArchiveRepository.id = mCoffeeShop.id//Archive需要修改
+            ArchiveRepository.account = mCoffeeShop.account
             LoginResult.SUCCESS
         }
     }

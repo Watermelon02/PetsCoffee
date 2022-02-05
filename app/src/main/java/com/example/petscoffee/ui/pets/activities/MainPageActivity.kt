@@ -152,7 +152,7 @@ class MainPageActivity : AppCompatActivity() {
         mainPageBinding.mainPageWindow.setImageDrawable(animatedVectorDrawable)
         (mainPageBinding.mainPageWindow.drawable as Animatable).start()
         mainPageBinding.mainPageWindow.setOnClickListener { //设置点击监听
-
+            startActivity(Intent(this,MessagesActivity::class.java))
         }
     }
 }

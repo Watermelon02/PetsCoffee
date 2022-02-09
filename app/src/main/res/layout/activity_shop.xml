@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.pets.activities.ShopActivity">
+        tools:context=".ui.activities.ShopActivity">
 
         <include layout="@layout/header_toolbar"
             android:id="@+id/shop_header"
@@ -59,7 +59,7 @@
 
                 <fragment
                     android:id="@+id/shop_activity_goods_fragment"
-                    android:name="com.example.petscoffee.ui.pets.fragments.ShopGoodsFragment"
+                    android:name="com.example.petscoffee.ui.fragments.ShopGoodsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -72,7 +72,7 @@
 
                 <fragment
                     android:id="@+id/shop_activity_pets_fragment"
-                    android:name="com.example.petscoffee.ui.pets.fragments.ShopPetsFragment"
+                    android:name="com.example.petscoffee.ui.fragments.ShopPetsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>

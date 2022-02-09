@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.fragments
+package com.example.petscoffee.ui.fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.databinding.DialogPetsWashBinding
-import com.example.petscoffee.ui.pets.viewModel.WasherViewModel
+import com.example.petscoffee.ui.viewModel.WasherViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

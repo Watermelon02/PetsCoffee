@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.pets.activities.PictureActivity">
+        tools:context=".ui.activities.PictureActivity">
 
         <ImageView
             android:id="@+id/pictureActivity_image"

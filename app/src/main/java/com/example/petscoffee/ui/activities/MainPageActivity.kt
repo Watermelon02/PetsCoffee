@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.activities
+package com.example.petscoffee.ui.activities
 
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -20,8 +20,9 @@ import com.example.petscoffee.customview.AvatarView
 import com.example.petscoffee.customview.PlayablePetView
 import com.example.petscoffee.databinding.ActivityMainBinding
 import com.example.petscoffee.listener.BottomBarListener
+import com.example.petscoffee.repository.local.GsonInstance
 import com.example.petscoffee.service.WorkService
-import com.example.petscoffee.ui.pets.viewModel.MainPageViewModel
+import com.example.petscoffee.ui.viewModel.MainPageViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
@@ -84,7 +85,7 @@ class MainPageActivity : AppCompatActivity() {
                         contentResolver.openInputStream(
                             FileProvider.getUriForFile(
                                 this,
-                                "com.example.petscoffee.ui.pets.activities.PictureActivity",
+                                "com.example.petscoffee.ui.activities.PictureActivity",
                                 file
                             )
                         )
@@ -103,7 +104,7 @@ class MainPageActivity : AppCompatActivity() {
                         contentResolver.openInputStream(
                             FileProvider.getUriForFile(
                                 this,
-                                "com.example.petscoffee.ui.pets.activities.PictureActivity",
+                                "com.example.petscoffee.ui.activities.PictureActivity",
                                 File("/data/data/com.example.petscoffee/userHead.jpg")
                             )
                         )
@@ -152,7 +153,9 @@ class MainPageActivity : AppCompatActivity() {
         mainPageBinding.mainPageWindow.setImageDrawable(animatedVectorDrawable)
         (mainPageBinding.mainPageWindow.drawable as Animatable).start()
         mainPageBinding.mainPageWindow.setOnClickListener { //设置点击监听
-            startActivity(Intent(this,MessagesActivity::class.java))
+            val intent = Intent(this, MessagesActivity::class.java)
+            intent.putExtra("coffee",GsonInstance.getGsonInstance().toJson(viewModel.coffeeShop.value))
+            startActivity(intent)
         }
     }
 }

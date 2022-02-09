@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.fragments
+package com.example.petscoffee.ui.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.databinding.DialogLoginRegisterBinding
 import com.example.petscoffee.repository.RegisterResult
-import com.example.petscoffee.ui.pets.viewModel.RegisterViewModel
+import com.example.petscoffee.ui.viewModel.RegisterViewModel
 
 /**
  * description ： LoginActivity中点击注册用户按钮弹出的dialog，用于注册新用户

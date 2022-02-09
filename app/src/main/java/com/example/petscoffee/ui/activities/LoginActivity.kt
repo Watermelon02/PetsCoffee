@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.activities
+package com.example.petscoffee.ui.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -13,8 +13,8 @@ import com.example.petscoffee.databinding.ActivityLoginBinding
 import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.repository.LoginResult
 import com.example.petscoffee.repository.local.CoffeeDatabase.Companion.createInstance
-import com.example.petscoffee.ui.pets.fragments.RegisterDialogFragment
-import com.example.petscoffee.ui.pets.viewModel.LoginViewModel
+import com.example.petscoffee.ui.fragments.RegisterDialogFragment
+import com.example.petscoffee.ui.viewModel.LoginViewModel
 import com.google.gson.Gson
 
 /**

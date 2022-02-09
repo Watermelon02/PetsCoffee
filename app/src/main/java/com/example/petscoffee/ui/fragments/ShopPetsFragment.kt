@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.fragments
+package com.example.petscoffee.ui.fragments
 
 import android.content.DialogInterface
 import android.os.Bundle

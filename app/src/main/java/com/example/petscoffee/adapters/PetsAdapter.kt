@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.ItemPetsBinding
 import com.example.petscoffee.model.pets.Pets
-import com.example.petscoffee.ui.pets.fragments.EaterDialogFragment
-import com.example.petscoffee.ui.pets.fragments.WasherDialogFragment
+import com.example.petscoffee.ui.fragments.EaterDialogFragment
+import com.example.petscoffee.ui.fragments.WasherDialogFragment
 
 /**
  * description ： 宠物界面vp2的adapter

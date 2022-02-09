@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.fragments
+package com.example.petscoffee.ui.fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.databinding.DialogPetsEatBinding
 import com.example.petscoffee.model.Bag
-import com.example.petscoffee.ui.pets.viewModel.EaterViewModel
+import com.example.petscoffee.ui.viewModel.EaterViewModel
 
 /**
  * description ： 宠物点击喂食按钮后的fragment,具有生命周期，因此可以直接使用livedata

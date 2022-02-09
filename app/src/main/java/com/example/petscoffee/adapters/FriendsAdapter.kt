@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.databinding.ItemFriendBinding
 import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.ui.pets.fragments.FriendDialogFragment
+import com.example.petscoffee.ui.fragments.FriendDialogFragment
 
 /**
  * description ： FriendsActivity中的vp2对应的adapter

@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.activities
+package com.example.petscoffee.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +11,7 @@ import com.example.petscoffee.R
 import com.example.petscoffee.adapters.FriendsAdapter
 import com.example.petscoffee.databinding.ActivityFriendsBinding
 import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.ui.pets.viewModel.FriendsViewModel
+import com.example.petscoffee.ui.viewModel.FriendsViewModel
 
 /**
  * description ： FriendsActivity,用于添加好友
@@ -33,11 +33,11 @@ class FriendsActivity : AppCompatActivity() {
         binding.activityFriendsViewPager.adapter = FriendsAdapter(friends,supportFragmentManager)
         binding.activityFriendsViewPager.layoutManager = LinearLayoutManager(this)
         binding.activityFriendsSearch.addTextChangedListener {
-            if (it.toString().isNotEmpty()) {
-                viewModel.query(it.toString())
-            } else {
-                viewModel.friends()
-            }
+                if (it.toString().isNotEmpty()) {
+                    viewModel.query(it.toString())
+                } else {
+                    viewModel.friends()
+                }
         }
         viewModel.friendsLiveData.observe(this) {
             friends.clear()

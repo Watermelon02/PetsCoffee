@@ -1,7 +1,9 @@
-package com.example.petscoffee.ui.pets.activities
+package com.example.petscoffee.ui.activities
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.MessageAdapter
 import com.example.petscoffee.databinding.ActivityMessgaeBinding
-import com.example.petscoffee.ui.pets.viewModel.MessageViewModel
+import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.repository.local.GsonInstance
+import com.example.petscoffee.ui.viewModel.MessageViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -32,16 +36,23 @@ class MessagesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val test = intent.extras?.get("coffee")
+        //获取访问的好友的数据
+        val coffeeShop = GsonInstance.getGsonInstance().fromJson(intent.extras?.get("coffee").toString(),
+            CoffeeShop::class.java)
         viewModel = ViewModelProvider(this)[MessageViewModel::class.java]
+        viewModel.coffeeShop = coffeeShop
         binding = DataBindingUtil.setContentView(this,R.layout.activity_messgae) as ActivityMessgaeBinding
         layoutManager = LinearLayoutManager(this)
         adapter = MessageAdapter(viewModel.messages, this)
         binding.activityMessageRv.adapter = adapter
         binding.activityMessageRv.layoutManager = layoutManager
         binding.activityMessageRv.itemAnimator = DefaultItemAnimator()
+        binding.coffeeShop = coffeeShop
         initObserver()
         initScroll()
         initSwipeRefreshLayout()
+        initClick()
         viewModel.getMessages()//进入时先查询一次
     }
 
@@ -88,8 +99,18 @@ class MessagesActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 delay(500)//延迟500ms后停止动画
                 adapter.notifyDataSetChanged()
+                //rv刷新数据后，floatingButton会不知道原因的改变位置，有待解决
                 binding.activityMessageSwipe.isRefreshing = false
             }
+        }
+    }
+
+    private fun initClick() {//初始化悬浮button点击事件
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            binding.activityMessageFloat.setScreenWH(display!!.width,display!!.height)
+        }
+        binding.activityMessageFloat.clickListener {
+            Toast.makeText(this,"1",Toast.LENGTH_SHORT).show()
         }
     }
 }

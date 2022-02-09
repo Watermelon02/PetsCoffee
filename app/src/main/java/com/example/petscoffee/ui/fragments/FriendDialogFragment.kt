@@ -1,8 +1,9 @@
-package com.example.petscoffee.ui.pets.fragments
+package com.example.petscoffee.ui.fragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,6 +13,8 @@ import com.example.petscoffee.databinding.DialogFriendBinding
 import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.model.friends.Friend
 import com.example.petscoffee.repository.ArchiveRepository
+import com.example.petscoffee.repository.local.GsonInstance
+import com.example.petscoffee.ui.activities.VisitActivity
 
 /**
  * description ： FriendActivity界面点击用户item后弹出的dialogFragment,用于查看用户的详细信息或是参观对方的咖啡馆
@@ -45,7 +48,9 @@ class FriendDialogFragment : DialogFragment() {
             }
         }
         binding.dialogFriendVisit.setOnClickListener {
-
+            val intent = Intent(requireContext(), VisitActivity::class.java)
+            intent.putExtra("coffee",GsonInstance.getGsonInstance().toJson(coffeeShop))//向VisitSActivity传入要显示的数据
+            startActivity(intent)
         }
         return AlertDialog.Builder(requireContext()).setView(binding.root).create()
     }

@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.viewModel
+package com.example.petscoffee.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import com.example.petscoffee.R
-import com.example.petscoffee.ui.pets.activities.BagActivity
-import com.example.petscoffee.ui.pets.activities.FriendsActivity
-import com.example.petscoffee.ui.pets.activities.PetsActivity
-import com.example.petscoffee.ui.pets.activities.ShopActivity
+import com.example.petscoffee.ui.activities.BagActivity
+import com.example.petscoffee.ui.activities.FriendsActivity
+import com.example.petscoffee.ui.activities.PetsActivity
+import com.example.petscoffee.ui.activities.ShopActivity
 
 class BottomBarListener(  //底部toolbar的点击监听
     private val context: Context

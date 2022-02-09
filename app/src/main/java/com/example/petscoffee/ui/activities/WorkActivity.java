@@ -1,4 +1,4 @@
-package com.example.petscoffee.ui.pets.activities;
+package com.example.petscoffee.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

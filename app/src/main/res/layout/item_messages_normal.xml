@@ -19,26 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="@font/store_my_stamp_number"
+                    android:drawableLeft="@drawable/ic_user"
+                    android:id="@+id/item_messages_normal_sender"
+                    android:layout_width="340dp"
+                    android:layout_height="30dp"
+                    android:textSize="15dp" />
+                <TextView
+                    android:gravity="right"
+                    android:text="..."
+                    android:textSize="30dp"
+                    android:textColor="#3F51B5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <TextView
+                android:fontFamily="@font/store_my_stamp_number"
                 android:id="@+id/item_messages_normal_title"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textSize="40dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_user"/>
-                <TextView
-                    android:id="@+id/item_messages_normal_sender"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:textSize="15dp" />
-            </LinearLayout>
 
 
             <TextView
@@ -46,7 +50,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:textSize="30dp" />
+                android:fontFamily="@font/store_my_stamp_number"
+                android:textSize="20dp" />
+            
+            <LinearLayout
+                android:layoutDirection="rtl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_share"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"/>
+                <ImageView
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_comment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"/>
+                <ImageView
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_zan"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"/>
+            </LinearLayout>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

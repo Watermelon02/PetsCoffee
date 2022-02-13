@@ -14,26 +14,23 @@
         android:layout_height="match_parent"
         android:background="#F8F8F8"
         android:orientation="vertical"
-        tools:context=".ui.activities.MessagesActivity"
-        android:fitsSystemWindows="true">
+        tools:context=".ui.activities.MessagesActivity">
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/activity_message_appBarLayout"
             android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            android:layout_height="wrap_content">
             <androidx.appcompat.widget.Toolbar
                 style="@style/mToolbar"
                 android:background="#F8F8F8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                android:fitsSystemWindows="true">
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:fitsSystemWindows="true">
+                    android:orientation="vertical">
 
 
                     <TextView
@@ -44,8 +41,7 @@
                         android:fontFamily="@font/store_my_stamp_number"
                         android:gravity="center_horizontal"
                         android:text="@{coffeeShop.showTime()}"
-                        android:textSize="30sp"
-                        android:fitsSystemWindows="true"/>
+                        android:textSize="30sp" />
 
                     <TextView
                         android:id="@+id/headerBar_money"
@@ -55,8 +51,7 @@
                         android:drawableLeft="@drawable/ic_baseline_money_48"
                         android:gravity="center_horizontal"
                         android:text="@{String.valueOf(coffeeShop.money)}"
-                        android:textSize="30sp"
-                        android:fitsSystemWindows="true"/>
+                        android:textSize="30sp" />
                     <View
                         android:layout_marginTop="25dp"
                         android:layout_width="match_parent"
@@ -83,15 +78,21 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        <com.example.petscoffee.customview.viewGroup.MyRefreshLayout
             android:id="@+id/activity_message_swipe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
+            app:layout_behavior="com.example.petscoffee.customview.behavior.RecyclerBehavior">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <com.example.petscoffee.customview.PetView
+                    android:src="@drawable/cat"
+                    android:id="@+id/activity_message_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:visibility="visible"/>
+
                 <com.example.petscoffee.customview.DirectionView
                     android:layout_gravity="right|center_vertical"
                     android:id="@+id/activity_message_float"
@@ -102,14 +103,14 @@
                     android:src="@drawable/ic_write"
                     />
 
-
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="30dp"
                     android:id="@+id/activity_message_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
             </FrameLayout>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </com.example.petscoffee.customview.viewGroup.MyRefreshLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

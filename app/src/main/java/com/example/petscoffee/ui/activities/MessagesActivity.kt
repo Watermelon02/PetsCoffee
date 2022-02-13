@@ -1,13 +1,11 @@
 package com.example.petscoffee.ui.activities
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +15,6 @@ import com.example.petscoffee.databinding.ActivityMessgaeBinding
 import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.repository.local.GsonInstance
 import com.example.petscoffee.ui.viewModel.MessageViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 /**
  * description ： 留言板功能，支持上拉加载更多
@@ -36,7 +32,6 @@ class MessagesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val test = intent.extras?.get("coffee")
         //获取访问的好友的数据
         val coffeeShop = GsonInstance.getGsonInstance().fromJson(intent.extras?.get("coffee").toString(),
             CoffeeShop::class.java)
@@ -77,9 +72,9 @@ class MessagesActivity : AppCompatActivity() {
                 super.onScrollStateChanged(recyclerView, newState)
                 //滑到底部时
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    if (!adapter.fadeTips && lastVisibleItemPosition == adapter.itemCount - 1) {
+                    if (!adapter.fadeTips && layoutManager.findLastCompletelyVisibleItemPosition() == adapter.itemCount - 1) {
                         viewModel.getMessages()
-                    } else if (adapter.fadeTips && lastVisibleItemPosition == adapter.itemCount - 2) {
+                    } else if (adapter.fadeTips && layoutManager.findLastCompletelyVisibleItemPosition() == adapter.itemCount - 2) {
                         viewModel.getMessages()
                     }
                 }
@@ -93,15 +88,8 @@ class MessagesActivity : AppCompatActivity() {
     }
 
     private fun initSwipeRefreshLayout() {
-        binding.activityMessageSwipe.setColorSchemeColors(Color.parseColor("#3F51B5"))//设置下拉刷新的颜色
-        binding.activityMessageSwipe.setOnRefreshListener {
+        binding.activityMessageSwipe.swipeRefreshListener {
             viewModel.refreshMessages()
-            lifecycleScope.launch {
-                delay(500)//延迟500ms后停止动画
-                adapter.notifyDataSetChanged()
-                //rv刷新数据后，floatingButton会不知道原因的改变位置，有待解决
-                binding.activityMessageSwipe.isRefreshing = false
-            }
         }
     }
 

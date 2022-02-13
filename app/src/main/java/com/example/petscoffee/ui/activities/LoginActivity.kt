@@ -94,7 +94,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loginSuccess() {
-        startActivity(Intent(this, FirstActivity::class.java))
         if (binding.loginCheckBox.isChecked) { //是否勾选记住密码
             //勾选则存储账号密码到本地
             val data = Gson().toJson(CoffeeShop(account, account, password))
@@ -106,6 +105,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             editor.putBoolean("isSaved", false)
             editor.apply()
         }
+        startActivity(Intent(this, FirstActivity::class.java))
         finish() //结束该activity
     }
 

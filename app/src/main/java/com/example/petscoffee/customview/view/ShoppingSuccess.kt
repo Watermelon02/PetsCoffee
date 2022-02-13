@@ -19,7 +19,7 @@ class ShoppingSuccess(context: Context?, attrs: AttributeSet?) : View(context, a
     init {
         setLayerType(LAYER_TYPE_SOFTWARE, null)
         paint.apply {
-            color = Color.GREEN
+            color = Color.parseColor("#3F51B5")
             style = Paint.Style.STROKE
             strokeWidth = 8f
         }

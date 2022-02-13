@@ -44,11 +44,12 @@ class MessageAdapter(val messages: ArrayList<Messages>, val context: AppCompatAc
             is FooterViewHolder -> {
                 holder.binding.itemMessagesFooterTips.visibility = View.VISIBLE//将加载 footer 设置为可见
                 if (hasMore) {
-                    fadeTips = false
                     holder.binding.itemMessagesFooterTips.text = "Loading"
                     context.lifecycleScope.launch {
                         delay(1000)
                         holder.binding.itemMessagesFooterTips.visibility = View.GONE//一段事件后隐藏该提示
+                        notifyDataSetChanged()
+                        fadeTips = false
                     }
                 } else {
                     holder.binding.itemMessagesFooterTips.text = "NoMore"

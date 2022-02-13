@@ -2,6 +2,7 @@ package com.example.petscoffee.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +35,7 @@ class PetsAdapter(var pets: List<Pets>, val fragmentManager: FragmentManager) :
         val mPet = pets[position]
         holder.binding.apply {
             pet = mPet//为dataBinding中的data传值
-            petsImage.setImageResource(if (mPet.species==1) R.drawable.cat else R.drawable.dog)
+            petsImage.setImageResource(if (mPet.species == 1) R.drawable.cat else R.drawable.dog)
             petsHp.setValue(mPet.hp)//这两项都是自定义view的属性设置，暂时没法从xml的dataBinding直接设置
             petsImage.jump()
         }
@@ -63,22 +64,27 @@ class PetsAdapter(var pets: List<Pets>, val fragmentManager: FragmentManager) :
 
         private fun bindClick(binding: ItemPetsBinding) {
             binding.apply {//绑定点击监听
-                petsImage.setOnClickListener {
+                petsImage.clickListener {
                     if (isClicked) {
                         isClicked = false
                         petsImage.jump()
-                        //按钮出现动画
+                        petsImage.love()
+                        //按钮消失动画
                         petsButtonWash.animate().translationXBy(-400f).scaleX(0f).scaleY(0f)
+                            .withEndAction { petsButtonWash.visibility = View.GONE }
                             .alpha(0f).duration = 500
                         petsButtonEat.animate().translationXBy(400f).scaleX(0f).scaleY(0f)
+                            .withEndAction { petsButtonEat.visibility = View.GONE }
                             .alpha(0f).duration = 500
                     } else {
                         isClicked = true
                         petsImage.jump()
-                        //按钮消失动画
+                        //按钮出现动画
                         petsButtonWash.animate().translationXBy(400f).scaleX(1f).scaleY(1f)
+                            .withStartAction { petsButtonWash.visibility = View.VISIBLE }
                             .alpha(1f).duration = 500
                         petsButtonEat.animate().translationXBy(-400f).scaleX(1f).scaleY(1f)
+                            .withStartAction { petsButtonEat.visibility = View.VISIBLE }
                             .alpha(1f).duration = 500
                     }
                 }

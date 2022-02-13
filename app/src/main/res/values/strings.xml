@@ -26,6 +26,6 @@
     <string name="item_pets_mood">mood  :</string>
     <string name="item_pets_love">love  :</string>
     <string name="item_pets_spec">spec  :</string>
-    <string name="item_message_name">`s Board</string>
-    <string name="visit_name">`s  Shop</string>
+    <string name="item_message_name">\'s Board</string>
+    <string name="visit_name">\'s  Shop</string>
 </resources>

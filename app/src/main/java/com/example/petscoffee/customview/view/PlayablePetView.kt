@@ -6,7 +6,6 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
@@ -130,7 +129,6 @@ class PlayablePetView(context: Context?, attrs: AttributeSet?) :
                 return true
             }
             MotionEvent.ACTION_MOVE -> {
-                Log.d("testTag", "dispatchTouchEvent: 2")
                 love()
                 move()
             }

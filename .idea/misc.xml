@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../layout/custom_preview.xml" value="0.25" />
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1175925925925926" />
         <entry key="app/src/main/res/drawable/animated_vector_window.xml" value="0.17314814814814813" />
         <entry key="app/src/main/res/drawable/ic_add_friend.xml" value="0.16203703703703703" />
@@ -38,7 +38,7 @@
         <entry key="app/src/main/res/layout/activity_friends.xml" value="0.13354851863045575" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22830188679245284" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17486710045889078" />
-        <entry key="app/src/main/res/layout/activity_messgae.xml" value="0.17980072463768115" />
+        <entry key="app/src/main/res/layout/activity_messgae.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pets.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/activity_picture.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_shop.xml" value="0.1" />
@@ -71,6 +71,7 @@
         <entry key="app/src/main/res/layout/item_pets.xml" value="0.151268115942029" />
         <entry key="app/src/main/res/layout/item_shop.xml" value="0.1" />
         <entry key="app/src/main/res/layout/mtoolbar.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/refresh_header.xml" value="0.18931159420289856" />
         <entry key="app/src/main/res/layout/sample_my_view.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/shop_fragment_input.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/layout/shop_fragment_name_input.xml" value="0.15364583333333334" />

@@ -4,7 +4,7 @@ import android.app.Service;
 import android.os.AsyncTask;
 
 import com.example.petscoffee.petsAction.Worker;
-import com.example.petscoffee.model.CoffeeShop;
+import com.example.petscoffee.bean.CoffeeShop;
 import com.example.petscoffee.repository.ArchiveRepository;
 import com.example.petscoffee.listener.WorkListener;
 

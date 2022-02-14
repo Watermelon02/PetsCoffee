@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petscoffee.R;
 import com.example.petscoffee.adapters.MsgAdapter;
-import com.example.petscoffee.model.Message;
+import com.example.petscoffee.bean.Message;
 import com.example.petscoffee.service.WorkService;
 
 import java.util.ArrayList;

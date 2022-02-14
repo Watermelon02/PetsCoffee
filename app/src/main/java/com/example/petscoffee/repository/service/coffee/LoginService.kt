@@ -1,6 +1,6 @@
 package com.example.petscoffee.repository.service.coffee
 
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.utils.connect.Call
 import com.example.petscoffee.utils.retrofit.RetrofitBuilder
 

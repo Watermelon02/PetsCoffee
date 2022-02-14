@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.databinding.ItemGoodsBinding
-import com.example.petscoffee.model.goods.Goods
+import com.example.petscoffee.bean.goods.Goods
 
 /**
  * description ： 背包界面vp2的adapter

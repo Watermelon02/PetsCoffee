@@ -11,8 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.FragmentShopPetsBinding
-import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.model.pets.createPet
+import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.bean.pets.createPet
 import com.example.petscoffee.repository.ArchiveRepository
 
 /**

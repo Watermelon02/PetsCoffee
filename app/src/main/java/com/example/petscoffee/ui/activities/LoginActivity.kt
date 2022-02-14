@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.R
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.databinding.ActivityLoginBinding
-import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.repository.LoginResult
 import com.example.petscoffee.repository.local.CoffeeDatabase.Companion.createInstance
 import com.example.petscoffee.ui.fragments.RegisterDialogFragment

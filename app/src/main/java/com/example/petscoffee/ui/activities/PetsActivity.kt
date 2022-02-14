@@ -9,7 +9,7 @@ import com.example.petscoffee.R
 import com.example.petscoffee.adapters.PetsAdapter
 import com.example.petscoffee.databinding.ActivityPetsBinding
 import com.example.petscoffee.listener.PetsDiffUtilCallback
-import com.example.petscoffee.model.pets.Pets
+import com.example.petscoffee.bean.pets.Pets
 import com.example.petscoffee.ui.viewModel.PetsViewModel
 
 /**

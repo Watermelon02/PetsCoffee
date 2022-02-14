@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.databinding.DialogPetsEatBinding
-import com.example.petscoffee.model.Bag
+import com.example.petscoffee.bean.Bag
 import com.example.petscoffee.ui.viewModel.EaterViewModel
 
 /**

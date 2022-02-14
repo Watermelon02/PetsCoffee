@@ -7,7 +7,7 @@
 
         <variable
             name="coffeeShop"
-            type="com.example.petscoffee.model.CoffeeShop" />
+            type="com.example.petscoffee.bean.CoffeeShop" />
         <variable
             name="bottomBarListener"
             type="com.example.petscoffee.listener.BottomBarListener" />

@@ -10,8 +10,8 @@ import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.DialogFriendBinding
-import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.model.friends.Friend
+import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.bean.friends.Friend
 import com.example.petscoffee.repository.ArchiveRepository
 import com.example.petscoffee.repository.local.GsonInstance
 import com.example.petscoffee.ui.activities.VisitActivity

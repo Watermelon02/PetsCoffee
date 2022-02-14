@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.ItemPetsBinding
-import com.example.petscoffee.model.pets.Pets
+import com.example.petscoffee.bean.pets.Pets
 import com.example.petscoffee.ui.fragments.EaterDialogFragment
 import com.example.petscoffee.ui.fragments.WasherDialogFragment
 

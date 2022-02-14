@@ -2,7 +2,7 @@ package com.example.petscoffee.ui.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.repository.ArchiveRepository
 import com.example.petscoffee.repository.local.CoffeeDatabase
 

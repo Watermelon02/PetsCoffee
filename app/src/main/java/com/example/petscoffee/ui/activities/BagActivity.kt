@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.GoodsAdapter
 import com.example.petscoffee.databinding.ActivityBagBinding
-import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.model.goods.Goods
+import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.bean.goods.Goods
 import com.example.petscoffee.repository.ArchiveRepository.loadCoffee
 
 /**

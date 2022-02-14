@@ -1,6 +1,6 @@
 package com.example.petscoffee.repository.service.messages
 
-import com.example.petscoffee.model.friends.MessageList
+import com.example.petscoffee.bean.friends.MessageList
 import com.example.petscoffee.utils.connect.Call
 import com.example.petscoffee.utils.retrofit.RetrofitBuilder
 

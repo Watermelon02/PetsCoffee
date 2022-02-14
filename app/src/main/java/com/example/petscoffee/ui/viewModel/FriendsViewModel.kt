@@ -3,7 +3,7 @@ package com.example.petscoffee.ui.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.repository.ArchiveRepository
 import com.example.petscoffee.repository.network.CoffeeNetwork
 import kotlinx.coroutines.launch

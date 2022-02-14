@@ -1,8 +1,8 @@
 package com.example.petscoffee.repository.network
 
-import com.example.petscoffee.model.network.AdcodeResponse
-import com.example.petscoffee.model.network.PlaceResponse
-import com.example.petscoffee.model.network.WeatherResponse
+import com.example.petscoffee.bean.network.AdcodeResponse
+import com.example.petscoffee.bean.network.PlaceResponse
+import com.example.petscoffee.bean.network.WeatherResponse
 import com.example.petscoffee.repository.service.weather.AdcodeService
 import com.example.petscoffee.repository.service.weather.PlaceService
 import com.example.petscoffee.repository.service.weather.WeatherService

@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.adapters.MsgAdapter
 import com.example.petscoffee.databinding.ActivityFirstBinding
-import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.model.Message
-import com.example.petscoffee.model.goods.Keys
-import com.example.petscoffee.model.pets.Cat
+import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.bean.Message
+import com.example.petscoffee.bean.goods.Keys
+import com.example.petscoffee.bean.pets.Cat
 import com.example.petscoffee.repository.ArchiveRepository
 import java.util.*
 

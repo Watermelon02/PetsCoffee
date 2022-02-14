@@ -1,6 +1,6 @@
 package com.example.petscoffee.repository.service.weather
 
-import com.example.petscoffee.model.network.AdcodeResponse
+import com.example.petscoffee.bean.network.AdcodeResponse
 import com.example.petscoffee.utils.connect.Call
 import com.example.petscoffee.utils.retrofit.RetrofitBuilder
 

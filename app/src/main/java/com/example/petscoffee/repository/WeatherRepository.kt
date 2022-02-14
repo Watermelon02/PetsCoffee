@@ -1,6 +1,6 @@
 package com.example.petscoffee.repository
 
-import com.example.petscoffee.model.network.WeatherResponse
+import com.example.petscoffee.bean.network.WeatherResponse
 import com.example.petscoffee.repository.network.WeatherNetwork
 import com.example.petscoffee.utils.ipGetter.IpGetter
 

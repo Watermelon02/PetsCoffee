@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.databinding.ItemMessagesFooterBinding
 import com.example.petscoffee.databinding.ItemMessagesNormalBinding
-import com.example.petscoffee.model.friends.Messages
+import com.example.petscoffee.bean.friends.Messages
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

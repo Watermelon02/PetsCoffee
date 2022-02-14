@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.R
-import com.example.petscoffee.model.Message
+import com.example.petscoffee.bean.Message
 
 class MsgAdapter(
     private val messageList: ArrayList<Message>//传入context以延迟启动activity

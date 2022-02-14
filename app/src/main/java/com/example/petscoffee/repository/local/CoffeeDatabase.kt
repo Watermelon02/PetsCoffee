@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.model.friends.FriendConverter
-import com.example.petscoffee.model.friends.MessageConverter
+import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.bean.friends.FriendConverter
+import com.example.petscoffee.bean.friends.MessageConverter
 
 /**
  * description ： 本地room数据库，单例设计模式

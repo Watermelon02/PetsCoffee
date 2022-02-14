@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.FriendsAdapter
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.databinding.ActivityFriendsBinding
-import com.example.petscoffee.model.CoffeeShop
 import com.example.petscoffee.ui.viewModel.FriendsViewModel
 
 /**

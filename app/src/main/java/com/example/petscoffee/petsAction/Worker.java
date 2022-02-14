@@ -1,7 +1,7 @@
 package com.example.petscoffee.petsAction;
 
-import com.example.petscoffee.model.CoffeeShop;
-import com.example.petscoffee.model.pets.Pets;
+import com.example.petscoffee.bean.CoffeeShop;
+import com.example.petscoffee.bean.pets.Pets;
 
 import java.util.ArrayList;
 import java.util.Random;

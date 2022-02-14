@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.MessageAdapter
 import com.example.petscoffee.databinding.ActivityMessgaeBinding
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.repository.local.GsonInstance
 import com.example.petscoffee.ui.viewModel.MessageViewModel
 

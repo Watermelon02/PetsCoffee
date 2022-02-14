@@ -1,7 +1,7 @@
 package com.example.petscoffee.repository.network
 
-import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.model.friends.Friends
+import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.bean.friends.Friends
 import com.example.petscoffee.repository.service.coffee.*
 
 /**

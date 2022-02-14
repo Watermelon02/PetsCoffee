@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.databinding.ItemFriendBinding
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.ui.fragments.FriendDialogFragment
 
 /**

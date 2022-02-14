@@ -1,7 +1,7 @@
 package com.example.petscoffee.repository
 
 import android.util.Log
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.repository.local.CoffeeDatabase
 import com.example.petscoffee.repository.network.CoffeeNetwork
 

@@ -4,7 +4,7 @@
 
         <variable
             name="coffeeShop"
-            type="com.example.petscoffee.model.CoffeeShop" />
+            type="com.example.petscoffee.bean.CoffeeShop" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -27,6 +27,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileNotFoundException
+import kotlin.random.Random
 
 /**
  * description ：
@@ -128,20 +129,22 @@ class MainPageActivity : AppCompatActivity() {
     private fun workStart() {//生成移动的宠物
         viewModel.coffeeShop.observe(this, {
             val petsViews = ArrayList<PlayablePetView>()
-            for (pet in it.pets) {
-                val petView = PlayablePetView(this, null)
-                petView.setImageResource(if (pet.species == 1) R.drawable.cat else R.drawable.dog)//根据宠物的species属性设置对应的drawable
-                mainPageBinding.mainPageCounter.addView(petView, ViewGroup.LayoutParams(128, 128))
-                petsViews.add(petView)
-                petView.drop()
-                petView.move()
-                lifecycleScope.launch {
-                    delay(20500)//工作结束后清除所有增加的petView
-                    mainPageBinding.mainPageCounter.removeViews(
-                        1,
-                        mainPageBinding.mainPageCounter.childCount - 1
-                    )
+            lifecycleScope.launch {
+                for (pet in it.pets) {
+                    val petView = PlayablePetView(this@MainPageActivity, null)
+                    petView.setImageResource(if (pet.species == 1) R.drawable.cat else R.drawable.dog)//根据宠物的species属性设置对应的drawable
+                    mainPageBinding.mainPageCounter.addView(petView, ViewGroup.LayoutParams(128, 128))
+                    petView.x = Random.nextInt(1000).toFloat()
+                    petsViews.add(petView)
+                    petView.drop()
+                    petView.move()
+                    delay(800)
                 }
+                delay(18000)//工作结束后清除所有增加的petView
+                mainPageBinding.mainPageCounter.removeViews(
+                    1,
+                    mainPageBinding.mainPageCounter.childCount - 1
+                )
             }
         })
     }

@@ -1,7 +1,7 @@
 package com.example.petscoffee.repository.network
 
-import com.example.petscoffee.model.friends.MessageList
-import com.example.petscoffee.model.friends.Messages
+import com.example.petscoffee.bean.friends.MessageList
+import com.example.petscoffee.bean.friends.Messages
 import com.example.petscoffee.repository.service.messages.InsertMessageService
 import com.example.petscoffee.repository.service.messages.MessageServiceCreator
 import com.example.petscoffee.repository.service.messages.SelectMessageService

@@ -2,7 +2,7 @@ package com.example.petscoffee.repository.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 
 @Dao
 interface CoffeeShopDao {

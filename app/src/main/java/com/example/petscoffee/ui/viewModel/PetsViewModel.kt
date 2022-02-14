@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.petscoffee.model.pets.Pets
+import com.example.petscoffee.bean.pets.Pets
 import com.example.petscoffee.repository.ArchiveRepository
 import com.example.petscoffee.repository.local.CoffeeDatabase
 

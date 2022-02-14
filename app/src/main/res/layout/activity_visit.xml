@@ -3,7 +3,7 @@
     <data>
         <variable
             name="coffeeShop"
-            type="com.example.petscoffee.model.CoffeeShop" />
+            type="com.example.petscoffee.bean.CoffeeShop" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

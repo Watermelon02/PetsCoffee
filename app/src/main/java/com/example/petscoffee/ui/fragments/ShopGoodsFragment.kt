@@ -14,14 +14,14 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.FragmentShopGoodsBinding
 import com.example.petscoffee.databinding.ItemShopBinding
-import com.example.petscoffee.model.Bag
-import com.example.petscoffee.model.CoffeeShop
-import com.example.petscoffee.model.equipments.Bell
-import com.example.petscoffee.model.equipments.Bowl
-import com.example.petscoffee.model.equipments.Equipment
-import com.example.petscoffee.model.equipments.Nest
-import com.example.petscoffee.model.goods.Foods
-import com.example.petscoffee.model.goods.Goods
+import com.example.petscoffee.bean.Bag
+import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.bean.equipments.Bell
+import com.example.petscoffee.bean.equipments.Bowl
+import com.example.petscoffee.bean.equipments.Equipment
+import com.example.petscoffee.bean.equipments.Nest
+import com.example.petscoffee.bean.goods.Foods
+import com.example.petscoffee.bean.goods.Goods
 import com.example.petscoffee.repository.ArchiveRepository
 import java.util.*
 

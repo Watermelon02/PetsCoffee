@@ -1,7 +1,7 @@
 package com.example.petscoffee.listener
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.petscoffee.model.pets.Pets
+import com.example.petscoffee.bean.pets.Pets
 
 /**
  * description ： 用于petsActivity的差分刷新

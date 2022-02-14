@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.ActivityShopBinding
 import com.example.petscoffee.listener.BottomBarListener
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.repository.ArchiveRepository.loadCoffee
 import com.example.petscoffee.ui.viewModel.ShopViewModel
 

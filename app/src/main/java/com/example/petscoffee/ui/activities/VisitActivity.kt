@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.example.petscoffee.R
 import com.example.petscoffee.databinding.ActivityVisitBinding
-import com.example.petscoffee.model.CoffeeShop
+import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.repository.local.GsonInstance
 
 /**

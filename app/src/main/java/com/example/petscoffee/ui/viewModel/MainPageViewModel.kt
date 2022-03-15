@@ -27,6 +27,7 @@ class MainPageViewModel : ViewModel() {
         .queryCoffeeLiveData(ArchiveRepository.id)
 
     fun queryWeather() {
+
         job = CoroutineScope(Dispatchers.IO).launch {
             WeatherRepository.queryPlace()?.let {//避免返回值为null时的查询
                 WeatherRepository.queryAdcode(it)

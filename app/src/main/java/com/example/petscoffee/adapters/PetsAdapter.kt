@@ -1,14 +1,13 @@
 package com.example.petscoffee.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petscoffee.R
-import com.example.petscoffee.databinding.ItemPetsBinding
 import com.example.petscoffee.bean.pets.Pets
+import com.example.petscoffee.databinding.ItemPetsBinding
 import com.example.petscoffee.ui.fragments.EaterDialogFragment
 import com.example.petscoffee.ui.fragments.WasherDialogFragment
 
@@ -21,13 +20,11 @@ import com.example.petscoffee.ui.fragments.WasherDialogFragment
 
 class PetsAdapter(var pets: List<Pets>, val fragmentManager: FragmentManager) :
     RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
-    private lateinit var context
-            : Context//父类context(应该传入 onCreateViewHolder中的parent的context)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
         val binding = ItemPetsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = PetViewHolder(binding)
-        context = parent.context //为传到washer的context和viewHolder
         return viewHolder
     }
 

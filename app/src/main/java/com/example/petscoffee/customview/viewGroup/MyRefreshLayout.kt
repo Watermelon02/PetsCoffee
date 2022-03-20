@@ -54,9 +54,9 @@ class MyRefreshLayout(context: Context?, attrs: AttributeSet?) :
             val lp = child.layoutParams as MarginLayoutParams
             val childHeight = measuredHeight + child.marginTop + child.marginBottom
             val childWidth = child.measuredWidth + lp.leftMargin + lp.rightMargin
-            if (child is PetView) {
+            /*if (child is PetView) {
                 child.layout(measuredWidth, -20, childWidth + measuredWidth, childHeight - 20)
-            }
+            }*/
             child.layout(0, 0, childWidth, childHeight)
         }
     }
@@ -86,6 +86,10 @@ class MyRefreshLayout(context: Context?, attrs: AttributeSet?) :
     }
 
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
+        if (dy>0) {
+            isEnabled = false
+            return
+        }
         val dampingY = dampedScroll(dy)
         if (offY+dampingY > maxY) {
             if (!mRv.canScrollVertically(-1) && dy < 0) {//滑动到顶部且继续往下拉

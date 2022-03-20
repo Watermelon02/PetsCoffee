@@ -38,7 +38,7 @@ open class Call<T>(val request: Request) {
                     if (body != null) {
                         continuation.resumeWith(Result.success(body))
                     } else {
-                        continuation.resumeWithException(RuntimeException("ResponseBody is null"))
+                        Log.d("testTag", "Call\$await : ResponseBody is null")
                     }
                 }
 

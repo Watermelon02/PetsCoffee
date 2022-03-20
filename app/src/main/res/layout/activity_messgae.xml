@@ -15,7 +15,9 @@
         android:background="#F8F8F8"
         android:orientation="vertical"
         tools:context=".ui.activities.MessagesActivity">
-        <com.google.android.material.appbar.AppBarLayout
+        <LinearLayout
+            app:layout_behavior=".customview.behavior.TitleBehavior"
+            android:orientation="vertical"
             android:id="@+id/activity_message_appBarLayout"
             android:background="@color/white"
             android:layout_width="match_parent"
@@ -65,7 +67,7 @@
                 style="@style/mToolbar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp">
                 <TextView
                     android:background="#F8F8F8"
                     android:textSize="30dp"
@@ -76,13 +78,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
+        </LinearLayout>
 
         <com.example.petscoffee.customview.viewGroup.MyRefreshLayout
             android:id="@+id/activity_message_swipe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.example.petscoffee.customview.behavior.RecyclerBehavior">
+            app:layout_behavior=".customview.behavior.RefreshBehavior">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

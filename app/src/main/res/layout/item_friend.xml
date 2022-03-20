@@ -6,6 +6,7 @@
     android:orientation="horizontal">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/item_friend_card"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         app:layout_constraintEnd_toEndOf="parent"

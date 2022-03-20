@@ -4,10 +4,11 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.petscoffee.databinding.ItemFriendBinding
 import com.example.petscoffee.bean.CoffeeShop
+import com.example.petscoffee.databinding.ItemFriendBinding
 import com.example.petscoffee.ui.fragments.FriendDialogFragment
 
 /**
@@ -44,9 +45,12 @@ class FriendsAdapter(
 
     inner class ViewHolder(val binding: ItemFriendBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.root.setOnClickListener {//点击该item则传入对应的好友数据并创建FriendDialogFragment
+            binding.itemFriendCard.setOnClickListener {//点击该item则传入对应的好友数据并创建FriendDialogFragment
                 FriendDialogFragment().setCoffeeShop(friends[absoluteAdapterPosition])
                     .show(fragmentManager, "FriendDialog")
+            }
+            binding.itemFriendDelete.setOnClickListener {
+                Toast.makeText(binding.root.context,"delete",Toast.LENGTH_SHORT)
             }
         }
     }

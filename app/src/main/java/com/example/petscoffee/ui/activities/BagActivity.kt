@@ -6,9 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petscoffee.R
 import com.example.petscoffee.adapters.GoodsAdapter
-import com.example.petscoffee.databinding.ActivityBagBinding
 import com.example.petscoffee.bean.CoffeeShop
 import com.example.petscoffee.bean.goods.Goods
+import com.example.petscoffee.databinding.ActivityBagBinding
 import com.example.petscoffee.repository.ArchiveRepository.loadCoffee
 
 /**
@@ -22,6 +22,7 @@ class BagActivity : AppCompatActivity() {
     private lateinit var bag: MutableList<Goods>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        lifecycle
         val bagBinding: ActivityBagBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_bag)
         //设置dataBinding

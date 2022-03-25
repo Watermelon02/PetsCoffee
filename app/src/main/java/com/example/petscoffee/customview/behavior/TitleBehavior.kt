@@ -29,7 +29,6 @@ class TitleBehavior(context: Context?, attrs: AttributeSet?) :
         dependency: View
     ): Boolean {
         child.translationY = dependency.translationY
-        /*(dependency as MyRefreshLayout).isEnabled = child.translationY.toInt() == 0*/
         return true
     }
 }

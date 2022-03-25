@@ -5,6 +5,7 @@ import android.os.Build
 import android.util.Log
 import android.util.SparseArray
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.LifecycleRegistry
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -23,6 +24,7 @@ class MyLayoutManager : RecyclerView.LayoutManager() {
 
 
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
+        LifecycleRegistry
         return RecyclerView.LayoutParams(
             RecyclerView.LayoutParams.WRAP_CONTENT,
             RecyclerView.LayoutParams.WRAP_CONTENT
